@@ -36,8 +36,8 @@
     .img-container { aspect-ratio: 1 / 1; position: relative; overflow: hidden; background: var(--white); }
     .img-front, .img-back { position: absolute; inset: 0; background: var(--white); }
     .img-back { opacity: 0; }
-    .product-card:hover .img-back, .product-card.flipped .img-back { opacity: 1; }
-    .product-card:hover .img-front, .product-card.flipped .img-front { opacity: 0; }
+    .product-card.has-back:hover .img-back, .product-card.flipped .img-back { opacity: 1; }
+    .product-card.has-back:hover .img-front, .product-card.flipped .img-front { opacity: 0; }
     .img-front img, .img-back img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
     .product-info { padding: 14px 16px 20px; background: var(--white); }
     .product-name { font-size: 11px; letter-spacing: 0.05em; color: var(--black); margin-bottom: 4px; line-height: 1.4; }
