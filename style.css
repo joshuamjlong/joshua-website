@@ -21,7 +21,7 @@
       .header-tagline { display: none; }
       nav { width: 100%; display: flex; gap: 20px; }
       nav a { font-size: 9px; letter-spacing: 0.15em; }
-      .content { padding-top: 126px; }
+      .content { padding-top: 140px; }
     }
     .header-logo { cursor: pointer; height: 22px; display: block; }
     .header-logo img { height: 100%; width: auto; display: block; }
