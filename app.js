@@ -22,10 +22,11 @@ function renderGrid() {
     var front = p.id + '-FRONT.jpg';
     var back = p.hasBack ? p.id + '-BACK.jpg' : front;
     var cardClass = p.hasBack ? 'product-card has-back' : 'product-card';
-    html += '<div class="' + cardClass + '" onclick="openProduct(\'' + p.id + '\')"';
+    html += '<div class="' + cardClass + '" onclick="handleClick(event,\'' + p.id + '\')"';
     if (p.hasBack) {
-      html += ' onmouseenter="this.classList.add(\'flipped\')" onmouseleave="this.classList.remove(\'flipped\')" ontouchstart="handleTouch(event,this)"';
+      html += ' onmouseenter="this.classList.add(\'flipped\')" onmouseleave="this.classList.remove(\'flipped\')"';
     }
+    html += ' ontouchstart="handleTouchStart(event,this)" ontouchend="handleTouchEnd(event,this)"';
     html += '>';
     html += '<div class="img-container">';
     html += '<div class="img-front"><img src="' + front + '" alt="' + p.name + '" loading="lazy" onerror="this.style.opacity=0" /></div>';
@@ -41,17 +42,43 @@ function renderGrid() {
   grid.innerHTML = html;
 }
 
+var isTouchDevice = false;
+
+function handleClick(e, id) {
+  if (isTouchDevice) return; // handled by touchend
+  openProduct(id);
+}
+
 var lastTouched = null;
-function handleTouch(e, card) {
+document.addEventListener('touchstart', function() { isTouchDevice = true; }, { once: true });
+
+var touchStartX = 0;
+var touchStartY = 0;
+
+function handleTouchStart(e, card) {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+}
+
+function handleTouchEnd(e, card) {
+  var dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
+  var dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+  if (dx > 8 || dy > 8) return; // was a scroll, ignore
+
   if (lastTouched && lastTouched !== card) lastTouched.classList.remove('flipped');
   if (card.classList.contains('flipped')) {
     var m = card.getAttribute('onclick').match(/'([^']+)'/);
     if (m) openProduct(m[1]);
     return;
   }
-  card.classList.add('flipped');
-  lastTouched = card;
-  e.preventDefault();
+  if (card.classList.contains('has-back')) {
+    card.classList.add('flipped');
+    lastTouched = card;
+    e.preventDefault();
+  } else {
+    var m = card.getAttribute('onclick').match(/'([^']+)'/);
+    if (m) openProduct(m[1]);
+  }
 }
 
 function renderDetail(p) {
