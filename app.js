@@ -21,7 +21,8 @@ function renderGrid() {
     var p = products[i];
     var front = p.id + '-FRONT.jpg';
     var back = p.hasBack ? p.id + '-BACK.jpg' : front;
-    html += '<div class="product-card" onclick="openProduct(\'' + p.id + '\')"';
+    var cardClass = p.hasBack ? 'product-card has-back' : 'product-card';
+    html += '<div class="' + cardClass + '" onclick="openProduct(\'' + p.id + '\')"';
     if (p.hasBack) {
       html += ' onmouseenter="this.classList.add(\'flipped\')" onmouseleave="this.classList.remove(\'flipped\')" ontouchstart="handleTouch(event,this)"';
     }
