@@ -54,16 +54,17 @@
     .detail-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 60px); }
     @media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } }
     .detail-images { background: var(--white); }
-    .detail-main-img { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: var(--white); }
+    .detail-main-img { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: var(--white); cursor: zoom-in; }
     .detail-main-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .detail-thumbs { display: flex; gap: 1px; background: var(--light-grey); }
     .detail-thumb { flex: 1; aspect-ratio: 1; overflow: hidden; cursor: pointer; background: var(--white); opacity: 0.5; transition: opacity 0.2s; }
     .detail-thumb.active, .detail-thumb:hover { opacity: 1; }
     .detail-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .detail-info { padding: clamp(32px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; }
-    .detail-name { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; letter-spacing: 0.04em; line-height: 1.2; color: var(--black); margin-bottom: 8px; }
-    .detail-composition { font-size: 10px; letter-spacing: 0.1em; color: var(--mid-grey); text-transform: uppercase; margin-bottom: 6px; }
-    .detail-product-details { font-size: 10px; letter-spacing: 0.08em; color: var(--mid-grey); line-height: 2; margin-bottom: 28px; }
+    .detail-name { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; letter-spacing: 0.04em; line-height: 1.2; color: var(--black); margin-bottom: 6px; }
+    .detail-product-details { font-size: 10px; letter-spacing: 0.08em; color: var(--mid-grey); line-height: 1.8; margin-bottom: 24px; }
+    .size-guide-link { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); text-decoration: underline; cursor: pointer; margin-left: 12px; }
+    .size-guide-link:hover { color: var(--black); }
     .detail-price { font-size: 16px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 32px; }
     .size-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 12px; }
     .size-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
