@@ -1,17 +1,50 @@
 var currentProduct = null;
 var selectedSize = null;
 
-function showPage(id) {
+function updateMeta(title, description, image) {
+  document.title = title ? title + ' — Joshua' : 'Joshua';
+  var desc = description || 'Intimate apparel designed for the way she moves. She dressed with no one in mind.';
+  var img = image || 'https://joshuaatelier.com/Joshua-logo-black.png';
+  var url = window.location.href;
+
+  document.querySelector('meta[name="description"]').setAttribute('content', desc);
+  document.querySelector('meta[property="og:title"]').setAttribute('content', document.title);
+  document.querySelector('meta[property="og:description"]').setAttribute('content', desc);
+  document.querySelector('meta[property="og:image"]').setAttribute('content', img);
+  document.querySelector('meta[property="og:url"]').setAttribute('content', url);
+  document.querySelector('meta[name="twitter:title"]').setAttribute('content', document.title);
+  document.querySelector('meta[name="twitter:description"]').setAttribute('content', desc);
+  document.querySelector('meta[name="twitter:image"]').setAttribute('content', img);
+}
+
+function showPage(id, pushState) {
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById(id + '-page').classList.add('active');
   window.scrollTo(0, 0);
+  if (pushState !== false) {
+    var hash = id === 'shop' ? '' : '#' + id;
+    history.pushState(null, '', window.location.pathname + hash);
+  }
+  if (id === 'shop') updateMeta(null, null, null);
+  else if (id === 'about') updateMeta('About', 'The story behind Joshua intimate apparel.', null);
+  else if (id === 'sizing') updateMeta('Sizing & Returns', null, null);
 }
 
-function openProduct(id) {
+function openProduct(id, pushState) {
   currentProduct = products.find(function(p) { return p.id === id; });
   selectedSize = null;
   renderDetail(currentProduct);
-  showPage('detail');
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('detail-page').classList.add('active');
+  window.scrollTo(0, 0);
+  if (pushState !== false) {
+    history.pushState(null, '', window.location.pathname + '#' + id);
+  }
+  updateMeta(
+    currentProduct.name,
+    currentProduct.name + '. ' + currentProduct.composition + '. ' + currentProduct.price + '. Complimentary standard shipping by DHL within the EU.',
+    'https://joshuaatelier.com/' + currentProduct.id + '-FRONT.jpg'
+  );
 }
 
 function renderGrid() {
@@ -139,7 +172,36 @@ function handleBuy() {
   }
 }
 
+function handleRoute() {
+  var hash = window.location.hash.replace('#', '');
+  if (!hash) {
+    showPage('shop', false);
+  } else if (hash === 'about') {
+    showPage('about', false);
+  } else if (hash === 'sizing') {
+    showPage('sizing', false);
+  } else {
+    var p = products.find(function(p) { return p.id === hash; });
+    if (p) openProduct(hash, false);
+    else showPage('shop', false);
+  }
+}
+
+window.addEventListener('popstate', handleRoute);
+
+function fixContentPadding() {
+  var header = document.querySelector('header');
+  var height = header.getBoundingClientRect().height;
+  document.querySelectorAll('.content').forEach(function(el) {
+    el.style.paddingTop = (height + 32) + 'px';
+  });
+}
+
+window.addEventListener('resize', fixContentPadding);
+fixContentPadding();
+
 renderGrid();
+handleRoute();
 
 var lightboxZoomed = false;
 
