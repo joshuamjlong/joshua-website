@@ -109,6 +109,8 @@
     <span class="header-tagline"><em>she dressed with no one in mind</em></span>
     <nav>
       <a onclick="showPage('shop')">Collection</a>
+      <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
       <a onclick="showPage('about')">About</a>
     </nav>
   </header>
@@ -121,7 +123,7 @@
         <div class="footer-right">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
-          <a href="mailto:hello@joshuaatelier.com">Contact</a>
+          <a href="/cdn-cgi/l/email-protection#81e9e4ededeec1ebeef2e9f4e0e0f5e4ede8e4f3afe2eeec">Contact</a>
         </div>
       </footer>
     </div>
@@ -153,7 +155,7 @@
         <div class="footer-right">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
-          <a href="mailto:hello@joshuaatelier.com">Contact</a>
+          <a href="/cdn-cgi/l/email-protection#c3aba6afafac83a9acb0abb6a2a2b7a6afaaa6b1eda0acae">Contact</a>
         </div>
       </footer>
     </div>
@@ -193,13 +195,13 @@
         <div class="footer-right">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
-          <a href="mailto:hello@joshuaatelier.com">Contact</a>
+          <a href="/cdn-cgi/l/email-protection#cca4a9a0a0a38ca6a3bfa4b9adadb8a9a0a5a9bee2afa3a1">Contact</a>
         </div>
       </footer>
     </div>
   </div>
 
-  <script src="products.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="products.js"></script>
   <script>
     let currentProduct = null;
     let selectedSize = null;
@@ -290,11 +292,7 @@
         document.getElementById('size-note').textContent = 'Please select a size';
         return;
       }
-      var url = currentProduct.stripeLinks[selectedSize];
-      if (url) {
-        window.location.href = url;
-      } else {
-        document.getElementById('size-note').textContent = 'Purchase link coming soon.';
+      var url = currentProduct
       }
     }
 
