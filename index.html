@@ -1,24 +1,512 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Joshua Website</title>
-<style>
-html, body {
-  margin: 0;
-  padding: 0;
-}
-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joshua</title>
+  <meta name="description" content="She dressed with no one in mind." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --off-white: #f8f8f6;
+      --light-grey: #e8e8e6;
+      --mid-grey: #999;
+      --dark-grey: #444;
+      --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .page { display: none; }
+    .page.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--light-grey);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .header-logo { cursor: pointer; height: 22px; display: block; }
+    .header-logo img { height: 100%; width: auto; display: block; }
+
+    nav { display: flex; gap: 32px; align-items: center; }
+    nav a {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dark-grey);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--black); }
+
+    .content { padding-top: 60px; min-height: 100vh; }
+
+    /* ── GRID ── */
+    .grid-header {
+      padding: 32px 24px 20px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .grid-header-title {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+    .grid-header-count {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--mid-grey);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--light-grey);
+      border-top: 1px solid var(--light-grey);
+    }
+    @media (max-width: 768px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 769px) and (max-width: 1100px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── FLIP CARD ── */
+    .product-card { background: var(--white); cursor: pointer; position: relative; }
+
+    .flip-container { perspective: 1000px; aspect-ratio: 1 / 1; position: relative; }
+
+    .flip-inner {
+      width: 100%; height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover .flip-inner,
+    .product-card.flipped .flip-inner { transform: rotateY(180deg); }
+
+    .flip-front, .flip-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      overflow: hidden;
+      background: var(--off-white);
+    }
+    .flip-back { transform: rotateY(180deg); }
+
+    .flip-front img, .flip-back img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      padding: 16px;
+    }
+
+    .product-info { padding: 14px 16px 20px; background: var(--white); }
+    .product-name { font-size: 11px; letter-spacing: 0.05em; color: var(--black); margin-bottom: 4px; line-height: 1.4; }
+    .product-price { font-size: 11px; letter-spacing: 0.08em; color: var(--mid-grey); }
+
+    /* ── DETAIL PAGE ── */
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 60px);
+    }
+    @media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } }
+
+    .detail-images { background: var(--off-white); }
+
+    .detail-main-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: var(--off-white);
+    }
+    .detail-main-img img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      padding: 40px;
+      display: block;
+    }
+
+    .detail-thumbs { display: flex; gap: 1px; background: var(--light-grey); }
+    .detail-thumb {
+      flex: 1; aspect-ratio: 1;
+      overflow: hidden; cursor: pointer;
+      background: var(--off-white);
+      opacity: 0.5; transition: opacity 0.2s;
+    }
+    .detail-thumb.active, .detail-thumb:hover { opacity: 1; }
+    .detail-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 8px; display: block; }
+
+    .detail-info {
+      padding: clamp(32px, 5vw, 64px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .detail-collection { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 16px; }
+    .detail-name { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; letter-spacing: 0.04em; line-height: 1.2; color: var(--black); margin-bottom: 8px; }
+    .detail-composition { font-size: 10px; letter-spacing: 0.1em; color: var(--mid-grey); text-transform: uppercase; margin-bottom: 28px; }
+    .detail-price { font-size: 16px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 32px; }
+
+    .size-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 12px; }
+
+    .size-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+
+    .size-btn {
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--light-grey);
+      background: transparent;
+      font-family: var(--font);
+      font-size: 10px; letter-spacing: 0.1em;
+      color: var(--dark-grey);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .size-btn:hover { border-color: var(--black); color: var(--black); }
+    .size-btn.active { background: var(--black); border-color: var(--black); color: var(--white); }
+    .size-btn.out-of-stock { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
+
+    .buy-btn {
+      display: block; width: 100%; padding: 16px;
+      background: var(--black); color: var(--white);
+      font-family: var(--font);
+      font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
+      text-align: center; border: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .buy-btn:hover { background: #333; }
+    .buy-btn:disabled { background: var(--light-grey); color: var(--mid-grey); cursor: not-allowed; }
+
+    .size-note { font-size: 10px; letter-spacing: 0.05em; color: var(--mid-grey); margin-top: 8px; min-height: 16px; }
+
+    .detail-divider { width: 100%; height: 1px; background: var(--light-grey); margin: 28px 0; }
+
+    .detail-features { font-size: 10px; letter-spacing: 0.08em; line-height: 2.5; color: var(--mid-grey); text-transform: uppercase; }
+
+    /* ── ABOUT ── */
+    #about-page .content {
+      padding-top: 60px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-bottom: 80px;
+    }
+
+    .about-header { padding: 60px 0 40px; border-bottom: 1px solid var(--light-grey); margin-bottom: 60px; }
+    .about-title { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 20px; }
+    .about-tagline { font-size: clamp(24px, 4vw, 42px); font-weight: 300; letter-spacing: 0.02em; line-height: 1.2; color: var(--black); font-style: italic; }
+
+    .about-body { font-size: 13px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; margin-bottom: 48px; max-width: 600px; }
+    .about-body p + p { margin-top: 24px; }
+
+    .about-section-title { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 32px; }
+
+    .detail-shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 60px; }
+    @media (max-width: 600px) { .detail-shots-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .detail-shot { aspect-ratio: 1; overflow: hidden; background: var(--off-white); }
+    .detail-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .about-features { font-size: 11px; letter-spacing: 0.08em; line-height: 2.5; color: var(--dark-grey); text-transform: uppercase; border-top: 1px solid var(--light-grey); padding-top: 32px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--light-grey);
+      padding: 32px 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    }
+    .footer-left { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); }
+    .footer-right { display: flex; gap: 24px; }
+    .footer-right a { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); text-decoration: none; transition: color 0.2s; }
+    .footer-right a:hover { color: var(--black); }
+
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--mid-grey); cursor: pointer;
+      padding: 20px 24px; transition: color 0.2s;
+      background: none; border: none; font-family: var(--font);
+    }
+    .back-btn:hover { color: var(--black); }
+
+    @media (max-width: 768px) {
+      header { padding: 0 16px; }
+      .grid-header { padding: 24px 16px 16px; }
+      .detail-info { padding: 24px 16px 40px; }
+      nav { gap: 20px; }
+    }
+  </style>
 </head>
 <body>
 
-<img src="joshua.desktop.jpeg" alt="Joshua Website">
+  <header>
+    <div class="header-logo" onclick="showPage('shop')">
+      <img src="Joshua-logo-black.png" alt="Joshua" />
+    </div>
+    <nav>
+      <a onclick="showPage('shop')">Collection</a>
+      <a onclick="showPage('about')">About</a>
+    </nav>
+  </header>
 
+  <!-- SHOP -->
+  <div id="shop-page" class="page active">
+    <div class="content">
+      <div class="grid-header">
+        <span class="grid-header-title">Collection</span>
+        <span class="grid-header-count">22 pieces</span>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+      <footer>
+        <div class="footer-left">© Joshua</div>
+        <div class="footer-right">
+          <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
+          <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
+          <a href="mailto:hello@joshuaatelier.com">Contact</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- DETAIL -->
+  <div id="detail-page" class="page">
+    <div class="content">
+      <button class="back-btn" onclick="showPage('shop')">← Back</button>
+      <div class="detail-layout">
+        <div class="detail-images">
+          <div class="detail-main-img">
+            <img id="detail-main-img" src="" alt="" />
+          </div>
+          <div class="detail-thumbs" id="detail-thumbs"></div>
+        </div>
+        <div class="detail-info">
+          <div class="detail-collection">Joshua — Collection I</div>
+          <div class="detail-name" id="detail-name"></div>
+          <div class="detail-composition" id="detail-composition"></div>
+          <div class="detail-price" id="detail-price"></div>
+          <div class="size-label">Select size</div>
+          <div class="size-options" id="size-options"></div>
+          <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Purchase</button>
+          <div class="size-note" id="size-note"></div>
+          <div class="detail-divider"></div>
+          <div class="detail-features">
+            Italian mesh · Swiss hardware<br>
+            Made in Romania<br>
+            Complimentary shipping
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="about-page" class="page">
+    <div class="content">
+      <div class="about-header">
+        <div class="about-title">About</div>
+        <div class="about-tagline">She dressed with no one in mind.</div>
+      </div>
+      <div class="about-body">
+        <p>Joshua didn't begin as a brand. It began as a response.</p>
+        <p>Everything was either trying too hard to shape her, seduce for her, or speak over her. Nothing was quiet. Nothing let her be the one deciding what it meant.</p>
+        <p>Not lingerie. Not activewear. Not just for the bedroom. Not just for the street. Something that exists between those spaces — like a thought, or a feeling, or a whisper.</p>
+        <p>Not about exposure. About presence. Not performative. But always felt.</p>
+      </div>
+      <div class="about-section-title">Precision Details</div>
+      <div class="detail-shots-grid">
+        <div class="detail-shot"><img src="detail-1.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot"><img src="detail-2.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot"><img src="detail-3.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot"><img src="detail-4.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot"><img src="detail-5.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot"><img src="detail-6.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+      </div>
+      <div class="about-section-title">Construction</div>
+      <div class="about-features">
+        Soft Italian mesh with stretch jersey binding<br>
+        Reinforced inner seams finished with stretch silk<br>
+        Custom-made Italian metal components<br>
+        Organic cotton gussets<br>
+        Highest-grade Swiss snaps<br>
+        Produced in Cluj-Napoca, Romania
+      </div>
+      <footer>
+        <div class="footer-left">© Joshua</div>
+        <div class="footer-right">
+          <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
+          <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
+          <a href="mailto:hello@joshuaatelier.com">Contact</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const products = [
+      { id:'KG-F25-MBD-Y1',  name:'Thong mesh bodysuit',                    price:'€190', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y3',   name:'Open bottom mesh bodysuit',               price:'€200', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y4',   name:'Boat neck g-string bodysuit',             price:'€110', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y5',   name:'Hourglass contoured bodysuit',            price:'€150', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y7',   name:'Backless choker-neck mesh bodysuit',      price:'€140', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-A',    name:'Cross-back mesh bodysuit',                price:'€220', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y16',  name:'Open back long-sleeved mesh bodysuit',    price:'€190', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y18',  name:'Plunge neck thong mesh bodysuit',         price:'€135', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y9',   name:'Camisole mesh dress',                     price:'€180', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y8',   name:'Mesh tennis dress',                       price:'€130', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:10,S:16,M:9,L:5},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y17',  name:'Backless mesh baby tee',                  price:'€110', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-MBD-Y14', name:'Sporty mesh gym shorts',                  price:'€65',  composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y20',  name:'Mesh string bikini brief',                price:'€135', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y15',  name:'High waist full bottom mesh panty',       price:'€80',  composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y11',  name:'High waist g-string mesh panty',          price:'€70',  composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y20J', name:'Jersey string bikini brief',              price:'€155', composition:'72% Polyamide / 28% Elastane', hasBack:true,  stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y21',  name:'Micro g-string mesh panty',               price:'€150', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y21J', name:'Micro g-string jersey panty',             price:'€225', composition:'72% Polyamide / 28% Elastane', hasBack:true,  stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-MBD-Y23', name:'Scoop mesh bralette',                     price:'€175', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y23J', name:'Scoop jersey bralette',                   price:'€180', composition:'72% Polyamide / 28% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y22',  name:'Cross-back mesh micro bra',               price:'€190', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y22J', name:'Cross-back jersey micro bra',             price:'€195', composition:'72% Polyamide / 28% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+    ];
+
+    let currentProduct = null;
+    let selectedSize = null;
+
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(id + '-page').classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function openProduct(id) {
+      currentProduct = products.find(p => p.id === id);
+      selectedSize = null;
+      renderDetail(currentProduct);
+      showPage('detail');
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = products.map(p => {
+        const front = `${p.id}-FRONT.jpg`;
+        const back = p.hasBack ? `${p.id}-BACK.jpg` : front;
+        return `
+          <div class="product-card"
+               onclick="openProduct('${p.id}')"
+               onmouseenter="this.classList.add('flipped')"
+               onmouseleave="this.classList.remove('flipped')"
+               ontouchstart="handleTouch(event,this)">
+            <div class="flip-container">
+              <div class="flip-inner">
+                <div class="flip-front"><img src="${front}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
+                <div class="flip-back"><img src="${back}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-name">${p.name}</div>
+              <div class="product-price">${p.price}</div>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    let lastTouched = null;
+    function handleTouch(e, card) {
+      if (lastTouched && lastTouched !== card) lastTouched.classList.remove('flipped');
+      if (card.classList.contains('flipped')) {
+        openProduct(card.getAttribute('onclick').match(/'([^']+)'/)[1]);
+        return;
+      }
+      card.classList.add('flipped');
+      lastTouched = card;
+      e.preventDefault();
+    }
+
+    function renderDetail(p) {
+      const front = `${p.id}-FRONT.jpg`;
+      const back = p.hasBack ? `${p.id}-BACK.jpg` : null;
+
+      document.getElementById('detail-main-img').src = front;
+      document.getElementById('detail-main-img').alt = p.name;
+      document.getElementById('detail-name').textContent = p.name;
+      document.getElementById('detail-composition').textContent = p.composition;
+      document.getElementById('detail-price').textContent = p.price;
+
+      const thumbs = document.getElementById('detail-thumbs');
+      if (back) {
+        thumbs.style.display = 'flex';
+        thumbs.innerHTML = `
+          <div class="detail-thumb active" onclick="switchImg('${front}',this)"><img src="${front}" alt="Front"/></div>
+          <div class="detail-thumb" onclick="switchImg('${back}',this)"><img src="${back}" alt="Back"/></div>`;
+      } else {
+        thumbs.style.display = 'none';
+        thumbs.innerHTML = '';
+      }
+
+      document.getElementById('size-options').innerHTML = ['XS','S','M','L'].map(s => {
+        const inStock = p.stock[s] > 0;
+        return `<button class="size-btn${!inStock?' out-of-stock':''}" onclick="${inStock?`selectSize('${s}',this)`:''}" ${!inStock?'disabled':''}>${s}</button>`;
+      }).join('');
+
+      document.getElementById('size-note').textContent = '';
+      document.getElementById('buy-btn').disabled = false;
+    }
+
+    function switchImg(src, thumb) {
+      document.getElementById('detail-main-img').src = src;
+      document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
+    function selectSize(size, btn) {
+      selectedSize = size;
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('size-note').textContent = '';
+    }
+
+    function handleBuy() {
+      if (!selectedSize) {
+        document.getElementById('size-note').textContent = 'Please select a size';
+        return;
+      }
+      const url = currentProduct.stripeLinks[selectedSize];
+      if (url) {
+        window.location.href = url;
+      } else {
+        document.getElementById('size-note').textContent = 'Purchase link coming soon.';
+      }
+    }
+
+    renderGrid();
+  </script>
 </body>
 </html>
