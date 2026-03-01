@@ -32,7 +32,7 @@
     .page.active { display: block; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* ── HEADER ── */
+    /* HEADER */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -49,6 +49,19 @@
     .header-logo { cursor: pointer; height: 22px; display: block; }
     .header-logo img { height: 100%; width: auto; display: block; }
 
+    .header-tagline {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--mid-grey);
+      font-style: italic;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    @media (max-width: 640px) { .header-tagline { display: none; } }
+
     nav { display: flex; gap: 32px; align-items: center; }
     nav a {
       font-size: 10px;
@@ -63,25 +76,7 @@
 
     .content { padding-top: 60px; min-height: 100vh; }
 
-    /* ── GRID ── */
-    .grid-header {
-      padding: 32px 24px 20px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-    }
-    .grid-header-title {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--mid-grey);
-    }
-    .grid-header-count {
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      color: var(--mid-grey);
-    }
-
+    /* GRID */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -89,50 +84,38 @@
       background: var(--light-grey);
       border-top: 1px solid var(--light-grey);
     }
-    @media (max-width: 768px) {
-      .product-grid { grid-template-columns: 1fr; }
-    }
-    @media (min-width: 769px) and (max-width: 1100px) {
-      .product-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
+    @media (min-width: 769px) and (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 
-    /* ── FLIP CARD ── */
+    /* PRODUCT CARD - instant swap, no animation */
     .product-card { background: var(--white); cursor: pointer; position: relative; }
 
-    .flip-container { perspective: 1000px; aspect-ratio: 1 / 1; position: relative; }
-
-    .flip-inner {
-      width: 100%; height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .product-card:hover .flip-inner,
-    .product-card.flipped .flip-inner { transform: rotateY(180deg); }
+    .flip-container { aspect-ratio: 1 / 1; position: relative; overflow: hidden; }
 
     .flip-front, .flip-back {
       position: absolute; inset: 0;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
       overflow: hidden;
-      background: var(--off-white);
+      background: var(--white);
     }
-    .flip-back { transform: rotateY(180deg); }
+    .flip-back { opacity: 0; }
+
+    .product-card:hover .flip-back,
+    .product-card.flipped .flip-back { opacity: 1; }
+    .product-card:hover .flip-front,
+    .product-card.flipped .flip-front { opacity: 0; }
 
     .flip-front img, .flip-back img {
       width: 100%; height: 100%;
       object-fit: contain;
       object-position: center;
       display: block;
-      padding: 16px;
     }
 
     .product-info { padding: 14px 16px 20px; background: var(--white); }
     .product-name { font-size: 11px; letter-spacing: 0.05em; color: var(--black); margin-bottom: 4px; line-height: 1.4; }
     .product-price { font-size: 11px; letter-spacing: 0.08em; color: var(--mid-grey); }
 
-    /* ── DETAIL PAGE ── */
+    /* DETAIL PAGE */
     .detail-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -140,18 +123,17 @@
     }
     @media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } }
 
-    .detail-images { background: var(--off-white); }
+    .detail-images { background: var(--white); }
 
     .detail-main-img {
       width: 100%;
       aspect-ratio: 1 / 1;
       overflow: hidden;
-      background: var(--off-white);
+      background: var(--white);
     }
     .detail-main-img img {
       width: 100%; height: 100%;
       object-fit: contain;
-      padding: 40px;
       display: block;
     }
 
@@ -159,11 +141,11 @@
     .detail-thumb {
       flex: 1; aspect-ratio: 1;
       overflow: hidden; cursor: pointer;
-      background: var(--off-white);
+      background: var(--white);
       opacity: 0.5; transition: opacity 0.2s;
     }
     .detail-thumb.active, .detail-thumb:hover { opacity: 1; }
-    .detail-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 8px; display: block; }
+    .detail-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
     .detail-info {
       padding: clamp(32px, 5vw, 64px);
@@ -178,7 +160,6 @@
     .detail-price { font-size: 16px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 32px; }
 
     .size-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 12px; }
-
     .size-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
 
     .size-btn {
@@ -209,10 +190,9 @@
     .size-note { font-size: 10px; letter-spacing: 0.05em; color: var(--mid-grey); margin-top: 8px; min-height: 16px; }
 
     .detail-divider { width: 100%; height: 1px; background: var(--light-grey); margin: 28px 0; }
-
     .detail-features { font-size: 10px; letter-spacing: 0.08em; line-height: 2.5; color: var(--mid-grey); text-transform: uppercase; }
 
-    /* ── ABOUT ── */
+    /* ABOUT */
     #about-page .content {
       padding-top: 60px;
       max-width: 900px;
@@ -239,7 +219,7 @@
 
     .about-features { font-size: 11px; letter-spacing: 0.08em; line-height: 2.5; color: var(--dark-grey); text-transform: uppercase; border-top: 1px solid var(--light-grey); padding-top: 32px; }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--light-grey);
       padding: 32px 24px;
@@ -261,7 +241,6 @@
 
     @media (max-width: 768px) {
       header { padding: 0 16px; }
-      .grid-header { padding: 24px 16px 16px; }
       .detail-info { padding: 24px 16px 40px; }
       nav { gap: 20px; }
     }
@@ -273,6 +252,7 @@
     <div class="header-logo" onclick="showPage('shop')">
       <img src="Joshua-logo-black.png" alt="Joshua" />
     </div>
+    <span class="header-tagline">she dressed with no one in mind</span>
     <nav>
       <a onclick="showPage('shop')">Collection</a>
       <a onclick="showPage('about')">About</a>
@@ -282,10 +262,6 @@
   <!-- SHOP -->
   <div id="shop-page" class="page active">
     <div class="content">
-      <div class="grid-header">
-        <span class="grid-header-title">Collection</span>
-        <span class="grid-header-count">22 pieces</span>
-      </div>
       <div class="product-grid" id="product-grid"></div>
       <footer>
         <div class="footer-left">© Joshua</div>
@@ -425,10 +401,8 @@
                onmouseleave="this.classList.remove('flipped')"
                ontouchstart="handleTouch(event,this)">
             <div class="flip-container">
-              <div class="flip-inner">
-                <div class="flip-front"><img src="${front}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
-                <div class="flip-back"><img src="${back}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
-              </div>
+              <div class="flip-front"><img src="${front}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
+              <div class="flip-back"><img src="${back}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
             </div>
             <div class="product-info">
               <div class="product-name">${p.name}</div>
