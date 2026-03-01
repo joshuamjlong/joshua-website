@@ -5,100 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Joshua</title>
   <meta name="description" content="She dressed with no one in mind." />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --black: #0a0a0a; --white: #ffffff; --off-white: #f8f8f6;
-      --light-grey: #e8e8e6; --mid-grey: #999; --dark-grey: #444;
-      --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
-    html { font-size: 16px; }
-    body { font-family: var(--font); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    .page { display: none; }
-    .page.active { display: block; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--white); height: 60px;
-      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
-    }
-    .header-logo { cursor: pointer; height: 22px; display: block; }
-    .header-logo img { height: 100%; width: auto; display: block; }
-    .header-tagline {
-      font-size: 11px; letter-spacing: 0.08em; color: var(--dark-grey); font-style: italic;
-      position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none;
-    }
-    @media (max-width: 640px) { .header-tagline { display: none; } }
-    nav { display: flex; gap: 32px; align-items: center; }
-    nav a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s; }
-    nav a:hover { color: var(--black); }
-
-    .content { padding-top: 60px; min-height: 100vh; }
-
-    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--white); }
-    @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
-    @media (min-width: 769px) and (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .product-card { background: var(--white); cursor: pointer; position: relative; }
-    .img-container { aspect-ratio: 1 / 1; position: relative; overflow: hidden; background: var(--white); }
-    .img-front, .img-back { position: absolute; inset: 0; background: var(--white); }
-    .img-back { opacity: 0; }
-    .product-card:hover .img-back, .product-card.flipped .img-back { opacity: 1; }
-    .product-card:hover .img-front, .product-card.flipped .img-front { opacity: 0; }
-    .img-front img, .img-back img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
-    .product-info { padding: 14px 16px 20px; background: var(--white); }
-    .product-name { font-size: 11px; letter-spacing: 0.05em; color: var(--black); margin-bottom: 4px; line-height: 1.4; }
-    .product-price { font-size: 11px; letter-spacing: 0.08em; color: var(--mid-grey); }
-
-    .detail-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 60px); }
-    @media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } }
-    .detail-images { background: var(--white); }
-    .detail-main-img { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: var(--white); }
-    .detail-main-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .detail-thumbs { display: flex; gap: 1px; background: var(--light-grey); }
-    .detail-thumb { flex: 1; aspect-ratio: 1; overflow: hidden; cursor: pointer; background: var(--white); opacity: 0.5; transition: opacity 0.2s; }
-    .detail-thumb.active, .detail-thumb:hover { opacity: 1; }
-    .detail-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .detail-info { padding: clamp(32px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; }
-    .detail-name { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; letter-spacing: 0.04em; line-height: 1.2; color: var(--black); margin-bottom: 8px; }
-    .detail-composition { font-size: 10px; letter-spacing: 0.1em; color: var(--mid-grey); text-transform: uppercase; margin-bottom: 6px; }
-    .detail-product-details { font-size: 10px; letter-spacing: 0.08em; color: var(--mid-grey); line-height: 2; margin-bottom: 28px; }
-    .detail-price { font-size: 16px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 32px; }
-    .size-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 12px; }
-    .size-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
-    .size-btn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--light-grey); background: transparent; font-family: var(--font); font-size: 10px; letter-spacing: 0.1em; color: var(--dark-grey); cursor: pointer; transition: all 0.2s; }
-    .size-btn:hover { border-color: var(--black); color: var(--black); }
-    .size-btn.active { background: var(--black); border-color: var(--black); color: var(--white); }
-    .size-btn.out-of-stock { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
-    .buy-btn { display: block; width: 100%; padding: 16px; background: var(--black); color: var(--white); font-family: var(--font); font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; text-align: center; border: none; cursor: pointer; transition: background 0.2s; }
-    .buy-btn:hover { background: #333; }
-    .size-note { font-size: 10px; letter-spacing: 0.05em; color: var(--mid-grey); margin-top: 8px; min-height: 16px; }
-    .detail-divider { width: 100%; height: 1px; background: var(--light-grey); margin: 28px 0; }
-    .detail-features { font-size: 10px; letter-spacing: 0.08em; line-height: 2.5; color: var(--mid-grey); text-transform: uppercase; }
-
-    #about-page .content { padding-top: 60px; max-width: 900px; margin: 0 auto; padding-left: 24px; padding-right: 24px; padding-bottom: 80px; }
-    .about-header { padding: 60px 0 40px; border-bottom: 1px solid var(--light-grey); margin-bottom: 60px; }
-    .about-title { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 20px; }
-    .about-tagline { font-size: clamp(24px, 4vw, 42px); font-weight: 300; letter-spacing: 0.02em; line-height: 1.2; color: var(--black); font-style: italic; }
-    .about-body { font-size: 13px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; margin-bottom: 48px; max-width: 600px; }
-    .about-body p + p { margin-top: 24px; }
-    .about-section-title { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 32px; }
-    .detail-shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 60px; }
-    @media (max-width: 600px) { .detail-shots-grid { grid-template-columns: repeat(2, 1fr); } }
-    .detail-shot { aspect-ratio: 1; overflow: hidden; background: var(--off-white); }
-    .detail-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .about-features { font-size: 11px; letter-spacing: 0.08em; line-height: 2.5; color: var(--dark-grey); text-transform: uppercase; border-top: 1px solid var(--light-grey); padding-top: 32px; }
-
-    footer { padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-    .footer-left { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); }
-    .footer-right { display: flex; gap: 24px; }
-    .footer-right a { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); text-decoration: none; transition: color 0.2s; }
-    .footer-right a:hover { color: var(--black); }
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 20px 24px; transition: color 0.2s; background: none; border: none; font-family: var(--font); }
-    .back-btn:hover { color: var(--black); }
-    @media (max-width: 768px) { header { padding: 0 16px; } .detail-info { padding: 24px 16px 40px; } nav { gap: 20px; } }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -293,10 +200,3 @@
         return;
       }
       var url = currentProduct
-      }
-    }
-
-    renderGrid();
-  </script>
-</body>
-</html>
