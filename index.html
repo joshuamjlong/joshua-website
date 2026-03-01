@@ -38,7 +38,6 @@
       top: 0; left: 0; right: 0;
       z-index: 100;
       background: var(--white);
-      border-bottom: 1px solid var(--light-grey);
       height: 60px;
       display: flex;
       align-items: center;
@@ -50,10 +49,9 @@
     .header-logo img { height: 100%; width: auto; display: block; }
 
     .header-tagline {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--mid-grey);
-      font-style: italic;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--dark-grey);
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
@@ -81,30 +79,33 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1px;
-      background: var(--light-grey);
-      border-top: 1px solid var(--light-grey);
+      background: var(--white);
     }
     @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
     @media (min-width: 769px) and (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 
-    /* PRODUCT CARD - instant swap, no animation */
+    /* PRODUCT CARD */
     .product-card { background: var(--white); cursor: pointer; position: relative; }
 
-    .flip-container { aspect-ratio: 1 / 1; position: relative; overflow: hidden; }
-
-    .flip-front, .flip-back {
-      position: absolute; inset: 0;
+    .img-container {
+      aspect-ratio: 1 / 1;
+      position: relative;
       overflow: hidden;
       background: var(--white);
     }
-    .flip-back { opacity: 0; }
 
-    .product-card:hover .flip-back,
-    .product-card.flipped .flip-back { opacity: 1; }
-    .product-card:hover .flip-front,
-    .product-card.flipped .flip-front { opacity: 0; }
+    .img-front, .img-back {
+      position: absolute; inset: 0;
+      background: var(--white);
+    }
+    .img-back { opacity: 0; }
 
-    .flip-front img, .flip-back img {
+    .product-card:hover .img-back { opacity: 1; }
+    .product-card:hover .img-front { opacity: 0; }
+    .product-card.flipped .img-back { opacity: 1; }
+    .product-card.flipped .img-front { opacity: 0; }
+
+    .img-front img, .img-back img {
       width: 100%; height: 100%;
       object-fit: contain;
       object-position: center;
@@ -154,9 +155,9 @@
       justify-content: center;
     }
 
-    .detail-collection { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 16px; }
     .detail-name { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; letter-spacing: 0.04em; line-height: 1.2; color: var(--black); margin-bottom: 8px; }
-    .detail-composition { font-size: 10px; letter-spacing: 0.1em; color: var(--mid-grey); text-transform: uppercase; margin-bottom: 28px; }
+    .detail-composition { font-size: 10px; letter-spacing: 0.1em; color: var(--mid-grey); text-transform: uppercase; margin-bottom: 8px; }
+    .detail-product-details { font-size: 10px; letter-spacing: 0.08em; color: var(--mid-grey); line-height: 2; margin-bottom: 28px; }
     .detail-price { font-size: 16px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 32px; }
 
     .size-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 12px; }
@@ -221,7 +222,6 @@
 
     /* FOOTER */
     footer {
-      border-top: 1px solid var(--light-grey);
       padding: 32px 24px;
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
     }
@@ -264,7 +264,7 @@
     <div class="content">
       <div class="product-grid" id="product-grid"></div>
       <footer>
-        <div class="footer-left">© Joshua</div>
+        <div class="footer-left">© Joshua Apparel, Inc.</div>
         <div class="footer-right">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
@@ -286,9 +286,9 @@
           <div class="detail-thumbs" id="detail-thumbs"></div>
         </div>
         <div class="detail-info">
-          <div class="detail-collection">Joshua — Collection I</div>
           <div class="detail-name" id="detail-name"></div>
           <div class="detail-composition" id="detail-composition"></div>
+          <div class="detail-product-details" id="detail-product-details"></div>
           <div class="detail-price" id="detail-price"></div>
           <div class="size-label">Select size</div>
           <div class="size-options" id="size-options"></div>
@@ -298,10 +298,18 @@
           <div class="detail-features">
             Italian mesh · Swiss hardware<br>
             Made in Romania<br>
-            Complimentary shipping
+            Complimentary shipping within the EU
           </div>
         </div>
       </div>
+      <footer>
+        <div class="footer-left">© Joshua Apparel, Inc.</div>
+        <div class="footer-right">
+          <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
+          <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
+          <a href="mailto:hello@joshuaatelier.com">Contact</a>
+        </div>
+      </footer>
     </div>
   </div>
 
@@ -337,7 +345,7 @@
         Produced in Cluj-Napoca, Romania
       </div>
       <footer>
-        <div class="footer-left">© Joshua</div>
+        <div class="footer-left">© Joshua Apparel, Inc.</div>
         <div class="footer-right">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
@@ -348,29 +356,32 @@
   </div>
 
   <script>
+    // ── PRODUCT DATA ──
+    // details: add specific notes per product below
+    // stripeLinks: paste your Stripe Payment Link URLs when ready
     const products = [
-      { id:'KG-F25-MBD-Y1',  name:'Thong mesh bodysuit',                    price:'€190', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y3',   name:'Open bottom mesh bodysuit',               price:'€200', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y4',   name:'Boat neck g-string bodysuit',             price:'€110', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y5',   name:'Hourglass contoured bodysuit',            price:'€150', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y7',   name:'Backless choker-neck mesh bodysuit',      price:'€140', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-A',    name:'Cross-back mesh bodysuit',                price:'€220', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y16',  name:'Open back long-sleeved mesh bodysuit',    price:'€190', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y18',  name:'Plunge neck thong mesh bodysuit',         price:'€135', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y9',   name:'Camisole mesh dress',                     price:'€180', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y8',   name:'Mesh tennis dress',                       price:'€130', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:10,S:16,M:9,L:5},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y17',  name:'Backless mesh baby tee',                  price:'€110', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-MBD-Y14', name:'Sporty mesh gym shorts',                  price:'€65',  composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y20',  name:'Mesh string bikini brief',                price:'€135', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y15',  name:'High waist full bottom mesh panty',       price:'€80',  composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y11',  name:'High waist g-string mesh panty',          price:'€70',  composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y20J', name:'Jersey string bikini brief',              price:'€155', composition:'72% Polyamide / 28% Elastane', hasBack:true,  stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y21',  name:'Micro g-string mesh panty',               price:'€150', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y21J', name:'Micro g-string jersey panty',             price:'€225', composition:'72% Polyamide / 28% Elastane', hasBack:true,  stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-MBD-Y23', name:'Scoop mesh bralette',                     price:'€175', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y23J', name:'Scoop jersey bralette',                   price:'€180', composition:'72% Polyamide / 28% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y22',  name:'Cross-back mesh micro bra',               price:'€190', composition:'82% Polyamide / 18% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y22J', name:'Cross-back jersey micro bra',             price:'€195', composition:'72% Polyamide / 28% Elastane', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-MBD-Y1',  name:'Thong mesh bodysuit',                    price:'€190', composition:'82% Polyamide / 18% Elastane', details:'Adjustable straps · Snap closure', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y3',   name:'Open bottom mesh bodysuit',               price:'€200', composition:'82% Polyamide / 18% Elastane', details:'Open bottom construction · Adjustable straps', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y4',   name:'Boat neck g-string bodysuit',             price:'€110', composition:'82% Polyamide / 18% Elastane', details:'Boat neck · G-string cut · Snap closure', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y5',   name:'Hourglass contoured bodysuit',            price:'€150', composition:'82% Polyamide / 18% Elastane', details:'Contoured hourglass silhouette · Snap closure', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y7',   name:'Backless choker-neck mesh bodysuit',      price:'€140', composition:'82% Polyamide / 18% Elastane', details:'Choker neck · Open back · Snap closure', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-A',    name:'Cross-back mesh bodysuit',                price:'€220', composition:'82% Polyamide / 18% Elastane', details:'Cross-back strap detail · Adjustable hardware · Snap closure', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y16',  name:'Open back long-sleeved mesh bodysuit',    price:'€190', composition:'82% Polyamide / 18% Elastane', details:'Long sleeves · Open back · Snap closure', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y18',  name:'Plunge neck thong mesh bodysuit',         price:'€135', composition:'82% Polyamide / 18% Elastane', details:'Deep plunge neckline · Thong cut · Snap closure', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y9',   name:'Camisole mesh dress',                     price:'€180', composition:'82% Polyamide / 18% Elastane', details:'Camisole silhouette · Mini length · Adjustable straps', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y8',   name:'Mesh tennis dress',                       price:'€130', composition:'82% Polyamide / 18% Elastane', details:'Tennis dress silhouette · Mini length', hasBack:false, stock:{XS:10,S:16,M:9,L:5},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y17',  name:'Backless mesh baby tee',                  price:'€110', composition:'82% Polyamide / 18% Elastane', details:'Cropped · Open back · Short sleeves', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-MBD-Y14', name:'Sporty mesh gym shorts',                  price:'€65',  composition:'82% Polyamide / 18% Elastane', details:'High waist · Sporty cut · Elastic waistband', hasBack:false, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y20',  name:'Mesh string bikini brief',                price:'€135', composition:'82% Polyamide / 18% Elastane', details:'String sides · Adjustable hardware', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y15',  name:'High waist full bottom mesh panty',       price:'€80',  composition:'82% Polyamide / 18% Elastane', details:'High waist · Full coverage', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y11',  name:'High waist g-string mesh panty',          price:'€70',  composition:'82% Polyamide / 18% Elastane', details:'High waist · G-string cut', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y20J', name:'Jersey string bikini brief',              price:'€155', composition:'72% Polyamide / 28% Elastane', details:'String sides · Jersey construction · Adjustable hardware', hasBack:true,  stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y21',  name:'Micro g-string mesh panty',               price:'€150', composition:'82% Polyamide / 18% Elastane', details:'Micro cut · G-string · Adjustable hardware', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y21J', name:'Micro g-string jersey panty',             price:'€225', composition:'72% Polyamide / 28% Elastane', details:'Micro cut · G-string · Jersey construction · Adjustable hardware', hasBack:true,  stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-MBD-Y23', name:'Scoop mesh bralette',                     price:'€175', composition:'82% Polyamide / 18% Elastane', details:'Scoop neck · Adjustable straps · Back closure', hasBack:false, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y23J', name:'Scoop jersey bralette',                   price:'€180', composition:'72% Polyamide / 28% Elastane', details:'Scoop neck · Jersey construction · Adjustable straps · Back closure', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y22',  name:'Cross-back mesh micro bra',               price:'€190', composition:'82% Polyamide / 18% Elastane', details:'Cross-back · Micro cups · Adjustable hardware', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
+      { id:'KG-F25-BD-Y22J', name:'Cross-back jersey micro bra',             price:'€195', composition:'72% Polyamide / 28% Elastane', details:'Cross-back · Micro cups · Jersey construction · Adjustable hardware', hasBack:false, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
     ];
 
     let currentProduct = null;
@@ -400,9 +411,9 @@
                onmouseenter="this.classList.add('flipped')"
                onmouseleave="this.classList.remove('flipped')"
                ontouchstart="handleTouch(event,this)">
-            <div class="flip-container">
-              <div class="flip-front"><img src="${front}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
-              <div class="flip-back"><img src="${back}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
+            <div class="img-container">
+              <div class="img-front"><img src="${front}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
+              <div class="img-back"><img src="${back}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
             </div>
             <div class="product-info">
               <div class="product-name">${p.name}</div>
@@ -432,6 +443,7 @@
       document.getElementById('detail-main-img').alt = p.name;
       document.getElementById('detail-name').textContent = p.name;
       document.getElementById('detail-composition').textContent = p.composition;
+      document.getElementById('detail-product-details').textContent = p.details;
       document.getElementById('detail-price').textContent = p.price;
 
       const thumbs = document.getElementById('detail-thumbs');
