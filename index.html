@@ -40,20 +40,24 @@
       <button class="back-btn" onclick="showPage('shop')">← Back</button>
       <div class="detail-layout">
         <div class="detail-images">
-          <div class="detail-main-img"><img id="detail-main-img" src="" alt="" /></div>
+          <div class="detail-main-img" onclick="openLightbox(document.getElementById('detail-main-img').src)"><img id="detail-main-img" src="" alt="" /></div>
           <div class="detail-thumbs" id="detail-thumbs"></div>
         </div>
         <div class="detail-info">
           <div class="detail-name" id="detail-name"></div>
-          <div class="detail-composition" id="detail-composition"></div>
           <div class="detail-product-details" id="detail-product-details"></div>
           <div class="detail-price" id="detail-price"></div>
-          <div class="size-label">Select size</div>
+          <div class="size-label">Select size <a onclick="showPage('sizing')" class="size-guide-link">Size guide</a></div>
           <div class="size-options" id="size-options"></div>
           <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Purchase</button>
           <div class="size-note" id="size-note"></div>
           <div class="detail-divider"></div>
-          <div class="detail-features">Italian mesh · Swiss hardware<br>Made in Romania<br>Complimentary shipping within the EU</div>
+          <div class="detail-features">
+            <span id="detail-composition"></span><br>
+            Italian mesh · Swiss hardware<br>
+            Made in Romania<br>
+            Complimentary standard shipping by DHL within the EU
+          </div>
         </div>
       </div>
       <footer>
