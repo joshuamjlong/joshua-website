@@ -193,7 +193,7 @@ function fixContentPadding() {
   var header = document.querySelector('header');
   var height = header.getBoundingClientRect().height;
   document.querySelectorAll('.content').forEach(function(el) {
-    el.style.paddingTop = (height + 32) + 'px';
+    el.style.paddingTop = (height + 8) + 'px';
   });
 }
 
