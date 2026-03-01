@@ -84,7 +84,7 @@
     .about-tagline { font-size: clamp(24px, 4vw, 42px); font-weight: 300; letter-spacing: 0.02em; line-height: 1.2; color: var(--black); font-style: italic; }
     .about-body { font-size: 13px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; margin-bottom: 48px; max-width: 600px; }
     .about-body p + p { margin-top: 24px; }
-    .about-intro { font-size: 15px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; text-align: center; max-width: 620px; margin: 0 auto 60px; padding-top: 48px; padding-left: 24px; padding-right: 24px; }
+    .about-intro { font-size: 15px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; text-align: center; max-width: 800px; margin: 0 auto 60px; padding-top: 48px; padding-left: 24px; padding-right: 24px; }
     .about-intro p + p { margin-top: 28px; }
     .about-section-title { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 32px; }
     .detail-shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 60px; }
