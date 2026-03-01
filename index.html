@@ -123,8 +123,8 @@
     </div>
   </div>
 
-  <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999;cursor:zoom-out;display:none;align-items:center;justify-content:center;">
-    <img id="lightbox-img" src="" style="max-width:92vw;max-height:92vh;object-fit:contain;display:block;" />
+  <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999;cursor:default;">
+    <img id="lightbox-img" src="" onclick="toggleLightboxZoom(event)" style="max-width:92vw;max-height:92vh;object-fit:contain;display:block;cursor:zoom-in;" />
   </div>
 
   <script src="products.js"></script>
