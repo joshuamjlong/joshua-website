@@ -7,244 +7,97 @@
   <meta name="description" content="She dressed with no one in mind." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --black: #0a0a0a;
-      --white: #ffffff;
-      --off-white: #f8f8f6;
-      --light-grey: #e8e8e6;
-      --mid-grey: #999;
-      --dark-grey: #444;
+      --black: #0a0a0a; --white: #ffffff; --off-white: #f8f8f6;
+      --light-grey: #e8e8e6; --mid-grey: #999; --dark-grey: #444;
       --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
-
     html { font-size: 16px; }
-
-    body {
-      font-family: var(--font);
-      background: var(--white);
-      color: var(--black);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
+    body { font-family: var(--font); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     .page { display: none; }
     .page.active { display: block; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    /* HEADER */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--white);
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--white); height: 60px;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
     }
-
     .header-logo { cursor: pointer; height: 22px; display: block; }
     .header-logo img { height: 100%; width: auto; display: block; }
-
     .header-tagline {
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--dark-grey);
-      font-style: italic;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      pointer-events: none;
+      font-size: 11px; letter-spacing: 0.08em; color: var(--dark-grey); font-style: italic;
+      position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none;
     }
     @media (max-width: 640px) { .header-tagline { display: none; } }
-
     nav { display: flex; gap: 32px; align-items: center; }
-    nav a {
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--dark-grey);
-      text-decoration: none;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
+    nav a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s; }
     nav a:hover { color: var(--black); }
 
     .content { padding-top: 60px; min-height: 100vh; }
 
-    /* GRID */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--white);
-    }
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--white); }
     @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
     @media (min-width: 769px) and (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 
-    /* PRODUCT CARD */
     .product-card { background: var(--white); cursor: pointer; position: relative; }
-
-    .img-container {
-      aspect-ratio: 1 / 1;
-      position: relative;
-      overflow: hidden;
-      background: var(--white);
-    }
-
-    .img-front, .img-back {
-      position: absolute; inset: 0;
-      background: var(--white);
-    }
+    .img-container { aspect-ratio: 1 / 1; position: relative; overflow: hidden; background: var(--white); }
+    .img-front, .img-back { position: absolute; inset: 0; background: var(--white); }
     .img-back { opacity: 0; }
-
-    .product-card:hover .img-back { opacity: 1; }
-    .product-card:hover .img-front { opacity: 0; }
-    .product-card.flipped .img-back { opacity: 1; }
-    .product-card.flipped .img-front { opacity: 0; }
-
-    .img-front img, .img-back img {
-      width: 100%; height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-    }
-
+    .product-card:hover .img-back, .product-card.flipped .img-back { opacity: 1; }
+    .product-card:hover .img-front, .product-card.flipped .img-front { opacity: 0; }
+    .img-front img, .img-back img { width: 100%; height: 100%; object-fit: contain; object-position: center; display: block; }
     .product-info { padding: 14px 16px 20px; background: var(--white); }
     .product-name { font-size: 11px; letter-spacing: 0.05em; color: var(--black); margin-bottom: 4px; line-height: 1.4; }
     .product-price { font-size: 11px; letter-spacing: 0.08em; color: var(--mid-grey); }
 
-    /* DETAIL PAGE */
-    .detail-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: calc(100vh - 60px);
-    }
+    .detail-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 60px); }
     @media (max-width: 768px) { .detail-layout { grid-template-columns: 1fr; } }
-
     .detail-images { background: var(--white); }
-
-    .detail-main-img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      background: var(--white);
-    }
-    .detail-main-img img {
-      width: 100%; height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
+    .detail-main-img { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: var(--white); }
+    .detail-main-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .detail-thumbs { display: flex; gap: 1px; background: var(--light-grey); }
-    .detail-thumb {
-      flex: 1; aspect-ratio: 1;
-      overflow: hidden; cursor: pointer;
-      background: var(--white);
-      opacity: 0.5; transition: opacity 0.2s;
-    }
+    .detail-thumb { flex: 1; aspect-ratio: 1; overflow: hidden; cursor: pointer; background: var(--white); opacity: 0.5; transition: opacity 0.2s; }
     .detail-thumb.active, .detail-thumb:hover { opacity: 1; }
     .detail-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
-
-    .detail-info {
-      padding: clamp(32px, 5vw, 64px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
+    .detail-info { padding: clamp(32px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; }
     .detail-name { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; letter-spacing: 0.04em; line-height: 1.2; color: var(--black); margin-bottom: 8px; }
-    .detail-composition { font-size: 10px; letter-spacing: 0.1em; color: var(--mid-grey); text-transform: uppercase; margin-bottom: 8px; }
+    .detail-composition { font-size: 10px; letter-spacing: 0.1em; color: var(--mid-grey); text-transform: uppercase; margin-bottom: 6px; }
     .detail-product-details { font-size: 10px; letter-spacing: 0.08em; color: var(--mid-grey); line-height: 2; margin-bottom: 28px; }
     .detail-price { font-size: 16px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 32px; }
-
     .size-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 12px; }
     .size-options { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
-
-    .size-btn {
-      width: 44px; height: 44px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--light-grey);
-      background: transparent;
-      font-family: var(--font);
-      font-size: 10px; letter-spacing: 0.1em;
-      color: var(--dark-grey);
-      cursor: pointer; transition: all 0.2s;
-    }
+    .size-btn { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--light-grey); background: transparent; font-family: var(--font); font-size: 10px; letter-spacing: 0.1em; color: var(--dark-grey); cursor: pointer; transition: all 0.2s; }
     .size-btn:hover { border-color: var(--black); color: var(--black); }
     .size-btn.active { background: var(--black); border-color: var(--black); color: var(--white); }
     .size-btn.out-of-stock { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
-
-    .buy-btn {
-      display: block; width: 100%; padding: 16px;
-      background: var(--black); color: var(--white);
-      font-family: var(--font);
-      font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase;
-      text-align: center; border: none; cursor: pointer;
-      transition: background 0.2s;
-    }
+    .buy-btn { display: block; width: 100%; padding: 16px; background: var(--black); color: var(--white); font-family: var(--font); font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; text-align: center; border: none; cursor: pointer; transition: background 0.2s; }
     .buy-btn:hover { background: #333; }
-    .buy-btn:disabled { background: var(--light-grey); color: var(--mid-grey); cursor: not-allowed; }
-
     .size-note { font-size: 10px; letter-spacing: 0.05em; color: var(--mid-grey); margin-top: 8px; min-height: 16px; }
-
     .detail-divider { width: 100%; height: 1px; background: var(--light-grey); margin: 28px 0; }
     .detail-features { font-size: 10px; letter-spacing: 0.08em; line-height: 2.5; color: var(--mid-grey); text-transform: uppercase; }
 
-    /* ABOUT */
-    #about-page .content {
-      padding-top: 60px;
-      max-width: 900px;
-      margin: 0 auto;
-      padding-left: 24px;
-      padding-right: 24px;
-      padding-bottom: 80px;
-    }
-
+    #about-page .content { padding-top: 60px; max-width: 900px; margin: 0 auto; padding-left: 24px; padding-right: 24px; padding-bottom: 80px; }
     .about-header { padding: 60px 0 40px; border-bottom: 1px solid var(--light-grey); margin-bottom: 60px; }
     .about-title { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 20px; }
     .about-tagline { font-size: clamp(24px, 4vw, 42px); font-weight: 300; letter-spacing: 0.02em; line-height: 1.2; color: var(--black); font-style: italic; }
-
     .about-body { font-size: 13px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; margin-bottom: 48px; max-width: 600px; }
     .about-body p + p { margin-top: 24px; }
-
     .about-section-title { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 32px; }
-
     .detail-shots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-bottom: 60px; }
     @media (max-width: 600px) { .detail-shots-grid { grid-template-columns: repeat(2, 1fr); } }
-
     .detail-shot { aspect-ratio: 1; overflow: hidden; background: var(--off-white); }
     .detail-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
     .about-features { font-size: 11px; letter-spacing: 0.08em; line-height: 2.5; color: var(--dark-grey); text-transform: uppercase; border-top: 1px solid var(--light-grey); padding-top: 32px; }
 
-    /* FOOTER */
-    footer {
-      padding: 32px 24px;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
-    }
+    footer { padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
     .footer-left { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); }
     .footer-right { display: flex; gap: 24px; }
     .footer-right a { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); text-decoration: none; transition: color 0.2s; }
     .footer-right a:hover { color: var(--black); }
-
-    .back-btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--mid-grey); cursor: pointer;
-      padding: 20px 24px; transition: color 0.2s;
-      background: none; border: none; font-family: var(--font);
-    }
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 20px 24px; transition: color 0.2s; background: none; border: none; font-family: var(--font); }
     .back-btn:hover { color: var(--black); }
-
-    @media (max-width: 768px) {
-      header { padding: 0 16px; }
-      .detail-info { padding: 24px 16px 40px; }
-      nav { gap: 20px; }
-    }
+    @media (max-width: 768px) { header { padding: 0 16px; } .detail-info { padding: 24px 16px 40px; } nav { gap: 20px; } }
   </style>
 </head>
 <body>
@@ -260,7 +113,6 @@
     </nav>
   </header>
 
-  <!-- SHOP -->
   <div id="shop-page" class="page active">
     <div class="content">
       <div class="product-grid" id="product-grid"></div>
@@ -269,21 +121,18 @@
         <div class="footer-right">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
-          <a href="/cdn-cgi/l/email-protection#e189848d8d8ea18b8e928994808095848d888493cf828e8c">Contact</a>
+          <a href="mailto:hello@joshuaatelier.com">Contact</a>
         </div>
       </footer>
     </div>
   </div>
 
-  <!-- DETAIL -->
   <div id="detail-page" class="page">
     <div class="content">
       <button class="back-btn" onclick="showPage('shop')">← Back</button>
       <div class="detail-layout">
         <div class="detail-images">
-          <div class="detail-main-img">
-            <img id="detail-main-img" src="" alt="" />
-          </div>
+          <div class="detail-main-img"><img id="detail-main-img" src="" alt="" /></div>
           <div class="detail-thumbs" id="detail-thumbs"></div>
         </div>
         <div class="detail-info">
@@ -296,11 +145,7 @@
           <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Purchase</button>
           <div class="size-note" id="size-note"></div>
           <div class="detail-divider"></div>
-          <div class="detail-features">
-            Italian mesh · Swiss hardware<br>
-            Made in Romania<br>
-            Complimentary shipping within the EU
-          </div>
+          <div class="detail-features">Italian mesh · Swiss hardware<br>Made in Romania<br>Complimentary shipping within the EU</div>
         </div>
       </div>
       <footer>
@@ -308,13 +153,12 @@
         <div class="footer-right">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
-          <a href="/cdn-cgi/l/email-protection#523a373e3e3d12383d213a27333326373e3b37207c313d3f">Contact</a>
+          <a href="mailto:hello@joshuaatelier.com">Contact</a>
         </div>
       </footer>
     </div>
   </div>
 
-  <!-- ABOUT -->
   <div id="about-page" class="page">
     <div class="content">
       <div class="about-header">
@@ -341,8 +185,7 @@
         Soft Italian mesh with stretch jersey binding<br>
         Reinforced inner seams finished with stretch silk<br>
         Custom-made Italian metal components<br>
-        Organic cotton gussets<br>
-        Highest-grade Swiss snaps<br>
+        Organic cotton gussets · Highest-grade Swiss snaps<br>
         Produced in Cluj-Napoca, Romania
       </div>
       <footer>
@@ -350,41 +193,14 @@
         <div class="footer-right">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
-          <a href="/cdn-cgi/l/email-protection#69010c0505062903061a011c08081d0c05000c1b470a0604">Contact</a>
+          <a href="mailto:hello@joshuaatelier.com">Contact</a>
         </div>
       </footer>
     </div>
   </div>
 
-
-    // ── PRODUCT DATA ──
-    // details: add specific notes per product below
-    // stripeLinks: paste your Stripe Payment Link URLs when ready
-    const products = [
-      { id:'KG-F25-MBD-Y1',  name:'Thong mesh bodysuit',                    price:'€190', composition:'82% Polyamide / 18% Elastane', details:'Adjustable straps · Snap closure', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y3',   name:'Open bottom mesh bodysuit',               price:'€200', composition:'82% Polyamide / 18% Elastane', details:'Open bottom construction · Adjustable straps', hasBack:true, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y4',   name:'Boat neck g-string bodysuit',             price:'€110', composition:'82% Polyamide / 18% Elastane', details:'Boat neck · G-string cut · Snap closure', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y5',   name:'Hourglass contoured bodysuit',            price:'€150', composition:'82% Polyamide / 18% Elastane', details:'Contoured hourglass silhouette · Snap closure', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y7',   name:'Backless choker-neck mesh bodysuit',      price:'€140', composition:'82% Polyamide / 18% Elastane', details:'Choker neck · Open back · Snap closure', hasBack:true, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-A',    name:'Cross-back mesh bodysuit',                price:'€220', composition:'82% Polyamide / 18% Elastane', details:'Cross-back strap detail · Adjustable hardware · Snap closure', hasBack:true, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y16',  name:'Open back long-sleeved mesh bodysuit',    price:'€190', composition:'82% Polyamide / 18% Elastane', details:'Long sleeves · Open back · Snap closure', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y18',  name:'Plunge neck thong mesh bodysuit',         price:'€135', composition:'82% Polyamide / 18% Elastane', details:'Deep plunge neckline · Thong cut · Snap closure', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y9',   name:'Camisole mesh dress',                     price:'€180', composition:'82% Polyamide / 18% Elastane', details:'Camisole silhouette · Mini length · Adjustable straps', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y8',   name:'Mesh tennis dress',                       price:'€130', composition:'82% Polyamide / 18% Elastane', details:'Tennis dress silhouette · Mini length', hasBack:true, stock:{XS:10,S:16,M:9,L:5},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y17',  name:'Backless mesh baby tee',                  price:'€110', composition:'82% Polyamide / 18% Elastane', details:'Cropped · Open back · Short sleeves', hasBack:true, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-MBD-Y14', name:'Sporty mesh gym shorts',                  price:'€65',  composition:'82% Polyamide / 18% Elastane', details:'High waist · Sporty cut · Elastic waistband', hasBack:true, stock:{XS:8,S:11,M:7,L:4},   stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y20',  name:'Mesh string bikini brief',                price:'€135', composition:'82% Polyamide / 18% Elastane', details:'String sides · Adjustable hardware', hasBack:true, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y15',  name:'High waist full bottom mesh panty',       price:'€80',  composition:'82% Polyamide / 18% Elastane', details:'High waist · Full coverage', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y11',  name:'High waist g-string mesh panty',          price:'€70',  composition:'82% Polyamide / 18% Elastane', details:'High waist · G-string cut', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y20J', name:'Jersey string bikini brief',              price:'€155', composition:'72% Polyamide / 28% Elastane', details:'String sides · Jersey construction · Adjustable hardware', hasBack:true,  stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y21',  name:'Micro g-string mesh panty',               price:'€150', composition:'82% Polyamide / 18% Elastane', details:'Micro cut · G-string · Adjustable hardware', hasBack:true, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y21J', name:'Micro g-string jersey panty',             price:'€225', composition:'72% Polyamide / 28% Elastane', details:'Micro cut · G-string · Jersey construction · Adjustable hardware', hasBack:true,  stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-MBD-Y23', name:'Scoop mesh bralette',                     price:'€175', composition:'82% Polyamide / 18% Elastane', details:'Scoop neck · Adjustable straps · Back closure', hasBack:true, stock:{XS:16,S:22,M:14,L:8},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y23J', name:'Scoop jersey bralette',                   price:'€180', composition:'72% Polyamide / 28% Elastane', details:'Scoop neck · Jersey construction · Adjustable straps · Back closure', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y22',  name:'Cross-back mesh micro bra',               price:'€190', composition:'82% Polyamide / 18% Elastane', details:'Cross-back · Micro cups · Adjustable hardware', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-      { id:'KG-F25-BD-Y22J', name:'Cross-back jersey micro bra',             price:'€195', composition:'72% Polyamide / 28% Elastane', details:'Cross-back · Micro cups · Jersey construction · Adjustable hardware', hasBack:true, stock:{XS:13,S:19,M:11,L:7},  stripeLinks:{XS:'',S:'',M:'',L:''} },
-    ];
-
+  <script src="products.js"></script>
+  <script>
     let currentProduct = null;
     let selectedSize = null;
 
@@ -404,23 +220,17 @@
     function renderGrid() {
       const grid = document.getElementById('product-grid');
       grid.innerHTML = products.map(p => {
-        const front = `${p.id}-FRONT.jpg`;
-        const back = p.hasBack ? `${p.id}-BACK.jpg` : front;
-        return `
-          <div class="product-card"
-               onclick="openProduct('${p.id}')"
-               onmouseenter="this.classList.add('flipped')"
-               onmouseleave="this.classList.remove('flipped')"
-               ontouchstart="handleTouch(event,this)">
-            <div class="img-container">
-              <div class="img-front"><img src="${front}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
-              <div class="img-back"><img src="${back}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0" /></div>
-            </div>
-            <div class="product-info">
-              <div class="product-name">${p.name}</div>
-              <div class="product-price">${p.price}</div>
-            </div>
-          </div>`;
+        const front = p.id + '-FRONT.jpg';
+        const back = p.hasBack ? p.id + '-BACK.jpg' : front;
+        return '<div class="product-card" onclick="openProduct(\'' + p.id + '\')" onmouseenter="this.classList.add(\'flipped\')" onmouseleave="this.classList.remove(\'flipped\')" ontouchstart="handleTouch(event,this)">'
+          + '<div class="img-container">'
+          + '<div class="img-front"><img src="' + front + '" alt="' + p.name + '" loading="lazy" onerror="this.style.opacity=0" /></div>'
+          + '<div class="img-back"><img src="' + back + '" alt="' + p.name + '" loading="lazy" onerror="this.style.opacity=0" /></div>'
+          + '</div>'
+          + '<div class="product-info">'
+          + '<div class="product-name">' + p.name + '</div>'
+          + '<div class="product-price">' + p.price + '</div>'
+          + '</div></div>';
       }).join('');
     }
 
@@ -428,7 +238,8 @@
     function handleTouch(e, card) {
       if (lastTouched && lastTouched !== card) lastTouched.classList.remove('flipped');
       if (card.classList.contains('flipped')) {
-        openProduct(card.getAttribute('onclick').match(/'([^']+)'/)[1]);
+        var m = card.getAttribute('onclick').match(/'([^']+)'/);
+        if (m) openProduct(m[1]);
         return;
       }
       card.classList.add('flipped');
@@ -437,45 +248,39 @@
     }
 
     function renderDetail(p) {
-      const front = `${p.id}-FRONT.jpg`;
-      const back = p.hasBack ? `${p.id}-BACK.jpg` : null;
-
+      var front = p.id + '-FRONT.jpg';
+      var back = p.hasBack ? p.id + '-BACK.jpg' : null;
       document.getElementById('detail-main-img').src = front;
       document.getElementById('detail-main-img').alt = p.name;
       document.getElementById('detail-name').textContent = p.name;
       document.getElementById('detail-composition').textContent = p.composition;
       document.getElementById('detail-product-details').textContent = p.details;
       document.getElementById('detail-price').textContent = p.price;
-
-      const thumbs = document.getElementById('detail-thumbs');
+      var thumbs = document.getElementById('detail-thumbs');
       if (back) {
         thumbs.style.display = 'flex';
-        thumbs.innerHTML = `
-          <div class="detail-thumb active" onclick="switchImg('${front}',this)"><img src="${front}" alt="Front"/></div>
-          <div class="detail-thumb" onclick="switchImg('${back}',this)"><img src="${back}" alt="Back"/></div>`;
+        thumbs.innerHTML = '<div class="detail-thumb active" onclick="switchImg(\'' + front + '\',this)"><img src="' + front + '" alt="Front"/></div>'
+          + '<div class="detail-thumb" onclick="switchImg(\'' + back + '\',this)"><img src="' + back + '" alt="Back"/></div>';
       } else {
         thumbs.style.display = 'none';
         thumbs.innerHTML = '';
       }
-
-      document.getElementById('size-options').innerHTML = ['XS','S','M','L'].map(s => {
-        const inStock = p.stock[s] > 0;
-        return `<button class="size-btn${!inStock?' out-of-stock':''}" onclick="${inStock?`selectSize('${s}',this)`:''}" ${!inStock?'disabled':''}>${s}</button>`;
+      document.getElementById('size-options').innerHTML = ['XS','S','M','L'].map(function(s) {
+        var inStock = p.stock[s] > 0;
+        return '<button class="size-btn' + (!inStock ? ' out-of-stock' : '') + '" onclick="' + (inStock ? 'selectSize(\'' + s + '\',this)' : '') + '" ' + (!inStock ? 'disabled' : '') + '>' + s + '</button>';
       }).join('');
-
       document.getElementById('size-note').textContent = '';
-      document.getElementById('buy-btn').disabled = false;
     }
 
     function switchImg(src, thumb) {
       document.getElementById('detail-main-img').src = src;
-      document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.detail-thumb').forEach(function(t) { t.classList.remove('active'); });
       thumb.classList.add('active');
     }
 
     function selectSize(size, btn) {
       selectedSize = size;
-      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.size-btn').forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       document.getElementById('size-note').textContent = '';
     }
@@ -485,4 +290,15 @@
         document.getElementById('size-note').textContent = 'Please select a size';
         return;
       }
-      const url = currentProduct
+      var url = currentProduct.stripeLinks[selectedSize];
+      if (url) {
+        window.location.href = url;
+      } else {
+        document.getElementById('size-note').textContent = 'Purchase link coming soon.';
+      }
+    }
+
+    renderGrid();
+  </script>
+</body>
+</html>
