@@ -16,12 +16,12 @@
       display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
     }
     @media (max-width: 768px) {
-      header { height: 100px; flex-wrap: wrap; padding: 0 16px; align-content: center; gap: 8px; }
-      .header-logo { width: 100%; display: flex; align-items: center; height: 40px; }
+      header { height: 110px; flex-wrap: wrap; padding: 12px 16px 10px; align-content: flex-start; gap: 10px; }
+      .header-logo { width: 100%; display: flex; align-items: center; height: 36px; }
       .header-tagline { display: none; }
       nav { width: 100%; display: flex; gap: 20px; }
       nav a { font-size: 9px; letter-spacing: 0.15em; }
-      .content { padding-top: 100px; }
+      .content { padding-top: 126px; }
     }
     .header-logo { cursor: pointer; height: 22px; display: block; }
     .header-logo img { height: 100%; width: auto; display: block; }
