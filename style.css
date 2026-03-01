@@ -16,12 +16,13 @@
       display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
     }
     @media (max-width: 768px) {
-      header { height: 120px; flex-wrap: wrap; padding: 14px 16px 12px; align-content: flex-start; gap: 14px; }
-      .header-logo { width: 100%; display: flex; align-items: center; height: 38px; }
+      header { height: auto; flex-wrap: wrap; padding: 10px 16px 8px; align-content: flex-start; gap: 6px; }
+      .header-logo { width: 100%; display: flex; align-items: center; }
+      .header-logo img { height: 28px; }
       .header-tagline { display: none; }
-      nav { width: 100%; display: flex; gap: 24px; }
-      nav a { font-size: 9px; letter-spacing: 0.15em; line-height: 2; }
-      .content { padding-top: 160px; }
+      nav { width: 100%; display: flex; gap: 24px; padding-bottom: 4px; }
+      nav a { font-size: 9px; letter-spacing: 0.15em; line-height: 1; padding: 6px 0; }
+      .content { padding-top: 110px; } /* overridden by JS */
     }
     .header-logo { cursor: pointer; height: 22px; display: block; }
     .header-logo img { height: 100%; width: auto; display: block; }
