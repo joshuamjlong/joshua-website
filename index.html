@@ -68,22 +68,27 @@
 
   <div id="about-page" class="page">
     <div class="content">
-      <div class="about-body">
-        <p>The lines between private and public, intimacy and expression, have softened. Lingerie is no longer just a foundation — it's a statement, a transition, a shifting mood. Joshua redefines intimate apparel, fusing tradition with modernity, sensuality with structure. It doesn't just fit your body; it speaks for it. Whether layered under a jacket or worn alone in the quiet glow of a bedroom, Joshua is your first layer — or your only layer.</p>
+      <div class="about-intro">
+        <p>The lines between private and public, intimacy and expression, have softened. Lingerie is no longer just a foundation — it's a statement, a transition, a shifting mood.</p>
+        <p><em>Joshua</em> redefines intimate apparel, fusing tradition with modernity, sensuality with structure. It doesn't just fit your body; it speaks for it.</p>
+        <p>Whether layered under a jacket or worn alone in the quiet glow of a bedroom, <em>Joshua</em> is your first layer — or your only layer.</p>
       </div>
       <div class="about-section-title">Precision Details</div>
       <div class="detail-shots-grid">
-        <div class="detail-shot"><img src="detail-1.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
-        <div class="detail-shot"><img src="detail-2.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
-        <div class="detail-shot"><img src="detail-3.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
-        <div class="detail-shot"><img src="detail-4.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
-        <div class="detail-shot"><img src="detail-5.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
-        <div class="detail-shot"><img src="detail-6.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot" onclick="openLightbox('detail-1.jpg')"><img src="detail-1.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot" onclick="openLightbox('detail-2.jpg')"><img src="detail-2.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot" onclick="openLightbox('detail-3.jpg')"><img src="detail-3.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot" onclick="openLightbox('detail-4.jpg')"><img src="detail-4.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot" onclick="openLightbox('detail-5.jpg')"><img src="detail-5.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
+        <div class="detail-shot" onclick="openLightbox('detail-6.jpg')"><img src="detail-6.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
       </div>
       <div class="about-section-title">Construction</div>
       <div class="about-features">
-        <p>All Joshua garments are produced within the European Union, using exclusively European components. Each piece is sewn by a small team of seamstresses in Cluj-Napoca, Romania, whose expertise ensures precision, durability, and an uncompromising standard of finish.</p>
-        <p>Soft, sensual Italian mesh with stretch jersey edge binding provides a snug, flexible hold that moves with the body. Reinforced inner seams are finished with stretch silk, creating a virtually unbreakable construction that feels soft against the skin. Straps are designed with a soft, non-slip grip for comfort and security, while custom-made Italian metal components add both refinement and strength. Crotches lined with organic cotton gussets for breathability, with exterior jersey for a clean finish, and the highest-grade Swiss snaps ensure easy fastening and a secure fit.</p>
+        <p>All <em>Joshua</em> garments are produced within the European Union, using exclusively European components. Each piece is sewn by a small team of seamstresses in Cluj-Napoca, Romania, whose expertise ensures precision, durability, and an uncompromising standard of finish.</p>
+        <p>Soft, sensual Italian mesh with stretch jersey edge binding provides a snug, flexible hold that moves with the body.</p>
+        <p>Reinforced inner seams are finished with stretch silk, creating a virtually unbreakable construction that feels soft against the skin.</p>
+        <p>Straps are designed with a soft, non-slip grip for comfort and security, while custom-made Italian metal components add both refinement and strength.</p>
+        <p>Crotches lined with organic cotton gussets for breathability, with exterior jersey for a clean finish, and the highest-grade Swiss snaps ensure easy fastening and a secure fit.</p>
       </div>
       <footer>
         <div class="footer-left">© Joshua Apparel, Inc.</div>
@@ -107,6 +112,10 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999;cursor:zoom-out;display:none;align-items:center;justify-content:center;">
+    <img id="lightbox-img" src="" style="max-width:92vw;max-height:92vh;object-fit:contain;display:block;" />
   </div>
 
   <script src="products.js"></script>
