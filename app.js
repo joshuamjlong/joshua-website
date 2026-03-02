@@ -172,6 +172,14 @@ function handleBuy() {
   }
 }
 
+function toggleMoreDetails() {
+  var content = document.getElementById('more-details-content');
+  var arrow = document.getElementById('more-details-arrow');
+  var open = content.style.display === 'block';
+  content.style.display = open ? 'none' : 'block';
+  arrow.textContent = open ? '+' : '−';
+}
+
 function handleRoute() {
   var hash = window.location.hash.replace('#', '');
   if (!hash) {
