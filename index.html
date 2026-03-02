@@ -62,18 +62,22 @@
         </div>
         <div class="detail-info">
           <div class="detail-name" id="detail-name"></div>
+          <div class="detail-tagline" id="detail-tagline"></div>
           <div class="detail-product-details" id="detail-product-details"></div>
           <div class="detail-price" id="detail-price"></div>
-          <div class="size-label">Select size <a onclick="showPage('sizing')" class="size-guide-link">Size guide</a></div>
+          <div class="size-row">
+            <div class="size-label">Select size <a onclick="showPage('sizing')" class="size-guide-link">Size guide</a></div>
+            <div class="color-label">BLACK</div>
+          </div>
           <div class="size-options" id="size-options"></div>
           <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Purchase</button>
           <div class="size-note" id="size-note"></div>
           <div class="detail-divider"></div>
-          <div class="detail-features">
+          <div class="more-details-toggle" onclick="toggleMoreDetails()">More details <span id="more-details-arrow">+</span></div>
+          <div class="more-details-content" id="more-details-content">
             <span id="detail-composition"></span><br>
-            Italian mesh · Swiss hardware<br>
             Made in Romania<br>
-            Complimentary standard shipping by DHL within the EU
+            Complimentary standard shipping within the EU
           </div>
         </div>
       </div>
@@ -93,11 +97,11 @@
       <div class="about-poem">
         <p>Intimacy without exhibitionism.</p>
         <p>Elegance without effort.</p>
-        <p>Softly cinematic.</p>
         <p>A moment that lingers.</p>
+        <p>Nothing artificial. Nothing stiff. Softly cinematic.</p>
         <p>A story caught mid-breath.</p>
-        <p>A private glance in the mirror.</p>
-        <p>The moment of contact with your lover.</p>
+        <p>A laugh. A private glance in the mirror.</p>
+        <p>A moment of contact with your lover.</p>
       </div>
       <div class="about-section-title">Precision Details</div>
       <div class="detail-shots-grid">
