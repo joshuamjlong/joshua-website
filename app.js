@@ -120,7 +120,10 @@ function renderDetail(p) {
   document.getElementById('detail-main-img').src = front;
   document.getElementById('detail-main-img').alt = p.name;
   document.getElementById('detail-name').textContent = p.name;
+  document.getElementById('detail-tagline').textContent = p.tagline || '';
   document.getElementById('detail-composition').textContent = p.composition;
+  document.getElementById('more-details-content').style.display = 'none';
+  document.getElementById('more-details-arrow').textContent = '+';
   document.getElementById('detail-product-details').textContent = p.details;
   document.getElementById('detail-price').textContent = p.price;
   var thumbs = document.getElementById('detail-thumbs');
