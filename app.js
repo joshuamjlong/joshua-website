@@ -217,6 +217,20 @@ renderGrid();
 handleRoute();
 
 var lastTapTime = 0;
+var lastImgTapTime = 0;
+
+function handleProductImgTap(e) {
+  if (isTouchDevice) {
+    var now = Date.now();
+    if (now - lastImgTapTime < 300) {
+      openLightbox(document.getElementById('detail-main-img').src);
+    }
+    lastImgTapTime = now;
+    e.stopPropagation();
+  } else {
+    openLightbox(document.getElementById('detail-main-img').src);
+  }
+}
 
 function openLightbox(src) {
   var lb = document.getElementById('lightbox');
