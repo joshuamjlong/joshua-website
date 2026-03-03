@@ -216,6 +216,8 @@ fixContentPadding();
 renderGrid();
 handleRoute();
 
+var lastTapTime = 0;
+
 function openLightbox(src) {
   var lb = document.getElementById('lightbox');
   var img = document.getElementById('lightbox-img');
@@ -230,11 +232,26 @@ function openLightbox(src) {
   lb.style.overflowY = 'auto';
   lb.style.overflowX = 'auto';
   document.body.style.overflow = 'hidden';
+  lastTapTime = 0;
 }
 
 function closeLightbox() {
   document.getElementById('lightbox').style.display = 'none';
   document.body.style.overflow = '';
+}
+
+function handleLightboxTap(e) {
+  // On mobile, double-tap closes; on desktop single click closes
+  if (isTouchDevice) {
+    var now = Date.now();
+    if (now - lastTapTime < 300) {
+      closeLightbox();
+    }
+    lastTapTime = now;
+    e.stopPropagation();
+  } else {
+    closeLightbox();
+  }
 }
 
 document.addEventListener('keydown', function(e) {
