@@ -191,6 +191,8 @@ function handleRoute() {
     showPage('about', false);
   } else if (hash === 'sizing') {
     showPage('sizing', false);
+  } else if (hash === 'shipping') {
+    showPage('shipping', false);
   } else {
     var p = products.find(function(p) { return p.id === hash; });
     if (p) openProduct(hash, false);
@@ -220,7 +222,7 @@ function openLightbox(src) {
   img.src = src;
   img.style.maxWidth = 'none';
   img.style.maxHeight = 'none';
-  img.style.width = '200%';
+  img.style.width = '150%';
   img.style.cursor = 'zoom-out';
   lb.style.display = 'flex';
   lb.style.alignItems = 'flex-start';
