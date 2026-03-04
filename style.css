@@ -96,6 +96,11 @@
     .about-intro p + p { margin-top: 28px; }
     .about-statement { font-size: 14px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; text-align: left; margin-bottom: 60px; padding-top: 48px; max-width: 820px; }
     .about-statement p + p { margin-top: 24px; }
+    .cart-icon { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; }
+    .cart-icon:hover { color: var(--black); }
+    .snipcart-items-count:empty { display: none; }
+    .snipcart-items-count::before { content: "Cart ("; }
+    .snipcart-items-count::after { content: ")"; }
     .shipping-section { margin-top: 40px; max-width: 820px; }
     .shipping-section-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 16px; }
     .shipping-section p { font-size: 14px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; }
