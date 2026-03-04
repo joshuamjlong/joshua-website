@@ -158,18 +158,25 @@ function updateCartButton(p, size) {
     btn.setAttribute('data-item-id', p.id + '-' + size);
     btn.setAttribute('data-item-name', p.name);
     btn.setAttribute('data-item-price', price);
-    btn.setAttribute('data-item-url', 'https://joshuaatelier.com/');
+    btn.setAttribute('data-item-url', 'https://joshuaatelier.com/#' + p.id);
     btn.setAttribute('data-item-image', imgUrl);
+    btn.setAttribute('data-item-description', p.tagline || '');
     btn.setAttribute('data-item-custom1-name', 'Size');
     btn.setAttribute('data-item-custom1-value', size);
-    btn.setAttribute('data-item-custom1-options', 'XS|S|M|L');
+    btn.setAttribute('data-item-custom1-type', 'readonly');
     btn.removeAttribute('onclick');
     btn.textContent = 'Add to Cart';
   } else {
     btn.className = 'buy-btn';
     btn.removeAttribute('data-item-id');
+    btn.removeAttribute('data-item-name');
+    btn.removeAttribute('data-item-price');
+    btn.removeAttribute('data-item-url');
+    btn.removeAttribute('data-item-custom1-name');
+    btn.removeAttribute('data-item-custom1-value');
+    btn.removeAttribute('data-item-custom1-type');
     btn.setAttribute('onclick', 'handleBuy()');
-    btn.textContent = 'Purchase';
+    btn.textContent = 'Add to Cart';
   }
   document.getElementById('size-note').textContent = '';
 }
