@@ -158,7 +158,7 @@ function updateCartButton(p, size) {
     btn.setAttribute('data-item-id', p.id + '-' + size);
     btn.setAttribute('data-item-name', p.name);
     btn.setAttribute('data-item-price', price);
-    btn.setAttribute('data-item-url', 'https://joshuaatelier.com/#' + p.id);
+    btn.setAttribute('data-item-url', '/');
     btn.setAttribute('data-item-image', imgUrl);
     btn.setAttribute('data-item-description', p.tagline || '');
     btn.setAttribute('data-item-custom1-name', 'Size');
