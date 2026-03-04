@@ -146,6 +146,31 @@ function renderDetail(p) {
     sizeHtml += '>' + s + '</button>';
   }
   document.getElementById('size-options').innerHTML = sizeHtml;
+  updateCartButton(p, null);
+}
+
+function updateCartButton(p, size) {
+  var btn = document.getElementById('buy-btn');
+  var price = parseFloat(p.price.replace('€',''));
+  var imgUrl = 'https://joshuaatelier.com/' + p.id + '-FRONT.jpg';
+  if (size) {
+    btn.className = 'buy-btn snipcart-add-item';
+    btn.setAttribute('data-item-id', p.id + '-' + size);
+    btn.setAttribute('data-item-name', p.name);
+    btn.setAttribute('data-item-price', price);
+    btn.setAttribute('data-item-url', 'https://joshuaatelier.com/');
+    btn.setAttribute('data-item-image', imgUrl);
+    btn.setAttribute('data-item-custom1-name', 'Size');
+    btn.setAttribute('data-item-custom1-value', size);
+    btn.setAttribute('data-item-custom1-options', 'XS|S|M|L');
+    btn.removeAttribute('onclick');
+    btn.textContent = 'Add to Cart';
+  } else {
+    btn.className = 'buy-btn';
+    btn.removeAttribute('data-item-id');
+    btn.setAttribute('onclick', 'handleBuy()');
+    btn.textContent = 'Purchase';
+  }
   document.getElementById('size-note').textContent = '';
 }
 
@@ -157,6 +182,7 @@ function switchImg(src, thumb) {
 
 function selectSize(size, btn) {
   selectedSize = size;
+  updateCartButton(currentProduct, size);
   document.querySelectorAll('.size-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
   document.getElementById('size-note').textContent = '';
