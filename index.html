@@ -25,12 +25,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <link rel="preconnect" href="https://app.snipcart.com">
-  <link rel="preconnect" href="https://cdn.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
-  <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
-  <div hidden id="snipcart" data-api-key="MmE4YzU5ZWQtYjczYy00ZGI4LTg3NDMtOTQ1MGM5MGJjZWFlNjM5MDgyNDI5ODg3MzM2MzY1" data-currency="eur"></div>
-
   <header>
     <div class="header-logo" onclick="showPage('shop')">
       <img src="Joshua-logo-black.png" alt="Joshua" />
@@ -76,7 +70,7 @@
             <div class="color-label">BLACK</div>
           </div>
           <div class="size-options" id="size-options"></div>
-          <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Add to Cart</button>
+          <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Add to Bag</button>
           <div class="size-note" id="size-note"></div>
           <div class="detail-divider"></div>
           <div class="more-details-toggle" onclick="toggleMoreDetails()">More details <span id="more-details-arrow">+</span></div>
@@ -240,188 +234,58 @@
     <img  <div id="lightbox" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999;cursor:default;">
     <img id="lightbox-img" src="" onclick="handleLightboxTap(event)" style="max-width:92vw;max-height:92vh;object-fit:contain;display:block;cursor:zoom-out;" />
   </div>
-
-
-  <!-- Snipcart product catalog for validation -->
-  <div style="display:none" id="snipcart-products">
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-A"
-        data-item-name="Cross-back mesh bodysuit"
-        data-item-price="220"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-MBD-Y1"
-        data-item-name="Thong mesh bodysuit"
-        data-item-price="180"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y16"
-        data-item-name="Open back long-sleeved mesh bodysuit"
-        data-item-price="200"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y3"
-        data-item-name="Open bottom mesh bodysuit"
-        data-item-price="190"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y7"
-        data-item-name="Backless choker-neck mesh bodysuit"
-        data-item-price="140"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y5"
-        data-item-name="Hourglass contoured bodysuit"
-        data-item-price="150"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y4"
-        data-item-name="Boat neck g-string bodysuit"
-        data-item-price="120"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y18"
-        data-item-name="Plunge neck thong mesh bodysuit"
-        data-item-price="130"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y22J"
-        data-item-name="Cross-back jersey micro bra"
-        data-item-price="180"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y22"
-        data-item-name="Cross-back mesh micro bra"
-        data-item-price="190"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y23J"
-        data-item-name="Scoop jersey bralette"
-        data-item-price="170"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-MBD-Y23"
-        data-item-name="Scoop mesh bralette"
-        data-item-price="180"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y9"
-        data-item-name="Camisole mesh dress"
-        data-item-price="190"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y8"
-        data-item-name="Mesh tennis dress"
-        data-item-price="140"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y21J"
-        data-item-name="Micro g-string jersey panty"
-        data-item-price="150"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y21"
-        data-item-name="Micro g-string mesh panty"
-        data-item-price="170"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y20J"
-        data-item-name="Jersey string bikini brief"
-        data-item-price="140"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y20"
-        data-item-name="Mesh string bikini brief"
-        data-item-price="160"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y15"
-        data-item-name="High waist full bottom mesh panty"
-        data-item-price="90"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y11"
-        data-item-name="High waist g-string mesh panty"
-        data-item-price="80"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-BD-Y17"
-        data-item-name="Backless mesh baby tee"
-        data-item-price="110"
-        data-item-url="/"
-      ></span>
-    </div>
-    <div>
-      <span class="snipcart-add-item"
-        data-item-id="KG-F25-MBD-Y14"
-        data-item-name="Sporty mesh gym shorts"
-        data-item-price="70"
-        data-item-url="/"
-      ></span>
-    </div>
   </div>
   <script src="products.js"></script>
   <script src="app.js"></script>
+
+  <!-- Cart Overlay -->
+  <div id="cart-overlay" onclick="closeCartDrawer()"></div>
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer">
+    <div class="cart-drawer-header">
+      <span class="cart-drawer-title">Your Bag <span class="cart-count"></span></span>
+      <button class="cart-drawer-close" onclick="closeCartDrawer()">×</button>
+    </div>
+    <div id="cart-drawer-items"></div>
+    <div id="cart-drawer-footer">
+      <div class="cart-drawer-total-row">
+        <span>Total</span>
+        <span id="cart-drawer-total"></span>
+      </div>
+      <div class="cart-shipping-note">Complimentary shipping within the EU</div>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+      <button class="view-bag-btn" onclick="closeCartDrawer(); showPage('bag')">View Bag</button>
+    </div>
+  </div>
+
+  <!-- Bag Page -->
+  <div class="page" id="bag-page">
+    <div class="content">
+      <div class="bag-page-inner">
+        <h1 class="bag-page-title">Shopping Bag</h1>
+        <div id="bag-items"></div>
+        <div id="bag-footer">
+          <div class="bag-summary">
+            <div class="bag-shipping-note">Complimentary standard shipping within the EU via DHL.</div>
+            <div class="bag-total-row">
+              <span>Estimated Total</span>
+              <span id="bag-total"></span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-left">© 2025 Joshua Atelier</div>
+      <div class="footer-right">
+        <a onclick="showPage('shipping')">Shipping & Returns</a>
+        <a onclick="showPage('sizing')">Sizing</a>
+        <a href="mailto:customercare@joshuaatelier.com">Contact</a>
+      </div>
+    </footer>
+  </div>
+
 </body>
 </html>
