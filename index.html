@@ -263,7 +263,10 @@
   <div class="page" id="bag-page">
     <div class="content">
       <div class="bag-page-inner">
-        <h1 class="bag-page-title">Shopping Bag</h1>
+        <div class="bag-page-header">
+          <h1 class="bag-page-title">Shopping Bag</h1>
+          <button class="continue-shopping-btn" onclick="showPage('shop')">← Continue Shopping</button>
+        </div>
         <div id="bag-items"></div>
         <div id="bag-footer">
           <div class="bag-summary">
@@ -282,10 +285,4 @@
       <div class="footer-right">
         <a onclick="showPage('shipping')">Shipping & Returns</a>
         <a onclick="showPage('sizing')">Sizing</a>
-        <a href="mailto:customercare@joshuaatelier.com">Contact</a>
-      </div>
-    </footer>
-  </div>
-
-</body>
-</html>
+        <a href="/cdn-cgi/l/email-protection#5e3d2b2d2a31333b2c3d3f2c3b1e34312d362b3f3f2a3b32373b2c703d3133">Contact</a>
