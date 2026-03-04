@@ -22,7 +22,7 @@ exports.handler = async function(event) {
     }));
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card', 'apple_pay', 'google_pay', 'p24', 'blik', 'klarna'],
+      payment_method_types: ['card', 'p24', 'blik', 'klarna'],
       line_items,
       mode: 'payment',
       success_url: 'https://joshuaatelier.com/#order-success',
