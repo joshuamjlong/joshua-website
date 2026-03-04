@@ -25,16 +25,11 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <script>
-    window.SnipcartSettings = {
-      publicApiKey: "MmE4YzU5ZWQtYjczYy00ZGI4LTg3NDMtOTQ1MGM5MGJjZWFlNjM5MDgyNDI5ODg3MzM2MzY1",
-      loadStrategy: "on-user-interaction",
-      modalStyle: "side",
-      currency: "eur"
-    };
-    (function(){var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var m,g;(g=(m=window.SnipcartSettings).loadCSS)!=null||(m.loadCSS=true);var y=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:true,sensitivity:"base"})===-1,f=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){f.forEach(function(t){window.addEventListener(t,o,{once:true})});var e=setTimeout(o,window.SnipcartSettings.timeoutDuration);function o(){clearTimeout(e);f.forEach(function(t){window.removeEventListener(t,o)});var t=document.createElement("script");t.src="https://"+window.SnipcartSettings.domain+"/themes/v"+window.SnipcartSettings.version+"/default/snipcart.js";document.head.appendChild(t)}}})();
-  </script>
-  <div hidden id="snipcart" data-api-key="MmE4YzU5ZWQtYjczYy00ZGI4LTg3NDMtOTQ1MGM5MGJjZWFlNjM5MDgyNDI5ODg3MzM2MzY1"></div>
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
+  <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
+  <div hidden id="snipcart" data-api-key="MmE4YzU5ZWQtYjczYy00ZGI4LTg3NDMtOTQ1MGM5MGJjZWFlNjM5MDgyNDI5ODg3MzM2MzY1" data-currency="eur"></div>
 
   <header>
     <div class="header-logo" onclick="showPage('shop')">
