@@ -96,6 +96,12 @@
     .about-intro p + p { margin-top: 28px; }
     .about-statement { font-size: 14px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; text-align: left; margin-bottom: 60px; padding-top: 48px; max-width: 820px; }
     .about-statement p + p { margin-top: 24px; }
+    .shipping-section { margin-top: 40px; max-width: 820px; }
+    .shipping-section-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 16px; }
+    .shipping-section p { font-size: 14px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; }
+    .shipping-photo-placeholder { width: 280px; height: 280px; background: var(--off-white); margin-bottom: 20px; }
+    .text-link { color: var(--dark-grey); text-decoration: underline; }
+    .text-link:hover { color: var(--black); }
     .sizing-intro { font-size: 14px; line-height: 2; color: var(--dark-grey); letter-spacing: 0.02em; padding-top: 0; margin-bottom: 48px; max-width: 820px; }
     .sizing-intro p + p { margin-top: 20px; }
     .sizing-section-title { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 16px; margin-top: 48px; }
