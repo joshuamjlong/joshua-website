@@ -8,259 +8,283 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #ffffff;
-      color: #1a1a1a;
-      line-height: 1.8;
-      padding: 80px 24px 120px;
+    :root {
+      --black: #0a0a0a; --white: #ffffff;
+      --light-grey: #e8e8e6; --mid-grey: #999; --dark-grey: #444;
+      --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--white); height: 60px;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
+    @media (max-width: 768px) {
+      header { height: auto; flex-wrap: wrap; padding: 10px 16px 8px; align-content: flex-start; gap: 6px; }
+      .header-logo { width: 100%; display: flex; align-items: center; }
+      .header-logo img { height: 28px; }
+      .header-tagline { display: none; }
+      nav { width: 100%; display: flex; gap: 24px; padding-bottom: 4px; }
+      nav a { font-size: 9px; letter-spacing: 0.15em; line-height: 1; padding: 6px 0; }
+    }
+    .header-logo { cursor: pointer; height: 22px; display: block; text-decoration: none; }
+    .header-logo img { height: 100%; width: auto; display: block; }
+    .header-tagline {
+      font-size: 13px; letter-spacing: 0.08em; color: var(--dark-grey); font-style: italic;
+      position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none;
+    }
+    nav { display: flex; gap: 32px; align-items: center; }
+    nav a {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s;
+    }
+    nav a:hover { color: var(--black); }
+
+    /* ── CONTENT ── */
+    .content { padding-top: 68px; padding-bottom: 120px; }
+
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--mid-grey); cursor: pointer; padding: 20px 24px;
+      transition: color 0.2s; background: none; border: none;
+      font-family: var(--font); text-decoration: none;
+    }
+    .back-btn:hover { color: var(--black); }
 
     .container {
       max-width: 680px;
       margin: 0 auto;
+      padding: 0 24px 80px;
     }
 
-    /* ── HEADER ── */
-    .site-header {
-      margin-bottom: 80px;
-    }
-
-    .brand {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 40px;
-      display: block;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .brand:hover { color: #1a1a1a; }
-
+    /* ── LEGAL NAV ── */
     .legal-nav {
       display: flex;
       gap: 32px;
+      margin-bottom: 80px;
     }
-
     .legal-nav a {
       font-size: 10px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #999;
+      color: var(--mid-grey);
       text-decoration: none;
       transition: color 0.2s;
     }
-    .legal-nav a:hover { color: #1a1a1a; }
+    .legal-nav a:hover { color: var(--black); }
 
     /* ── SECTIONS ── */
-    .legal-section {
-      padding-top: 80px;
-      margin-top: 0;
-    }
-
+    .legal-section { padding-top: 64px; }
     .legal-section + .legal-section {
-      border-top: 1px solid #e8e8e4;
+      border-top: 1px solid var(--light-grey);
       margin-top: 80px;
     }
 
     h1 {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #1a1a1a;
-      margin-bottom: 8px;
+      font-size: 11px; font-weight: 400; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--black); margin-bottom: 8px;
     }
-
     .date {
-      font-size: 12px;
-      color: #999;
-      font-style: italic;
-      display: block;
-      margin-bottom: 40px;
+      font-size: 12px; color: var(--mid-grey); font-style: italic;
+      display: block; margin-bottom: 40px;
     }
-
     h2 {
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #999;
-      margin-top: 48px;
-      margin-bottom: 14px;
+      font-size: 9px; font-weight: 500; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--mid-grey);
+      margin-top: 48px; margin-bottom: 14px;
     }
-
-    p {
-      font-size: 14px;
-      color: #444;
-      margin-bottom: 14px;
-      line-height: 1.9;
-    }
-
-    ul {
-      margin: 0 0 14px 0;
-      padding-left: 20px;
-    }
-
-    li {
-      font-size: 14px;
-      color: #444;
-      margin-bottom: 8px;
-      line-height: 1.9;
-    }
-
-    a {
-      color: #1a1a1a;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
+    p { font-size: 14px; color: var(--dark-grey); margin-bottom: 14px; line-height: 1.9; }
+    ul { margin: 0 0 14px 0; padding-left: 20px; }
+    li { font-size: 14px; color: var(--dark-grey); margin-bottom: 8px; line-height: 1.9; }
+    a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
 
     .contact-block {
-      margin-top: 64px;
-      padding-top: 40px;
-      border-top: 1px solid #e8e8e4;
-      font-size: 13px;
-      color: #888;
-      line-height: 2;
+      margin-top: 64px; padding-top: 40px;
+      border-top: 1px solid var(--light-grey);
+      font-size: 13px; color: var(--mid-grey); line-height: 2;
     }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 24px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 16px; width: 100%;
+    }
+    .footer-left { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); }
+    .footer-right { display: flex; gap: 24px; }
+    .footer-right a, .footer-left a {
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--mid-grey); text-decoration: none; transition: color 0.2s; cursor: pointer;
+    }
+    .footer-right a:hover, .footer-left a:hover { color: var(--black); }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <div class="site-header">
-      <a href="/" class="brand">Joshua Atelier</a>
+  <header>
+    <a href="/" class="header-logo">
+      <img src="/images/Joshua-logo-black.png" alt="Joshua" />
+    </a>
+    <span class="header-tagline"><em>she dressed with no one in mind</em></span>
+    <nav>
+      <a href="/#about">About</a>
+      <a href="/">Collection</a>
+      <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <a href="/" class="back-btn">← Back</a>
+
+    <div class="container">
       <nav class="legal-nav">
         <a href="#terms">Terms &amp; Conditions</a>
         <a href="#privacy">Privacy Policy</a>
       </nav>
-    </div>
 
-    <!-- ── TERMS ── -->
-    <div class="legal-section" id="terms">
-      <h1>Terms &amp; Conditions</h1>
-      <span class="date">Effective date: March 2026</span>
+      <!-- ── TERMS ── -->
+      <div class="legal-section" id="terms">
+        <h1>Terms &amp; Conditions</h1>
+        <span class="date">Effective date: March 2026</span>
 
-      <p>These Terms and Conditions govern your use of joshuaatelier.com and any purchase made through the site. By placing an order, you agree to these terms. The site is operated by Joshua Apparel sp. z o.o., a company registered in Poland.</p>
+        <p>These Terms and Conditions govern your use of joshuaatelier.com and any purchase made through the site. By placing an order, you agree to these terms. The site is operated by Joshua Apparel sp. z o.o., a company registered in Poland.</p>
 
-      <h2>Our Details</h2>
-      <p>Joshua Apparel sp. z o.o.<br>
-      pl. Andersa 3, piętro 11, 61-894 Poznań, Poland<br>
-      VAT: PL7831924236 · KRS: 0001159199<br>
-      Contact: <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a></p>
+        <h2>Our Details</h2>
+        <p>Joshua Apparel sp. z o.o.<br>
+        pl. Andersa 3, piętro 11, 61-894 Poznań, Poland<br>
+        VAT: PL7831924236 · KRS: 0001159199<br>
+        Contact: <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a></p>
 
-      <h2>Orders</h2>
-      <p>When you place an order, you are making an offer to purchase. We reserve the right to decline any order, for example in cases of pricing errors or stock unavailability. You will be notified promptly and any payment taken will be refunded in full.</p>
-      <p>Prices are displayed in EUR. For customers in Poland, prices may also be shown in PLN. All prices are inclusive of applicable VAT.</p>
+        <h2>Orders</h2>
+        <p>When you place an order, you are making an offer to purchase. We reserve the right to decline any order, for example in cases of pricing errors or stock unavailability. You will be notified promptly and any payment taken will be refunded in full.</p>
+        <p>Prices are displayed in EUR. For customers in Poland, prices may also be shown in PLN. All prices are inclusive of applicable VAT.</p>
 
-      <h2>Payment</h2>
-      <p>Payment is processed securely by Stripe. We accept major credit and debit cards, Apple Pay, and Google Pay. Payment is taken at the time of order. We do not store your payment details.</p>
+        <h2>Payment</h2>
+        <p>Payment is processed securely by Stripe. We accept major credit and debit cards, Apple Pay, and Google Pay. Payment is taken at the time of order. We do not store your payment details.</p>
 
-      <h2>Shipping</h2>
-      <p>We ship globally. Delivery times and costs vary by destination and are displayed at checkout. Risk of loss passes to you upon delivery. For international orders, you may be responsible for customs duties or import taxes applicable in your country — these are not included in our prices and are your responsibility.</p>
+        <h2>Shipping</h2>
+        <p>We ship globally. Delivery times and costs vary by destination and are displayed at checkout. Risk of loss passes to you upon delivery. For international orders, you may be responsible for customs duties or import taxes applicable in your country — these are not included in our prices and are your responsibility.</p>
 
-      <h2>Returns &amp; Exchanges</h2>
-      <p>We accept returns within <strong>14 days</strong> of delivery, provided the item is:</p>
-      <ul>
-        <li>Unworn and in its original condition</li>
-        <li>In original packaging with all tags attached</li>
-      </ul>
-      <p>Due to the intimate nature of our products, items showing any signs of wear will not be accepted for return on hygiene grounds. This does not affect your statutory rights.</p>
-      <p>To initiate a return, contact us at <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a> before sending anything back. Return shipping costs are the responsibility of the customer unless the item is faulty or incorrectly sent.</p>
-      <p>Refunds are issued to the original payment method within 5–10 business days of receiving the returned item.</p>
+        <h2>Returns &amp; Exchanges</h2>
+        <p>We accept returns within <strong>14 days</strong> of delivery, provided the item is:</p>
+        <ul>
+          <li>Unworn and in its original condition</li>
+          <li>In original packaging with all tags attached</li>
+        </ul>
+        <p>Due to the intimate nature of our products, items showing any signs of wear will not be accepted for return on hygiene grounds. This does not affect your statutory rights.</p>
+        <p>To initiate a return, contact us at <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a> before sending anything back. Return shipping costs are the responsibility of the customer unless the item is faulty or incorrectly sent.</p>
+        <p>Refunds are issued to the original payment method within 5–10 business days of receiving the returned item.</p>
 
-      <h2>Faulty or Incorrect Items</h2>
-      <p>If you receive a faulty or incorrect item, contact us within 14 days of delivery and we will resolve the issue at no cost to you — replacement, exchange, or full refund.</p>
+        <h2>Faulty or Incorrect Items</h2>
+        <p>If you receive a faulty or incorrect item, contact us within 14 days of delivery and we will resolve the issue at no cost to you — replacement, exchange, or full refund.</p>
 
-      <h2>Intellectual Property</h2>
-      <p>All content on this site — including images, text, design, and branding — is the property of Joshua Apparel sp. z o.o. and may not be reproduced, distributed, or used without prior written permission.</p>
+        <h2>Intellectual Property</h2>
+        <p>All content on this site — including images, text, design, and branding — is the property of Joshua Apparel sp. z o.o. and may not be reproduced, distributed, or used without prior written permission.</p>
 
-      <h2>Limitation of Liability</h2>
-      <p>To the extent permitted by law, our liability in connection with any order is limited to the value of that order. We are not liable for indirect, incidental, or consequential losses.</p>
-      <p>Nothing in these terms limits our liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be excluded by law.</p>
+        <h2>Limitation of Liability</h2>
+        <p>To the extent permitted by law, our liability in connection with any order is limited to the value of that order. We are not liable for indirect, incidental, or consequential losses.</p>
+        <p>Nothing in these terms limits our liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be excluded by law.</p>
 
-      <h2>Governing Law</h2>
-      <p>These terms are governed by the laws of Poland. Any disputes shall be subject to the jurisdiction of the courts of Poznań, Poland. If you are a consumer based in the EU, you also retain the protections afforded by the consumer laws of your country of residence.</p>
-      <p>The European Commission provides an online dispute resolution platform at <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a>.</p>
+        <h2>Governing Law</h2>
+        <p>These terms are governed by the laws of Poland. Any disputes shall be subject to the jurisdiction of the courts of Poznań, Poland. If you are a consumer based in the EU, you also retain the protections afforded by the consumer laws of your country of residence.</p>
+        <p>The European Commission provides an online dispute resolution platform at <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a>.</p>
 
-      <h2>Changes to These Terms</h2>
-      <p>We may update these terms from time to time. The current version will always be available at joshuaatelier.com/terms.</p>
-    </div>
-
-    <!-- ── PRIVACY ── -->
-    <div class="legal-section" id="privacy">
-      <h1>Privacy Policy</h1>
-      <span class="date">Effective date: March 2026</span>
-
-      <p>This Privacy Policy describes how Joshua Apparel sp. z o.o. ("Joshua Atelier", "we", "us") collects, uses, and protects your personal data when you visit joshuaatelier.com or make a purchase. We are committed to handling your information with care and in accordance with the General Data Protection Regulation (GDPR).</p>
-
-      <h2>Who We Are</h2>
-      <p>Joshua Apparel sp. z o.o.<br>
-      pl. Andersa 3, piętro 11, 61-894 Poznań, Poland<br>
-      VAT: PL7831924236 · KRS: 0001159199<br>
-      Contact: <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a></p>
-
-      <h2>Data We Collect</h2>
-      <p>When you place an order, we collect the information necessary to fulfil it:</p>
-      <ul>
-        <li>Name and email address</li>
-        <li>Shipping address</li>
-        <li>Payment information — processed securely by Stripe; we do not store card details</li>
-        <li>Order details (items, size, amount)</li>
-      </ul>
-      <p>We do not use analytics tools, tracking pixels, or advertising cookies. We do not collect any data beyond what is required to process and deliver your order.</p>
-
-      <h2>How We Use Your Data</h2>
-      <ul>
-        <li>To process and fulfil your order</li>
-        <li>To send you an order confirmation and receipt</li>
-        <li>To communicate with you about your order if needed</li>
-        <li>To comply with legal obligations</li>
-      </ul>
-      <p>We do not use your data for marketing purposes unless you have separately opted in. We do not sell your data to third parties.</p>
-
-      <h2>Legal Basis</h2>
-      <p>We process your data on the basis of contractual necessity — your data is required to fulfil the purchase you have made. Where required by law, we process data on the basis of legal obligation.</p>
-
-      <h2>Third Parties</h2>
-      <p>Your data is shared only with parties necessary to complete your order:</p>
-      <ul>
-        <li><strong>Stripe</strong> — payment processing. Stripe is PCI DSS compliant. See <a href="https://stripe.com/privacy" target="_blank">stripe.com/privacy</a>.</li>
-        <li><strong>Shipping carriers</strong> — your name and address are shared with the carrier handling delivery of your order.</li>
-      </ul>
-      <p>No other third parties receive your data.</p>
-
-      <h2>Cookies</h2>
-      <p>This site uses only strictly necessary cookies set by Stripe to enable secure payment processing. These cookies do not track you and do not require your consent under GDPR.</p>
-
-      <h2>Data Retention</h2>
-      <p>We retain your order data for as long as required by Polish and EU tax and accounting law (generally 5 years). After this period, your data is deleted.</p>
-
-      <h2>Your Rights</h2>
-      <p>Under GDPR, you have the right to:</p>
-      <ul>
-        <li>Access the personal data we hold about you</li>
-        <li>Request correction of inaccurate data</li>
-        <li>Request deletion of your data, where legally permitted</li>
-        <li>Object to or restrict processing</li>
-        <li>Data portability</li>
-        <li>Lodge a complaint with a supervisory authority</li>
-      </ul>
-      <p>To exercise any of these rights, contact us at <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a>. We will respond within 30 days.</p>
-
-      <h2>International Transfers</h2>
-      <p>Your data may be processed by Stripe on servers outside the European Economic Area. Stripe maintains appropriate safeguards including Standard Contractual Clauses approved by the European Commission.</p>
-
-      <h2>Changes to This Policy</h2>
-      <p>We may update this policy from time to time. The current version will always be available at joshuaatelier.com/privacy.</p>
-
-      <div class="contact-block">
-        Questions? <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a>
+        <h2>Changes to These Terms</h2>
+        <p>We may update these terms from time to time. The current version will always be available at joshuaatelier.com/terms.</p>
       </div>
-    </div>
 
+      <!-- ── PRIVACY ── -->
+      <div class="legal-section" id="privacy">
+        <h1>Privacy Policy</h1>
+        <span class="date">Effective date: March 2026</span>
+
+        <p>This Privacy Policy describes how Joshua Apparel sp. z o.o. ("Joshua Atelier", "we", "us") collects, uses, and protects your personal data when you visit joshuaatelier.com or make a purchase. We are committed to handling your information with care and in accordance with the General Data Protection Regulation (GDPR).</p>
+
+        <h2>Who We Are</h2>
+        <p>Joshua Apparel sp. z o.o.<br>
+        pl. Andersa 3, piętro 11, 61-894 Poznań, Poland<br>
+        VAT: PL7831924236 · KRS: 0001159199<br>
+        Contact: <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a></p>
+
+        <h2>Data We Collect</h2>
+        <p>When you place an order, we collect the information necessary to fulfil it:</p>
+        <ul>
+          <li>Name and email address</li>
+          <li>Shipping address</li>
+          <li>Payment information — processed securely by Stripe; we do not store card details</li>
+          <li>Order details (items, size, amount)</li>
+        </ul>
+        <p>We do not use analytics tools, tracking pixels, or advertising cookies. We do not collect any data beyond what is required to process and deliver your order.</p>
+
+        <h2>How We Use Your Data</h2>
+        <ul>
+          <li>To process and fulfil your order</li>
+          <li>To send you an order confirmation and receipt</li>
+          <li>To communicate with you about your order if needed</li>
+          <li>To comply with legal obligations</li>
+        </ul>
+        <p>We do not use your data for marketing purposes unless you have separately opted in. We do not sell your data to third parties.</p>
+
+        <h2>Legal Basis</h2>
+        <p>We process your data on the basis of contractual necessity — your data is required to fulfil the purchase you have made. Where required by law, we process data on the basis of legal obligation.</p>
+
+        <h2>Third Parties</h2>
+        <p>Your data is shared only with parties necessary to complete your order:</p>
+        <ul>
+          <li><strong>Stripe</strong> — payment processing. Stripe is PCI DSS compliant. See <a href="https://stripe.com/privacy" target="_blank">stripe.com/privacy</a>.</li>
+          <li><strong>Shipping carriers</strong> — your name and address are shared with the carrier handling delivery of your order.</li>
+        </ul>
+        <p>No other third parties receive your data.</p>
+
+        <h2>Cookies</h2>
+        <p>This site uses only strictly necessary cookies set by Stripe to enable secure payment processing. These cookies do not track you and do not require your consent under GDPR.</p>
+
+        <h2>Data Retention</h2>
+        <p>We retain your order data for as long as required by Polish and EU tax and accounting law (generally 5 years). After this period, your data is deleted.</p>
+
+        <h2>Your Rights</h2>
+        <p>Under GDPR, you have the right to:</p>
+        <ul>
+          <li>Access the personal data we hold about you</li>
+          <li>Request correction of inaccurate data</li>
+          <li>Request deletion of your data, where legally permitted</li>
+          <li>Object to or restrict processing</li>
+          <li>Data portability</li>
+          <li>Lodge a complaint with a supervisory authority</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a>. We will respond within 30 days.</p>
+
+        <h2>International Transfers</h2>
+        <p>Your data may be processed by Stripe on servers outside the European Economic Area. Stripe maintains appropriate safeguards including Standard Contractual Clauses approved by the European Commission.</p>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this policy from time to time. The current version will always be available at joshuaatelier.com/privacy.</p>
+
+        <div class="contact-block">
+          Questions? <a href="mailto:contact@joshuaatelier.com">contact@joshuaatelier.com</a>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+  <footer>
+    <div class="footer-left">© Joshua Apparel sp. z o.o. &nbsp;·&nbsp; <a href="/legal.html">Legal</a></div>
+    <div class="footer-right">
+      <a href="mailto:contact@joshuaatelier.com">Contact</a>
+      <a href="/#sizing">Sizing</a>
+      <a href="/#shipping">Shipping &amp; Returns</a>
+    </div>
+  </footer>
+
 </body>
 </html>
