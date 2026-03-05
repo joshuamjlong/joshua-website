@@ -200,6 +200,7 @@
     .bag-page-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 48px; }
     .bag-page-header .bag-page-title { margin-bottom: 0; }
     .continue-shopping-btn { background: none; border: none; font-family: var(--font); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 0; transition: color 0.2s; }
-    .continue-shopping-btn:hover { color: var(--black); }
+  .continue-shopping-btn:hover { color: var(--black); }
 .footer-legal { color: var(--mid-grey); text-decoration: none; transition: color 0.2s; }
 .footer-legal:hover { color: var(--black); }
+.footer-right a { color: var(--mid-grey); cursor: pointer; }
