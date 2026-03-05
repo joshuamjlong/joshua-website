@@ -25,7 +25,7 @@ function addToCart(product, size) {
     cart.push({
       id: product.id, name: product.name, size: size,
       price: parseFloat(product.price.replace('€', '')),
-      image: product.id + '-FRONT.jpg', quantity: 1
+      image: 'images/' + product.id + '-FRONT.jpg', quantity: 1
     });
   }
   saveCart();
@@ -155,7 +155,7 @@ var selectedSize = null;
 function updateMeta(title, description, image) {
   document.title = title ? title + ' — Joshua Atelier' : 'Joshua Atelier — Premium European Lingerie';
   var desc = description || 'Intimate apparel designed for the way she moves.';
-  var img = image || 'https://joshuaatelier.com/Joshua-logo-black.png';
+  var img = image || 'https://joshuaatelier.com/images/Joshua-logo-black.png';
   document.querySelector('meta[name="description"]').setAttribute('content', desc);
   document.querySelector('meta[property="og:title"]').setAttribute('content', document.title);
   document.querySelector('meta[property="og:description"]').setAttribute('content', desc);
@@ -193,7 +193,7 @@ function openProduct(id, pushState) {
   updateMeta(
     currentProduct.name,
     currentProduct.name + '. ' + currentProduct.composition + '. ' + currentProduct.price + '.',
-    'https://joshuaatelier.com/' + currentProduct.id + '-FRONT.jpg'
+    'https://joshuaatelier.com/images/' + currentProduct.id + '-FRONT.jpg'
   );
 }
 
@@ -204,8 +204,8 @@ function renderGrid() {
   var html = '';
   for (var i = 0; i < products.length; i++) {
     var p = products[i];
-    var front = p.id + '-FRONT.jpg';
-    var back = p.hasBack ? p.id + '-BACK.jpg' : front;
+    var front = 'images/' + p.id + '-FRONT.jpg';
+    var back = p.hasBack ? 'images/' + p.id + '-BACK.jpg' : front;
     var cardClass = p.hasBack ? 'product-card has-back' : 'product-card';
     html += '<div class="' + cardClass + '" onclick="handleClick(event,\'' + p.id + '\')"';
     if (p.hasBack) html += ' onmouseenter="this.classList.add(\'flipped\')" onmouseleave="this.classList.remove(\'flipped\')"';
@@ -257,8 +257,8 @@ function handleTouchEnd(e, card) {
 // ─── DETAIL ───────────────────────────────────────────────────────────────────
 
 function renderDetail(p) {
-  var front = p.id + '-FRONT.jpg';
-  var back = p.hasBack ? p.id + '-BACK.jpg' : null;
+  var front = 'images/' + p.id + '-FRONT.jpg';
+  var back = p.hasBack ? 'images/' + p.id + '-BACK.jpg' : null;
   document.getElementById('detail-main-img').src = front;
   document.getElementById('detail-main-img').alt = p.name;
   document.getElementById('detail-name').textContent = p.name;
