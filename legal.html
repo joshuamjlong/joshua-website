@@ -5,17 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Legal — Joshua Atelier</title>
   <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --black: #0a0a0a; --white: #ffffff;
       --light-grey: #e8e8e6; --mid-grey: #999; --dark-grey: #444;
-      --font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font: 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
     body { font-family: var(--font); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
-
-    /* ── HEADER ── */
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--white); height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--white); height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; border-bottom: 1px solid var(--light-grey); }
+    .header-logo { cursor: pointer; height: 22px; display: block; text-decoration: none; }
+    .header-logo img { height: 100%; width: auto; display: block; }
+    .header-tagline { font-size: 13px; letter-spacing: 0.08em; color: var(--dark-grey); font-style: italic; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none; }
+    nav { display: flex; gap: 32px; align-items: center; }
+    nav a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+    nav a:hover { color: var(--black); }
     @media (max-width: 768px) {
       header { height: auto; flex-wrap: wrap; padding: 10px 16px 8px; align-content: flex-start; gap: 6px; }
       .header-logo { width: 100%; display: flex; align-items: center; }
@@ -24,25 +31,13 @@
       nav { width: 100%; display: flex; gap: 24px; padding-bottom: 4px; }
       nav a { font-size: 9px; letter-spacing: 0.15em; line-height: 1; padding: 6px 0; }
     }
-    .header-logo { cursor: pointer; height: 22px; display: block; text-decoration: none; }
-    .header-logo img { height: 100%; width: auto; display: block; }
-    .header-tagline { font-size: 13px; letter-spacing: 0.08em; color: var(--dark-grey); font-style: italic; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none; }
-    nav { display: flex; gap: 32px; align-items: center; }
-    nav a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s; }
-    nav a:hover { color: var(--black); }
-
-    /* ── CONTENT ── */
-    .content { padding-top: 68px; padding-bottom: 120px; }
+    .content { padding-top: 60px; }
     .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 20px 24px; transition: color 0.2s; background: none; border: none; font-family: var(--font); text-decoration: none; }
     .back-btn:hover { color: var(--black); }
     .container { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
-
-    /* ── LEGAL NAV ── */
     .legal-nav { display: flex; gap: 32px; margin-bottom: 32px; }
     .legal-nav a { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); text-decoration: none; transition: color 0.2s; }
     .legal-nav a:hover { color: var(--black); }
-
-    /* ── SECTIONS ── */
     .legal-section { padding-top: 24px; }
     .legal-section + .legal-section { border-top: 1px solid var(--light-grey); margin-top: 80px; padding-top: 64px; }
     h1 { font-size: 11px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); margin-bottom: 8px; }
@@ -51,11 +46,8 @@
     p { font-size: 14px; color: var(--dark-grey); margin-bottom: 14px; line-height: 1.9; }
     ul { margin: 0 0 14px 0; padding-left: 20px; }
     li { font-size: 14px; color: var(--dark-grey); margin-bottom: 8px; line-height: 1.9; }
-    a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
-    .contact-block { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--light-grey); font-size: 13px; color: var(--mid-grey); line-height: 2; }
-
-    /* ── FOOTER ── */
-    footer { padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; width: 100%; }
+    a.text-link { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
+    footer { padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; width: 100%; border-top: 1px solid var(--light-grey); }
     .footer-left { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); }
     .footer-right { display: flex; gap: 24px; }
     .footer-right a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; transition: color 0.2s; cursor: pointer; }
@@ -83,7 +75,6 @@
         <a href="#privacy">Privacy Policy</a>
       </nav>
 
-      <!-- TERMS -->
       <div class="legal-section" id="terms">
         <h1>Terms &amp; Conditions</h1>
         <span class="date">Effective date: March 2026</span>
@@ -104,7 +95,7 @@
           <li>In original packaging with all tags attached</li>
         </ul>
         <p>Due to the intimate nature of our products, items showing any signs of wear will not be accepted for return on hygiene grounds. This does not affect your statutory rights.</p>
-        <p>To initiate a return, contact us at <span class="js-email" data-u="contact" data-d="joshuaatelier.com"></span> before sending anything back. Return shipping costs are the responsibility of the customer unless the item is faulty or incorrectly sent.</p>
+        <p>To initiate a return, contact us at <span class="js-email" data-u="support" data-d="joshuaatelier.com"></span> before sending anything back. Return shipping costs are the responsibility of the customer unless the item is faulty or incorrectly sent.</p>
         <p>Refunds are issued to the original payment method within 5–10 business days of receiving the returned item.</p>
         <h2>Faulty or Incorrect Items</h2>
         <p>If you receive a faulty or incorrect item, contact us within 14 days of delivery and we will resolve the issue at no cost to you — replacement, exchange, or full refund.</p>
@@ -115,12 +106,11 @@
         <p>Nothing in these terms limits our liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be excluded by law.</p>
         <h2>Governing Law</h2>
         <p>These terms are governed by the laws of Poland. Any disputes shall be subject to the jurisdiction of the courts of Poznań, Poland. If you are a consumer based in the EU, you also retain the protections afforded by the consumer laws of your country of residence.</p>
-        <p>The European Commission provides an online dispute resolution platform at <a href="https://ec.europa.eu/consumers/odr" target="_blank">ec.europa.eu/consumers/odr</a>.</p>
+        <p>The European Commission provides an online dispute resolution platform at <a href="https://ec.europa.eu/consumers/odr" target="_blank" class="text-link">ec.europa.eu/consumers/odr</a>.</p>
         <h2>Changes to These Terms</h2>
         <p>We may update these terms from time to time. The current version will always be available at joshuaatelier.com/terms.</p>
       </div>
 
-      <!-- PRIVACY -->
       <div class="legal-section" id="privacy">
         <h1>Privacy Policy</h1>
         <span class="date">Effective date: March 2026</span>
@@ -149,7 +139,7 @@
         <h2>Third Parties</h2>
         <p>Your data is shared only with parties necessary to complete your order:</p>
         <ul>
-          <li><strong>Stripe</strong> — payment processing. Stripe is PCI DSS compliant. See <a href="https://stripe.com/privacy" target="_blank">stripe.com/privacy</a>.</li>
+          <li><strong>Stripe</strong> — payment processing. Stripe is PCI DSS compliant. See <a href="https://stripe.com/privacy" target="_blank" class="text-link">stripe.com/privacy</a>.</li>
           <li><strong>Shipping carriers</strong> — your name and address are shared with the carrier handling delivery of your order.</li>
         </ul>
         <p>No other third parties receive your data.</p>
@@ -171,4 +161,27 @@
         <h2>International Transfers</h2>
         <p>Your data may be processed by Stripe on servers outside the European Economic Area. Stripe maintains appropriate safeguards including Standard Contractual Clauses approved by the European Commission.</p>
         <h2>Changes to This Policy</h2>
-        <p>We may update this policy from t
+        <p>We may update this policy from time to time. The current version will always be available at joshuaatelier.com/privacy.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">© Joshua Apparel sp. z o.o.</div>
+    <div class="footer-right">
+      <a href="/contact.html">Contact</a>
+      <a href="/#sizing">Sizing</a>
+      <a href="/#shipping">Shipping &amp; Returns</a>
+      <a href="/legal.html">Legal</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.js-email').forEach(function(el) {
+      el.textContent = el.getAttribute('data-u') + '@' + el.getAttribute('data-d');
+    });
+  </script>
+
+</body>
+</html>
