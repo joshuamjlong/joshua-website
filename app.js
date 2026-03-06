@@ -183,13 +183,13 @@ function showPage(id, pushState) {
 }
 
 function openProduct(id, pushState) {
-  currentProduct = products.find(function(p) { return p.id === id; });
+  currentProduct = products.find(function(p) { return p.slug === id || p.id === id; });
   selectedSize = null;
   renderDetail(currentProduct);
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById('detail-page').classList.add('active');
   window.scrollTo(0, 0);
-  if (pushState !== false) history.pushState(null, '', window.location.pathname + '#' + id);
+  if (pushState !== false) history.pushState(null, '', window.location.pathname + '#' + currentProduct.slug);
   updateMeta(
     currentProduct.name,
     currentProduct.name + '. ' + currentProduct.composition + '. ' + currentProduct.price + '.',
@@ -207,7 +207,7 @@ function renderGrid() {
     var front = 'images/' + p.id + '-FRONT.jpg';
     var back = p.hasBack ? 'images/' + p.id + '-BACK.jpg' : front;
     var cardClass = p.hasBack ? 'product-card has-back' : 'product-card';
-    html += '<div class="' + cardClass + '" onclick="handleClick(event,\'' + p.id + '\')"';
+    html += '<div class="' + cardClass + '" onclick="handleClick(event,\'' + p.slug + '\')"';
     if (p.hasBack) html += ' onmouseenter="this.classList.add(\'flipped\')" onmouseleave="this.classList.remove(\'flipped\')"';
     html += ' ontouchstart="handleTouchStart(event,this)" ontouchend="handleTouchEnd(event,this)">';
     html += '<div class="img-container">';
@@ -356,7 +356,7 @@ function handleRoute() {
   else if (hash === 'shipping') showPage('shipping', false);
   else if (hash === 'bag') showPage('bag', false);
   else if (hash === 'order-success') { showPage('shop', false); cart = []; saveCart(); }
-  else { var p = products.find(function(p) { return p.id === hash; }); if (p) openProduct(hash, false); else showPage('shop', false); }
+  else { var p = products.find(function(p) { return p.slug === hash || p.id === hash; }); if (p) openProduct(p.slug, false); else showPage('shop', false); }
 }
 
 window.addEventListener('popstate', handleRoute);
