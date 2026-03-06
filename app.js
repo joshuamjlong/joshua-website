@@ -26,8 +26,10 @@ function updateStickyBar() {
   var total = cart.reduce(function(sum, i) { return sum + i.price * i.quantity; }, 0);
   if (count === 0) {
     bar.style.display = 'none';
+    document.body.classList.remove('has-sticky-bar');
   } else {
     bar.style.display = 'flex';
+    document.body.classList.add('has-sticky-bar');
     var itemWord = count === 1 ? 'item' : 'items';
     document.getElementById('sticky-bag-label').textContent =
       'Your Bag · ' + count + ' ' + itemWord + ' · €' + total.toFixed(0);
