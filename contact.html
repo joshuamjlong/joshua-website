@@ -24,7 +24,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--white); height: 60px;
       display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
-      border-bottom: 1px solid var(--light-grey);
+      
     }
     @media (max-width: 768px) {
       header { height: auto; flex-wrap: wrap; padding: 10px 16px 8px; align-content: flex-start; gap: 6px; }
@@ -78,12 +78,12 @@
       display: grid;
       grid-template-columns: 160px 1fr;
       padding: 20px 0;
-      border-bottom: 1px solid var(--light-grey);
+      
       align-items: baseline;
       gap: 24px;
     }
 
-    .contact-row:first-child { border-top: 1px solid var(--light-grey); }
+    .contact-row:first-child {  }
 
     .contact-label {
       font-size: 9px;
@@ -106,7 +106,7 @@
     .newsletter-section {
       margin-top: 24px;
       padding-top: 48px;
-      border-top: 1px solid var(--light-grey);
+      
     }
 
     .newsletter-statement {
@@ -128,7 +128,7 @@
       letter-spacing: 0.08em;
       color: var(--black);
       background: var(--white);
-      border: 1px solid var(--light-grey);
+      
       border-right: none;
       outline: none;
       transition: border-color 0.2s;
@@ -136,7 +136,7 @@
     }
 
     .newsletter-input::placeholder { color: var(--mid-grey); letter-spacing: 0.08em; }
-    .newsletter-input:focus { border-color: var(--dark-grey); }
+    .newsletter-input:focus {  }
 
     .newsletter-btn {
       padding: 14px 24px;
@@ -173,7 +173,7 @@
 
     @media (max-width: 600px) {
       .newsletter-form { flex-direction: column; }
-      .newsletter-input { border-right: 1px solid var(--light-grey); border-bottom: none; }
+      .newsletter-input {  border-bottom: none; }
       .newsletter-btn { padding: 14px; }
     }
 
@@ -181,7 +181,7 @@
     footer {
       padding: 32px 24px; display: flex; justify-content: space-between;
       align-items: center; flex-wrap: wrap; gap: 16px; width: 100%;
-      border-top: 1px solid var(--light-grey);
+      
     }
     .footer-left { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); }
     .footer-right { display: flex; gap: 24px; }
