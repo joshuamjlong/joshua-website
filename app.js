@@ -16,6 +16,22 @@ function updateCartCount() {
   document.querySelectorAll('.cart-count').forEach(function(el) {
     el.textContent = count > 0 ? '(' + count + ')' : '';
   });
+  updateStickyBar();
+}
+
+function updateStickyBar() {
+  var bar = document.getElementById('sticky-bag-bar');
+  if (!bar) return;
+  var count = cart.reduce(function(sum, i) { return sum + i.quantity; }, 0);
+  var total = cart.reduce(function(sum, i) { return sum + i.price * i.quantity; }, 0);
+  if (count === 0) {
+    bar.style.display = 'none';
+  } else {
+    bar.style.display = 'flex';
+    var itemWord = count === 1 ? 'item' : 'items';
+    document.getElementById('sticky-bag-label').textContent =
+      'Your Bag · ' + count + ' ' + itemWord + ' · €' + total.toFixed(0);
+  }
 }
 
 function addToCart(product, size) {

@@ -206,3 +206,32 @@
       .newsletter-input { border-right: 1px solid var(--light-grey) !important; border-bottom: none !important; width: 100% !important; }
       .newsletter-btn { width: 100% !important; }
     }
+
+    /* ── STICKY BAG BAR ── */
+    #sticky-bag-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 400;
+      background: var(--black);
+      color: var(--white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #sticky-bag-bar:hover { background: #222; }
+    #sticky-bag-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    #sticky-bag-checkout {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
