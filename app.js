@@ -179,7 +179,7 @@ function showPage(id, pushState) {
   else if (id === 'about') updateMeta('About', 'The story behind Joshua intimate apparel.', null);
   else if (id === 'sizing') updateMeta('Sizing', null, null);
   else if (id === 'shipping') updateMeta('Shipping & Returns', null, null);
-  else if (id === 'bag') { renderBagPage(); updateMeta('Shopping Bag', null, null); }
+  else if (id === 'bag') { renderBagPage(); updateMeta('Your Bag', null, null); }
 }
 
 function openProduct(id, pushState) {

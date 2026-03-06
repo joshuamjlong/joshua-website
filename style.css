@@ -126,11 +126,12 @@
     footer { padding: 32px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; width: 100%; box-sizing: border-box; }
     .footer-left { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); }
     .footer-right { display: flex; gap: 24px; }
-    .footer-right a { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-grey); text-decoration: none; transition: color 0.2s; }
+    .footer-right a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; transition: color 0.2s; cursor: pointer; }
     .footer-right a:hover { color: var(--black); }
     .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 20px 24px; transition: color 0.2s; background: none; border: none; font-family: var(--font); }
     .back-btn:hover { color: var(--black); }
     @media (max-width: 768px) { .detail-info { padding: 24px 16px 40px; } }
+
     /* ── CART NAV ── */
     .cart-nav-btn { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s; background: none; border: none; font-family: var(--font); padding: 0; }
     .cart-nav-btn:hover { color: var(--black); }
@@ -181,7 +182,7 @@
     .bag-page-title { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 48px; font-weight: 400; }
     .bag-item { display: grid; grid-template-columns: 120px 1fr auto; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--light-grey); align-items: start; }
     .bag-item:last-child { border-bottom: none; }
-    .bag-item-img { width: 120px; height: 150px; overflow: hidden; background: var(--off-white); }
+    .bag-item-img { width: 120px; height: 120px; overflow: hidden; background: var(--off-white); }
     .bag-item-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .bag-item-details { display: flex; flex-direction: column; gap: 8px; }
     .bag-item-name { font-size: 12px; letter-spacing: 0.08em; color: var(--black); line-height: 1.4; }
@@ -191,15 +192,17 @@
     .bag-summary { max-width: 360px; margin-left: auto; padding: 32px 0 80px; }
     .bag-total-row { display: flex; justify-content: space-between; font-size: 13px; letter-spacing: 0.08em; color: var(--black); margin-bottom: 8px; padding-bottom: 24px; border-top: 1px solid var(--light-grey); padding-top: 20px; }
     .bag-shipping-note { font-size: 10px; letter-spacing: 0.05em; color: var(--mid-grey); margin-bottom: 20px; line-height: 1.8; }
+    .bag-page-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 48px; }
+    .bag-page-header .bag-page-title { margin-bottom: 0; }
+    .continue-shopping-btn { background: none; border: none; font-family: var(--font); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 0; transition: color 0.2s; }
+    .continue-shopping-btn:hover { color: var(--black); }
 
     @media (max-width: 768px) {
       #cart-drawer { width: 100vw; }
       .bag-item { grid-template-columns: 80px 1fr auto; gap: 16px; }
-      .bag-item-img { width: 80px; height: 100px; }
+      .bag-item-img { width: 80px; height: 80px; }
+      /* ── NEWSLETTER MOBILE ── */
+      .newsletter-form { flex-direction: column !important; }
+      .newsletter-input { border-right: 1px solid var(--light-grey) !important; border-bottom: none !important; width: 100% !important; }
+      .newsletter-btn { width: 100% !important; }
     }
-    .bag-page-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 48px; }
-    .bag-page-header .bag-page-title { margin-bottom: 0; }
-    .continue-shopping-btn { background: none; border: none; font-family: var(--font); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 0; transition: color 0.2s; }
-  .continue-shopping-btn:hover { color: var(--black); }
-.footer-right a { font-size: 10px; letter-spacing: 0.18em; color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s; }
-.footer-right a:hover { color: var(--black); }
