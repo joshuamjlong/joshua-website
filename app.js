@@ -336,10 +336,9 @@ function toggleMoreDetails() {
 var lastTapTime = 0, lastImgTapTime = 0;
 
 function handleProductImgTap(e) {
-  // On touch devices, let native pinch-to-zoom handle it; lightbox on desktop only
-  if (!isTouchDevice) {
-    openLightbox(document.getElementById('detail-main-img').src);
-  }
+  // On touch devices, let native pinch/double-tap zoom handle it
+  if (isTouchDevice) { return; }
+  openLightbox(document.getElementById('detail-main-img').src);
 }
 
 function openLightbox(src) {
