@@ -187,6 +187,7 @@ function updateMeta(title, description, image) {
 // ─── NAVIGATION ───────────────────────────────────────────────────────────────
 
 function showPage(id, pushState) {
+  document.body.style.overflow = '';
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById(id + '-page').classList.add('active');
   window.scrollTo(0, 0);
@@ -201,6 +202,7 @@ function showPage(id, pushState) {
 }
 
 function openProduct(id, pushState) {
+  document.body.style.overflow = '';
   currentProduct = products.find(function(p) { return p.slug === id || p.id === id; });
   selectedSize = null;
   renderDetail(currentProduct);

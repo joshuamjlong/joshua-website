@@ -137,7 +137,10 @@
     .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 20px 24px; transition: color 0.2s; background: none; border: none; font-family: var(--font); }
     .back-btn:hover { color: var(--black); }
     @media (max-width: 768px) { .detail-info { padding: 24px 16px 40px; } }
-    @media (max-width: 768px) { .detail-main-img { touch-action: pinch-zoom; cursor: default; overflow: visible; } }
+    @media (max-width: 768px) {
+      .detail-main-img { overflow: visible; cursor: default; }
+      .detail-main-img img { touch-action: pinch-zoom; }
+    }
 
     /* ── CART NAV ── */
     .cart-nav-btn { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s; background: none; border: none; font-family: var(--font); padding: 0; }
