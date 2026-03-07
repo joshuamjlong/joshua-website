@@ -214,6 +214,9 @@
       transition: max-height 0.25s ease, opacity 0.2s ease;
     }
     .nav-social-dropdown.open { max-height: 100px; opacity: 1; }
+    @media (hover: hover) {
+      .nav-social:hover .nav-social-dropdown { max-height: 100px; opacity: 1; }
+    }
     .nav-social-dropdown a {
       font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--dark-grey); text-decoration: none; padding: 12px 16px;
