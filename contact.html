@@ -31,7 +31,7 @@
       .header-logo { width: 100%; display: flex; align-items: center; }
       .header-logo img { height: 28px; }
       .header-tagline { display: none; }
-      nav { width: 100%; display: flex; gap: 24px; padding-bottom: 4px; }
+      nav { width: 100%; display: flex; justify-content: space-between; padding-bottom: 4px; }
       nav a { font-size: 9px; letter-spacing: 0.15em; line-height: 1; padding: 6px 0; }
     }
     .header-logo { cursor: pointer; height: 22px; display: block; text-decoration: none; }
@@ -173,8 +173,8 @@
     }
 
     @media (max-width: 768px) {
-      .newsletter-form { flex-direction: column; }
-      .newsletter-input { width: 100%; border-bottom: none; }
+      .newsletter-form { flex-direction: column; max-width: 100%; }
+      .newsletter-input { width: 100%; border-bottom: none; box-sizing: border-box; }
       .newsletter-btn { width: 100%; padding: 14px; }
     }
 
