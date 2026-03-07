@@ -139,7 +139,6 @@
     @media (max-width: 768px) { .detail-info { padding: 24px 16px 40px; } }
     @media (max-width: 768px) {
       .detail-main-img { overflow: visible; cursor: default; }
-      .detail-main-img img { touch-action: pinch-zoom; }
     }
 
     /* ── CART NAV ── */

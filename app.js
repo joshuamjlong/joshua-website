@@ -249,6 +249,19 @@ var touchStartX = 0, touchStartY = 0;
 
 document.addEventListener('touchstart', function() { isTouchDevice = true; }, { once: true });
 
+// Attach lightbox click only on desktop - not on touch devices
+document.addEventListener('DOMContentLoaded', function() {
+  var wrap = document.getElementById('detail-main-img-wrap');
+  if (wrap) {
+    wrap.addEventListener('click', function(e) {
+      if (isTouchDevice) return;
+      var src = document.getElementById('detail-main-img').src;
+      var hires = src.replace('/images/', '/images/hires/');
+      openLightbox(hires);
+    });
+  }
+});
+
 function handleClick(e, id) { if (!isTouchDevice) openProduct(id); }
 
 function handleTouchStart(e, card) {
@@ -338,8 +351,10 @@ function toggleMoreDetails() {
 var lastTapTime = 0, lastImgTapTime = 0;
 
 function handleProductImgTap(e) {
-  // On touch devices, let native pinch/double-tap zoom handle it
-  if (isTouchDevice) { return; }
+  if (isTouchDevice) {
+    // Let browser handle scroll and pinch/double-tap zoom natively
+    return;
+  }
   // Desktop: load hires version for lightbox
   var src = document.getElementById('detail-main-img').src;
   var hires = src.replace('/images/', '/images/hires/');
