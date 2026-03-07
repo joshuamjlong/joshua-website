@@ -132,7 +132,7 @@
       footer { flex-direction: column; align-items: stretch; gap: 10px; padding: 24px 16px 24px; }
       .footer-right { order: 1; display: flex; justify-content: space-between; flex-wrap: nowrap; }
       .footer-left { order: 2; }
-      .footer-right a { font-size: 9px; letter-spacing: 0.10em; }
+      .footer-right a { font-size: 10px; letter-spacing: 0.10em; }
     }
     .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 20px 24px; transition: color 0.2s; background: none; border: none; font-family: var(--font); }
     .back-btn:hover { color: var(--black); }
