@@ -118,17 +118,18 @@
       max-width: 480px;
     }
 
-    .newsletter-form { display: flex; gap: 0; max-width: 480px; }
+    .newsletter-form { display: flex; gap: 0; max-width: 480px; width: 100%; }
 
     .newsletter-input {
       flex: 1;
+      min-width: 0;
       padding: 14px 16px;
       font-family: var(--font);
       font-size: 11px;
       letter-spacing: 0.08em;
       color: var(--black);
       background: var(--white);
-      
+      border: 1px solid var(--light-grey);
       border-right: none;
       outline: none;
       transition: border-color 0.2s;
