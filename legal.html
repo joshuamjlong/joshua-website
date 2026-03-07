@@ -16,13 +16,12 @@
       --font: 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
     body { font-family: var(--font); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--white); height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px;  }
-    .header-logo { cursor: pointer; height: 22px; display: block; text-decoration: none; }
-    .header-logo img { height: 100%; width: auto; display: block; }
-    .header-tagline { font-size: 13px; letter-spacing: 0.08em; color: var(--dark-grey); font-style: italic; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none; }
-    nav { display: flex; gap: 32px; align-items: center; }
-    nav a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s; }
-    nav a:hover { color: var(--black); }
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--white); height: 60px;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 24px;
+    }
     @media (max-width: 768px) {
       header { height: auto; flex-wrap: wrap; padding: 10px 16px 8px; align-content: flex-start; gap: 6px; }
       .header-logo { width: 100%; display: flex; align-items: center; }
@@ -31,13 +30,18 @@
       nav { width: 100%; display: flex; justify-content: space-between; padding-bottom: 4px; }
       nav a { font-size: 9px; letter-spacing: 0.15em; line-height: 1; padding: 6px 0; }
     }
-    .content { padding-top: 60px; }
-    .back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 20px 24px; transition: color 0.2s; background: none; border: none; font-family: var(--font); text-decoration: none; }
-    .back-btn:hover { color: var(--black); }
-    .container { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
-    .legal-nav { display: flex; gap: 32px; margin-bottom: 32px; }
-    .legal-nav a { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); text-decoration: none; transition: color 0.2s; }
-    .legal-nav a:hover { color: var(--black); }
+    .header-logo { cursor: pointer; height: 22px; display: block; text-decoration: none; }
+    .header-logo img { height: 100%; width: auto; display: block; }
+    .header-tagline {
+      font-size: 13px; letter-spacing: 0.08em; color: var(--dark-grey); font-style: italic;
+      position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; pointer-events: none;
+    }
+    nav { display: flex; gap: 32px; align-items: center; }
+    nav a {
+      font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--dark-grey); text-decoration: none; cursor: pointer; transition: color 0.2s;
+    }
+    nav a:hover { color: var(--black); }
     .legal-section { padding-top: 24px; }
     .legal-section + .legal-section {  margin-top: 80px; padding-top: 64px; }
     h1 { font-size: 11px; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); margin-bottom: 8px; }
