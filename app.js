@@ -25,10 +25,10 @@ function updateStickyBar() {
   var count = cart.reduce(function(sum, i) { return sum + i.quantity; }, 0);
   var total = cart.reduce(function(sum, i) { return sum + i.price * i.quantity; }, 0);
   if (count === 0) {
-    bar.style.display = 'none';
+    bar.classList.remove('visible');
     document.body.classList.remove('has-sticky-bar');
   } else {
-    bar.style.display = 'flex';
+    bar.classList.add('visible');
     document.body.classList.add('has-sticky-bar');
     var itemWord = count === 1 ? 'item' : 'items';
     document.getElementById('sticky-bag-label').textContent =
@@ -336,11 +336,10 @@ function toggleMoreDetails() {
 var lastTapTime = 0, lastImgTapTime = 0;
 
 function handleProductImgTap(e) {
-  if (isTouchDevice) {
-    var now = Date.now();
-    if (now - lastImgTapTime < 300) openLightbox(document.getElementById('detail-main-img').src);
-    lastImgTapTime = now; e.stopPropagation();
-  } else { openLightbox(document.getElementById('detail-main-img').src); }
+  // On touch devices, let native pinch-to-zoom handle it; lightbox on desktop only
+  if (!isTouchDevice) {
+    openLightbox(document.getElementById('detail-main-img').src);
+  }
 }
 
 function openLightbox(src) {
