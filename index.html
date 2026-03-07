@@ -33,8 +33,13 @@
     <nav>
       <a onclick="showPage('about')">About</a>
       <a onclick="showPage('shop')">Collection</a>
-      <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
-      <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
+      <div class="nav-social" id="nav-social">
+        <span class="nav-social-trigger" onclick="toggleSocialMenu(event)">Social</span>
+        <div class="nav-social-dropdown" id="nav-social-dropdown">
+          <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
+          <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
+        </div>
+      </div>
     </nav>
   </header>
 

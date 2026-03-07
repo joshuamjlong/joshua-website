@@ -408,3 +408,13 @@ fixContentPadding();
 renderGrid();
 handleRoute();
 updateCartCount();
+
+  function toggleSocialMenu(e) {
+    e.stopPropagation();
+    var dd = document.getElementById('nav-social-dropdown');
+    dd.classList.toggle('open');
+  }
+  document.addEventListener('click', function() {
+    var dd = document.getElementById('nav-social-dropdown');
+    if (dd) dd.classList.remove('open');
+  });
