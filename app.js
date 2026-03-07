@@ -338,7 +338,10 @@ var lastTapTime = 0, lastImgTapTime = 0;
 function handleProductImgTap(e) {
   // On touch devices, let native pinch/double-tap zoom handle it
   if (isTouchDevice) { return; }
-  openLightbox(document.getElementById('detail-main-img').src);
+  // Desktop: load hires version for lightbox
+  var src = document.getElementById('detail-main-img').src;
+  var hires = src.replace('/images/', '/images/hires/');
+  openLightbox(hires);
 }
 
 function openLightbox(src) {
