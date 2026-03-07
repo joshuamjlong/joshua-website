@@ -365,7 +365,7 @@ function openLightbox(src) {
   var lb = document.getElementById('lightbox');
   var img = document.getElementById('lightbox-img');
   img.src = src; img.style.width = '150%'; img.style.maxWidth = 'none'; img.style.maxHeight = 'none'; img.style.cursor = 'zoom-out';
-  lb.style.display = 'flex'; lb.style.alignItems = 'flex-start'; lb.style.justifyContent = 'flex-start';
+  lb.style.display = 'flex'; lb.style.alignItems = 'center'; lb.style.justifyContent = 'center';
   lb.style.overflowY = 'auto'; lb.style.overflowX = 'auto';
   document.body.style.overflow = 'hidden'; lastTapTime = 0;
 }

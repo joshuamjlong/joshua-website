@@ -16,6 +16,8 @@
       --font: 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
     body { font-family: var(--font); background: var(--white); color: var(--black); -webkit-font-smoothing: antialiased; }
+    .content { max-width: 680px; margin: 0 auto; padding: 100px 24px 80px; }
+    @media (max-width: 768px) { .content { padding: 100px 16px 80px; } }
     /* ── HEADER ── */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;

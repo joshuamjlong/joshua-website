@@ -172,8 +172,10 @@
     }
 
     @media (max-width: 768px) {
-      .newsletter-form { flex-direction: column; max-width: 100%; }
-      .newsletter-input { width: 100%; border-bottom: none; box-sizing: border-box; }
+      .newsletter-section { padding-left: 0; padding-right: 0; }
+      .newsletter-statement { max-width: 100%; }
+      .newsletter-form { flex-direction: column; width: 100%; max-width: 100%; }
+      .newsletter-input { width: 100%; min-width: 0; border-right: 1px solid var(--light-grey); border-bottom: none; box-sizing: border-box; }
       .newsletter-btn { width: 100%; padding: 14px; }
     }
 

@@ -86,6 +86,8 @@
     .detail-features { font-size: 10px; letter-spacing: 0.08em; line-height: 2.5; color: var(--mid-grey); text-transform: uppercase; }
 
     #about-page .content { padding-top: 60px; padding-bottom: 0; }
+    #about-page .content--flush { padding-top: 24px; }
+    @media (max-width: 768px) { #about-page .content--flush { padding-top: 16px; } }
     .about-inner { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; }
     .about-header { padding: 60px 0 40px; border-bottom: 1px solid var(--light-grey); margin-bottom: 60px; }
     .about-title { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); margin-bottom: 20px; }
