@@ -71,8 +71,11 @@
           <div class="detail-tagline" id="detail-tagline"></div>
           <div class="detail-product-details" id="detail-product-details"></div>
           <div class="detail-price" id="detail-price"></div>
-          <div class="size-row">
-            <div class="size-label">Select size <a onclick="showPage('sizing')" class="size-guide-link">Size guide</a></div>
+          <div class="size-color-row">
+            <div class="size-col">
+              <div class="size-label">Select size <a onclick="showPage('sizing')" class="size-guide-link">Size guide</a></div>
+              <div class="size-options" id="size-options"></div>
+            </div>
             <div class="color-selector">
               <div class="color-name" id="color-name">Black</div>
               <div class="color-swatches">
@@ -80,7 +83,6 @@
               </div>
             </div>
           </div>
-          <div class="size-options" id="size-options"></div>
           <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Add to Bag</button>
           <div class="size-note" id="size-note"></div>
           <div class="detail-divider"></div>
