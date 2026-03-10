@@ -73,7 +73,12 @@
           <div class="detail-price" id="detail-price"></div>
           <div class="size-row">
             <div class="size-label">Select size <a onclick="showPage('sizing')" class="size-guide-link">Size guide</a></div>
-            <div class="color-label">BLACK</div>
+            <div class="color-selector">
+              <div class="color-swatches">
+                <div class="color-swatch active" data-color="BLACK" style="background:#0a0a0a;" title="Black" onclick="selectColor(this)"></div>
+              </div>
+              <div class="color-name" id="color-name">Black</div>
+            </div>
           </div>
           <div class="size-options" id="size-options"></div>
           <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Add to Bag</button>
