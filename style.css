@@ -64,11 +64,12 @@
     .detail-info { padding: clamp(32px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; }
     .detail-name { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; letter-spacing: 0.04em; line-height: 1.2; color: var(--black); margin-bottom: 6px; }
     .detail-tagline { font-size: 13px; color: var(--mid-grey); letter-spacing: 0.02em; font-style: italic; margin-bottom: 12px; line-height: 1.6; }
-    .size-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
-    .color-selector { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .size-row { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 12px; }
+    .color-selector { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
     .color-swatches { display: flex; gap: 8px; }
     .color-swatch {
       width: 44px; height: 44px;
+      flex-shrink: 0;
       cursor: pointer;
       border: 1px solid var(--light-grey);
       outline: 2px solid transparent;
