@@ -64,7 +64,7 @@
     .detail-info { padding: clamp(32px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; }
     .detail-name { font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; letter-spacing: 0.04em; line-height: 1.2; color: var(--black); margin-bottom: 6px; }
     .detail-tagline { font-size: 13px; color: var(--mid-grey); letter-spacing: 0.02em; font-style: italic; margin-bottom: 12px; line-height: 1.6; }
-    .size-color-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
+    .size-color-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 32px; }
     .size-col { display: flex; flex-direction: column; gap: 0; }
     .size-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); font-family: var(--font); margin-bottom: 12px; }
 
@@ -75,9 +75,11 @@
       flex-shrink: 0;
       cursor: pointer;
       border: none;
+      display: flex; align-items: center; justify-content: center;
       transition: opacity 0.2s;
     }
     .color-swatch:hover { opacity: 0.85; }
+    .color-swatch-label { font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); font-family: var(--font); pointer-events: none; }
     .color-name { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); text-align: right; }
     .more-details-toggle { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 4px 0 0; display: flex; justify-content: space-between; align-items: center; }
     .more-details-toggle:hover { color: var(--black); }

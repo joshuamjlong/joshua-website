@@ -412,7 +412,7 @@ updateCartCount();
 function selectColor(el) {
   document.querySelectorAll('.color-swatch').forEach(function(s) { s.classList.remove('active'); });
   el.classList.add('active');
-  document.getElementById('color-name').textContent = el.dataset.color.charAt(0) + el.dataset.color.slice(1).toLowerCase();
+  // keep header label as "Color" always; swatch label already shows the colour name
 }
 
   function toggleSocialMenu(e) {
