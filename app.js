@@ -296,7 +296,18 @@ function renderDetail(p) {
   document.getElementById('detail-main-img').alt = p.name;
   document.getElementById('detail-name').textContent = p.name;
   document.getElementById('detail-tagline').textContent = p.tagline || '';
-  document.getElementById('detail-composition').textContent = p.composition;
+  // Render more-details-content dynamically
+  var mdc = document.getElementById('more-details-content');
+  var lines = [];
+  if (p.compositionLines) {
+    p.compositionLines.forEach(function(l) { lines.push(l); });
+  } else {
+    lines.push(p.composition);
+  }
+  if (p.care) lines.push(p.care);
+  lines.push('Made in Romania');
+  lines.push('Complimentary standard shipping within the EU');
+  mdc.innerHTML = lines.join('<br>');
   document.getElementById('more-details-content').style.display = 'none';
   document.getElementById('more-details-arrow').textContent = '+';
   document.getElementById('detail-product-details').textContent = p.details;
