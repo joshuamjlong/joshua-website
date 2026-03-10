@@ -37,95 +37,40 @@ exports.handler = async function(event) {
         ],
       },
       shipping_options: [
-        // ── POLAND — InPost standard (free) ──────────────────────────────
+        // ── EU — Standard (free) ─────────────────────────────────────────
         {
           shipping_rate_data: {
             type: 'fixed_amount',
             fixed_amount: { amount: 0, currency: 'eur' },
-            display_name: 'InPost standard',
+            display_name: 'Standard shipping',
             delivery_estimate: {
-              minimum: { unit: 'business_day', value: 1 },
-              maximum: { unit: 'business_day', value: 3 },
-            },
-            metadata: { countries: 'PL' },
-          },
-        },
-        // ── POLAND — DHL standard (free) ─────────────────────────────────
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 0, currency: 'eur' },
-            display_name: 'DHL standard',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 1 },
-              maximum: { unit: 'business_day', value: 3 },
-            },
-            metadata: { countries: 'PL' },
-          },
-        },
-        // ── POLAND — DHL express (paid) ───────────────────────────────────
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 1500, currency: 'eur' },
-            display_name: 'DHL express',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 1 },
-              maximum: { unit: 'business_day', value: 1 },
-            },
-            metadata: { countries: 'PL' },
-          },
-        },
-        // ── EU — DHL standard (free) ──────────────────────────────────────
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 0, currency: 'eur' },
-            display_name: 'DHL standard',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 3 },
+              minimum: { unit: 'business_day', value: 2 },
               maximum: { unit: 'business_day', value: 5 },
             },
-            metadata: { countries: 'EU' },
           },
         },
-        // ── EU — DHL express (paid) ───────────────────────────────────────
+        // ── EU — Express (paid) ───────────────────────────────────────────
         {
           shipping_rate_data: {
             type: 'fixed_amount',
             fixed_amount: { amount: 2000, currency: 'eur' },
-            display_name: 'DHL express',
+            display_name: 'Express shipping',
             delivery_estimate: {
               minimum: { unit: 'business_day', value: 1 },
               maximum: { unit: 'business_day', value: 2 },
             },
-            metadata: { countries: 'EU' },
           },
         },
-        // ── INTERNATIONAL — DHL standard (paid) ──────────────────────────
+        // ── INTERNATIONAL — Standard (paid) ──────────────────────────────
         {
           shipping_rate_data: {
             type: 'fixed_amount',
             fixed_amount: { amount: 2500, currency: 'eur' },
-            display_name: 'DHL standard international',
+            display_name: 'Standard international shipping',
             delivery_estimate: {
               minimum: { unit: 'business_day', value: 5 },
               maximum: { unit: 'business_day', value: 10 },
             },
-            metadata: { countries: 'INT' },
-          },
-        },
-        // ── INTERNATIONAL — DHL express (paid) ───────────────────────────
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 4000, currency: 'eur' },
-            display_name: 'DHL express international',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 2 },
-              maximum: { unit: 'business_day', value: 4 },
-            },
-            metadata: { countries: 'INT' },
           },
         },
       ],
