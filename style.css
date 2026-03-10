@@ -79,7 +79,7 @@
       transition: opacity 0.2s;
     }
     .color-swatch:hover { opacity: 0.85; }
-    .color-swatch-label { font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); font-family: var(--font); pointer-events: none; }
+    .color-swatch-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); font-family: var(--font); pointer-events: none; }
     .color-name { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mid-grey); text-align: right; width: 44px; margin-bottom: 12px; }
     .more-details-toggle { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-grey); cursor: pointer; padding: 4px 0 0; display: flex; justify-content: space-between; align-items: center; }
     .more-details-toggle:hover { color: var(--black); }
@@ -96,7 +96,7 @@
     .size-btn.out-of-stock { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
     .buy-btn { display: block; width: 100%; padding: 16px; background: var(--black); color: var(--white); font-family: var(--font); font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; text-align: center; border: none; cursor: pointer; transition: background 0.2s; }
     .buy-btn:hover { background: #333; }
-    .size-note { font-size: 10px; letter-spacing: 0.05em; color: var(--mid-grey); margin-top: 8px; min-height: 16px; }
+    .size-note { font-size: 11px; letter-spacing: 0.08em; color: var(--black); margin-top: 8px; min-height: 16px; }
     .detail-divider { display: none; }
     .detail-features { font-size: 10px; letter-spacing: 0.08em; line-height: 2.5; color: var(--mid-grey); text-transform: uppercase; }
 
