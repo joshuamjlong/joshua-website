@@ -227,6 +227,7 @@
       #cart-drawer { width: 100vw; }
       .bag-item { grid-template-columns: 80px 1fr auto; gap: 16px; }
       .bag-item-img { width: 80px; height: 80px; }
+      #cart-drawer-footer { padding-bottom: 100px; }
       /* ── NEWSLETTER MOBILE ── */
       .newsletter-form { flex-direction: column !important; }
       .newsletter-input { border-right: 1px solid var(--light-grey) !important; border-bottom: none !important; width: 100% !important; }
