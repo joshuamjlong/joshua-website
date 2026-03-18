@@ -6,7 +6,7 @@ exports.handler = async function(event) {
   }
 
   try {
-    const { items } = JSON.parse(event.body);
+    const { items, shipping, customerEmail, pendingOrderId } = JSON.parse(event.body);
 
     const line_items = items.map(item => ({
       price_data: {
@@ -21,61 +21,39 @@ exports.handler = async function(event) {
       quantity: item.quantity,
     }));
 
-    const session = await stripe.checkout.sessions.create({
+    // Add shipping as a line item if paid
+    if (shipping && shipping.price > 0) {
+      line_items.push({
+        price_data: {
+          currency: 'eur',
+          product_data: {
+            name: shipping.label,
+          },
+          unit_amount: Math.round(shipping.price * 100),
+        },
+        quantity: 1,
+      });
+    }
+
+    const sessionParams = {
       payment_method_types: ['card', 'p24', 'blik', 'klarna', 'revolut_pay'],
       line_items,
       mode: 'payment',
       success_url: 'https://joshuaatelier.com/#order-success',
-      cancel_url: 'https://joshuaatelier.com/#cart',
-      shipping_address_collection: {
-        allowed_countries: [
-          'PL',
-          'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'AT', 'SE', 'DK', 'FI',
-          'NO', 'PT', 'CZ', 'SK', 'HU', 'RO', 'BG', 'HR', 'SI', 'EE',
-          'LV', 'LT', 'LU', 'IE', 'GR', 'GB', 'CH',
-          'US', 'CA', 'AU', 'JP', 'SG', 'AE', 'KR'
-        ],
-      },
-      shipping_options: [
-        // ── EU — Standard (free) ─────────────────────────────────────────
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 0, currency: 'eur' },
-            display_name: 'Standard shipping',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 2 },
-              maximum: { unit: 'business_day', value: 5 },
-            },
-          },
-        },
-        // ── EU — Express (paid) ───────────────────────────────────────────
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 2000, currency: 'eur' },
-            display_name: 'Express shipping',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 1 },
-              maximum: { unit: 'business_day', value: 2 },
-            },
-          },
-        },
-        // ── INTERNATIONAL — Standard (paid) ──────────────────────────────
-        {
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 2500, currency: 'eur' },
-            display_name: 'Standard international shipping',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 5 },
-              maximum: { unit: 'business_day', value: 10 },
-            },
-          },
-        },
-      ],
+      cancel_url: 'https://joshuaatelier.com/checkout.html',
       automatic_tax: { enabled: false },
-    });
+      metadata: {
+        pending_order_id: pendingOrderId || '',
+        shipping_method: shipping ? shipping.id : 'eu_standard',
+      },
+    };
+
+    // Pre-fill customer email if provided
+    if (customerEmail) {
+      sessionParams.customer_email = customerEmail;
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return {
       statusCode: 200,

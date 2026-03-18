@@ -144,25 +144,7 @@ function renderBagPage() {
 
 function checkout() {
   if (cart.length === 0) return;
-  var btns = document.querySelectorAll('.checkout-btn');
-  btns.forEach(function(b) { b.textContent = 'Processing...'; b.disabled = true; });
-  fetch('/.netlify/functions/checkout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ items: cart })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (data.url) { window.location.href = data.url; }
-    else {
-      alert('Something went wrong. Please try again.');
-      btns.forEach(function(b) { b.textContent = 'Checkout'; b.disabled = false; });
-    }
-  })
-  .catch(function() {
-    alert('Something went wrong. Please try again.');
-    btns.forEach(function(b) { b.textContent = 'Checkout'; b.disabled = false; });
-  });
+  window.location.href = '/checkout.html';
 }
 
 // ─── META ─────────────────────────────────────────────────────────────────────

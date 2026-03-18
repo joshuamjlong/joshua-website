@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Joshua Atelier</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a; --white: #ffffff; --off-white: #f8f8f6;
+      --light-grey: #e8e8e6; --mid-grey: #999; --dark-grey: #444;
+      --font: 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--white);
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 1px solid var(--light-grey);
+    }
+    .header-logo { height: 22px; display: block; text-decoration: none; }
+    .header-logo img { height: 100%; width: auto; display: block; }
+    .header-step {
+      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+    .header-secure {
+      font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--mid-grey); display: flex; align-items: center; gap: 6px;
+    }
+    .header-secure svg { width: 11px; height: 11px; }
+
+    @media (max-width: 768px) {
+      header { padding: 0 16px; }
+      .header-step { display: none; }
+    }
+
+    /* ── LAYOUT ── */
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      min-height: 100vh;
+      padding-top: 60px;
+    }
+
+    @media (max-width: 900px) {
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── LEFT PANEL ── */
+    .checkout-form-panel {
+      padding: 48px 56px 80px;
+      border-right: 1px solid var(--light-grey);
+    }
+
+    @media (max-width: 900px) {
+      .checkout-form-panel { padding: 32px 20px 40px; border-right: none; }
+    }
+
+    .form-section-title {
+      font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--mid-grey); margin-bottom: 24px; margin-top: 40px;
+    }
+    .form-section-title:first-child { margin-top: 0; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .form-row.full { grid-template-columns: 1fr; }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-label {
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    .form-input, .form-select {
+      padding: 13px 14px;
+      font-family: var(--font);
+      font-size: 13px;
+      letter-spacing: 0.03em;
+      color: var(--black);
+      background: var(--white);
+      border: 1px solid var(--light-grey);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: 0;
+      width: 100%;
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--dark-grey);
+    }
+
+    .form-input.error, .form-select.error {
+      border-color: #c0392b;
+    }
+
+    .form-select-wrap { position: relative; }
+    .form-select-wrap::after {
+      content: '';
+      position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+      width: 0; height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid var(--mid-grey);
+      pointer-events: none;
+    }
+
+    /* ── SHIPPING OPTIONS ── */
+    .shipping-options { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+
+    .shipping-option {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px;
+      border: 1px solid var(--light-grey);
+      cursor: pointer;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+
+    .shipping-option:hover { border-color: var(--dark-grey); }
+    .shipping-option.selected { border-color: var(--black); }
+
+    .shipping-option-radio {
+      width: 16px; height: 16px; min-width: 16px;
+      border: 1px solid var(--mid-grey);
+      border-radius: 50%;
+      margin-top: 2px;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s;
+    }
+
+    .shipping-option.selected .shipping-option-radio {
+      border-color: var(--black);
+    }
+
+    .shipping-option-radio::after {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--black);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .shipping-option.selected .shipping-option-radio::after { opacity: 1; }
+
+    .shipping-option-info { flex: 1; }
+
+    .shipping-option-name {
+      font-size: 12px; letter-spacing: 0.04em;
+      color: var(--black); margin-bottom: 3px;
+    }
+
+    .shipping-option-desc {
+      font-size: 11px; letter-spacing: 0.02em;
+      color: var(--mid-grey); line-height: 1.6;
+    }
+
+    .shipping-option-price {
+      font-size: 12px; letter-spacing: 0.04em;
+      color: var(--dark-grey); white-space: nowrap;
+    }
+
+    /* ── PACZKOMAT PICKER PLACEHOLDER ── */
+    .paczkomat-picker {
+      display: none;
+      margin-top: 8px;
+      padding: 16px;
+      background: var(--off-white);
+      border: 1px solid var(--light-grey);
+    }
+
+    .paczkomat-picker.visible { display: block; }
+
+    .paczkomat-placeholder {
+      font-size: 11px; letter-spacing: 0.04em; color: var(--mid-grey);
+      line-height: 1.8; text-align: center; padding: 24px 0;
+    }
+
+    .paczkomat-selected {
+      display: none;
+      font-size: 12px; letter-spacing: 0.03em; color: var(--dark-grey);
+      padding: 8px 0;
+    }
+
+    /* ── SUBMIT ── */
+    .checkout-submit-wrap { margin-top: 36px; }
+
+    .checkout-submit {
+      width: 100%;
+      padding: 18px 24px;
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .checkout-submit:hover { background: #222; }
+    .checkout-submit:disabled { background: var(--mid-grey); cursor: not-allowed; }
+
+    .checkout-note {
+      font-size: 10px; letter-spacing: 0.04em; color: var(--mid-grey);
+      margin-top: 14px; line-height: 1.8; text-align: center;
+    }
+
+    .checkout-error {
+      display: none;
+      font-size: 11px; letter-spacing: 0.04em; color: #c0392b;
+      margin-top: 12px; text-align: center; line-height: 1.6;
+    }
+
+    /* ── RIGHT PANEL — ORDER SUMMARY ── */
+    .checkout-summary-panel {
+      background: var(--off-white);
+      padding: 48px 36px 80px;
+    }
+
+    @media (max-width: 900px) {
+      .checkout-summary-panel {
+        order: -1;
+        padding: 24px 20px;
+        border-bottom: 1px solid var(--light-grey);
+        background: var(--off-white);
+      }
+    }
+
+    .summary-title {
+      font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--mid-grey); margin-bottom: 28px;
+    }
+
+    .summary-items { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+
+    .summary-item { display: flex; gap: 14px; align-items: flex-start; }
+
+    .summary-item-img {
+      width: 64px; height: 64px; min-width: 64px;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .summary-item-img img {
+      width: 100%; height: 100%; object-fit: contain;
+    }
+
+    .summary-item-info { flex: 1; }
+
+    .summary-item-name {
+      font-size: 12px; letter-spacing: 0.03em; color: var(--black);
+      margin-bottom: 4px; line-height: 1.4;
+    }
+
+    .summary-item-meta {
+      font-size: 11px; letter-spacing: 0.04em; color: var(--mid-grey);
+      margin-bottom: 2px;
+    }
+
+    .summary-item-price {
+      font-size: 12px; letter-spacing: 0.04em; color: var(--dark-grey);
+      white-space: nowrap;
+    }
+
+    .summary-divider {
+      height: 1px; background: var(--light-grey); margin: 20px 0;
+    }
+
+    .summary-line {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .summary-line-label {
+      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--mid-grey);
+    }
+
+    .summary-line-value {
+      font-size: 12px; letter-spacing: 0.04em; color: var(--dark-grey);
+    }
+
+    .summary-total {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-top: 16px;
+    }
+
+    .summary-total-label {
+      font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--black);
+    }
+
+    .summary-total-value {
+      font-family: var(--font-serif);
+      font-size: 22px; font-weight: 300;
+      color: var(--black);
+    }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--mid-grey); text-decoration: none;
+      transition: color 0.2s; margin-bottom: 36px;
+      cursor: pointer; background: none; border: none;
+      font-family: var(--font); padding: 0;
+    }
+    .back-link:hover { color: var(--black); }
+
+    /* ── EMPTY STATE ── */
+    .checkout-empty {
+      display: none;
+      text-align: center;
+      padding: 80px 24px;
+    }
+    .checkout-empty-msg {
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--mid-grey); margin-bottom: 24px;
+    }
+    .checkout-empty a {
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--black); text-decoration: none;
+      border-bottom: 1px solid var(--black); padding-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="header-logo">
+      <img src="/images/Joshua-logo-black.png" alt="Joshua" />
+    </a>
+    <span class="header-step">Checkout</span>
+    <span class="header-secure">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+      </svg>
+      Secure
+    </span>
+  </header>
+
+  <!-- Empty state -->
+  <div class="checkout-empty" id="checkout-empty">
+    <div style="padding-top: 80px;">
+      <p class="checkout-empty-msg">Your bag is empty</p>
+      <a href="/">Return to collection</a>
+    </div>
+  </div>
+
+  <div class="checkout-layout" id="checkout-layout">
+
+    <!-- ── LEFT: FORM ── -->
+    <div class="checkout-form-panel">
+
+      <button class="back-link" onclick="history.back()">← Back to bag</button>
+
+      <!-- Contact -->
+      <div class="form-section-title">Contact</div>
+      <div class="form-row full">
+        <div class="form-field">
+          <label class="form-label" for="email">Email address</label>
+          <input class="form-input" type="email" id="email" autocomplete="email" placeholder="your@email.com" />
+        </div>
+      </div>
+
+      <!-- Shipping address -->
+      <div class="form-section-title">Shipping address</div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label" for="first-name">First name</label>
+          <input class="form-input" type="text" id="first-name" autocomplete="given-name" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="last-name">Last name</label>
+          <input class="form-input" type="text" id="last-name" autocomplete="family-name" />
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="form-field">
+          <label class="form-label" for="address">Address</label>
+          <input class="form-input" type="text" id="address" autocomplete="street-address" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label class="form-label" for="city">City</label>
+          <input class="form-input" type="text" id="city" autocomplete="address-level2" />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="postal">Postal code</label>
+          <input class="form-input" type="text" id="postal" autocomplete="postal-code" />
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="form-field">
+          <label class="form-label" for="country">Country</label>
+          <div class="form-select-wrap">
+            <select class="form-select" id="country" autocomplete="country" onchange="handleCountryChange()">
+              <option value="">Select country</option>
+              <optgroup label="Poland">
+                <option value="PL">Poland</option>
+              </optgroup>
+              <optgroup label="European Union">
+                <option value="AT">Austria</option>
+                <option value="BE">Belgium</option>
+                <option value="BG">Bulgaria</option>
+                <option value="HR">Croatia</option>
+                <option value="CZ">Czech Republic</option>
+                <option value="DK">Denmark</option>
+                <option value="EE">Estonia</option>
+                <option value="FI">Finland</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+                <option value="GR">Greece</option>
+                <option value="HU">Hungary</option>
+                <option value="IE">Ireland</option>
+                <option value="IT">Italy</option>
+                <option value="LV">Latvia</option>
+                <option value="LT">Lithuania</option>
+                <option value="LU">Luxembourg</option>
+                <option value="NL">Netherlands</option>
+                <option value="PT">Portugal</option>
+                <option value="RO">Romania</option>
+                <option value="SK">Slovakia</option>
+                <option value="SI">Slovenia</option>
+                <option value="ES">Spain</option>
+                <option value="SE">Sweden</option>
+              </optgroup>
+              <optgroup label="Other Europe">
+                <option value="GB">United Kingdom</option>
+                <option value="CH">Switzerland</option>
+                <option value="NO">Norway</option>
+              </optgroup>
+              <optgroup label="International">
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="AU">Australia</option>
+                <option value="JP">Japan</option>
+                <option value="SG">Singapore</option>
+                <option value="AE">United Arab Emirates</option>
+                <option value="KR">South Korea</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipping method -->
+      <div class="form-section-title">Shipping method</div>
+      <div id="shipping-options-wrap">
+        <div class="shipping-options" id="shipping-options">
+          <!-- Populated by JS based on country -->
+          <div style="font-size: 12px; letter-spacing: 0.03em; color: var(--mid-grey);">Please select a country above.</div>
+        </div>
+        <!-- InPost Paczkomat picker placeholder -->
+        <div class="paczkomat-picker" id="paczkomat-picker">
+          <div class="paczkomat-placeholder" id="paczkomat-placeholder">
+            InPost Paczkomat map will load here.<br>
+            <span style="font-size: 10px;">Integration available once InPost business account is active.</span>
+          </div>
+          <div class="paczkomat-selected" id="paczkomat-selected"></div>
+        </div>
+        <!-- DHL drop-off picker placeholder -->
+        <div class="paczkomat-picker" id="dhl-picker">
+          <div class="paczkomat-placeholder" id="dhl-placeholder">
+            DHL drop-off point map will load here.<br>
+            <span style="font-size: 10px;">Integration available once DHL business account is active.</span>
+          </div>
+          <div class="paczkomat-selected" id="dhl-selected"></div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="checkout-submit-wrap">
+        <button class="checkout-submit" id="checkout-submit" onclick="submitCheckout()">
+          Continue to payment
+        </button>
+        <div class="checkout-error" id="checkout-error"></div>
+        <p class="checkout-note">You will be redirected to our secure payment page.</p>
+      </div>
+
+    </div>
+
+    <!-- ── RIGHT: ORDER SUMMARY ── -->
+    <div class="checkout-summary-panel">
+      <div class="summary-title">Order summary</div>
+      <div class="summary-items" id="summary-items"></div>
+      <div class="summary-divider"></div>
+      <div class="summary-line">
+        <span class="summary-line-label">Subtotal</span>
+        <span class="summary-line-value" id="summary-subtotal">€0</span>
+      </div>
+      <div class="summary-line">
+        <span class="summary-line-label">Shipping</span>
+        <span class="summary-line-value" id="summary-shipping">—</span>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-total">
+        <span class="summary-total-label">Total</span>
+        <span class="summary-total-value" id="summary-total">€0</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── SUPABASE CONFIG ──
+    var SUPABASE_URL = 'SUPABASE_URL_PLACEHOLDER';
+    var SUPABASE_ANON_KEY = 'SUPABASE_ANON_KEY_PLACEHOLDER';
+
+    // ── CART ──
+    var cart = JSON.parse(localStorage.getItem('joshua-cart') || '[]');
+    var selectedShipping = null;
+
+    // ── SHIPPING DEFINITIONS ──
+    var EU_COUNTRIES = ['AT','BE','BG','HR','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','NL','PT','RO','SK','SI','ES','SE','GB','CH','NO'];
+
+    var shippingOptions = {
+      PL: [
+        { id: 'inpost_address',  name: 'InPost — to address',       desc: '1–2 business days',         price: 0,  courier: 'inpost'  },
+        { id: 'inpost_paczkomat',name: 'InPost — Paczkomat',        desc: 'Next business day',          price: 0,  courier: 'inpost', paczkomat: true },
+        { id: 'dhl_address',     name: 'DHL — to address',          desc: '1–2 business days',         price: 0,  courier: 'dhl'    },
+        { id: 'dhl_dropoff',     name: 'DHL — drop-off point',      desc: '1–2 business days',         price: 0,  courier: 'dhl',   dropoff: true   },
+      ],
+      EU: [
+        { id: 'eu_standard',     name: 'Standard shipping',         desc: '2–5 business days',         price: 0                    },
+        { id: 'eu_express',      name: 'Express shipping',          desc: '1–2 business days',         price: 20                   },
+      ],
+      INTL: [
+        { id: 'intl_standard',   name: 'Standard international',    desc: '5–10 business days',        price: 25                   },
+      ]
+    };
+
+    // ── INIT ──
+    document.addEventListener('DOMContentLoaded', function() {
+      if (cart.length === 0) {
+        document.getElementById('checkout-layout').style.display = 'none';
+        document.getElementById('checkout-empty').style.display = 'block';
+        return;
+      }
+      renderSummary();
+    });
+
+    // ── RENDER ORDER SUMMARY ──
+    function renderSummary() {
+      var el = document.getElementById('summary-items');
+      var subtotal = 0;
+      var html = '';
+
+      cart.forEach(function(item) {
+        var itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        html += '<div class="summary-item">';
+        html += '<div class="summary-item-img"><img src="' + item.image + '" alt="' + item.name + '" /></div>';
+        html += '<div class="summary-item-info">';
+        html += '<div class="summary-item-name">' + item.name + '</div>';
+        html += '<div class="summary-item-meta">Size ' + item.size + (item.quantity > 1 ? ' &nbsp;·&nbsp; Qty ' + item.quantity : '') + '</div>';
+        html += '</div>';
+        html += '<div class="summary-item-price">€' + itemTotal.toFixed(0) + '</div>';
+        html += '</div>';
+      });
+
+      el.innerHTML = html;
+      document.getElementById('summary-subtotal').textContent = '€' + subtotal.toFixed(0);
+      updateTotalDisplay();
+    }
+
+    function updateTotalDisplay() {
+      var subtotal = cart.reduce(function(s, i) { return s + i.price * i.quantity; }, 0);
+      var shippingCost = selectedShipping ? selectedShipping.price : 0;
+      var total = subtotal + shippingCost;
+
+      document.getElementById('summary-shipping').textContent =
+        selectedShipping ? (selectedShipping.price === 0 ? 'Free' : '€' + selectedShipping.price.toFixed(0)) : '—';
+      document.getElementById('summary-total').textContent = '€' + total.toFixed(0);
+    }
+
+    // ── COUNTRY CHANGE → RENDER SHIPPING OPTIONS ──
+    function handleCountryChange() {
+      var country = document.getElementById('country').value;
+      var options;
+
+      if (country === 'PL') {
+        options = shippingOptions.PL;
+      } else if (EU_COUNTRIES.includes(country)) {
+        options = shippingOptions.EU;
+      } else if (country) {
+        options = shippingOptions.INTL;
+      } else {
+        document.getElementById('shipping-options').innerHTML =
+          '<div style="font-size: 12px; letter-spacing: 0.03em; color: var(--mid-grey);">Please select a country above.</div>';
+        selectedShipping = null;
+        updateTotalDisplay();
+        return;
+      }
+
+      selectedShipping = null;
+      hidePickers();
+      renderShippingOptions(options);
+      updateTotalDisplay();
+    }
+
+    function renderShippingOptions(options) {
+      var html = '';
+      options.forEach(function(opt) {
+        var priceLabel = opt.price === 0 ? 'Free' : '€' + opt.price;
+        html += '<div class="shipping-option" id="opt-' + opt.id + '" onclick="selectShipping(\'' + opt.id + '\')">';
+        html += '<div class="shipping-option-radio"></div>';
+        html += '<div class="shipping-option-info">';
+        html += '<div class="shipping-option-name">' + opt.name + '</div>';
+        html += '<div class="shipping-option-desc">' + opt.desc + '</div>';
+        html += '</div>';
+        html += '<div class="shipping-option-price">' + priceLabel + '</div>';
+        html += '</div>';
+      });
+      document.getElementById('shipping-options').innerHTML = html;
+    }
+
+    function selectShipping(id) {
+      var country = document.getElementById('country').value;
+      var allOptions = shippingOptions[country === 'PL' ? 'PL' : (EU_COUNTRIES.includes(country) ? 'EU' : 'INTL')];
+      var opt = allOptions.find(function(o) { return o.id === id; });
+      if (!opt) return;
+
+      selectedShipping = opt;
+
+      document.querySelectorAll('.shipping-option').forEach(function(el) {
+        el.classList.remove('selected');
+      });
+      var el = document.getElementById('opt-' + id);
+      if (el) el.classList.add('selected');
+
+      hidePickers();
+      if (opt.paczkomat) {
+        document.getElementById('paczkomat-picker').classList.add('visible');
+      }
+      if (opt.dropoff) {
+        document.getElementById('dhl-picker').classList.add('visible');
+      }
+
+      updateTotalDisplay();
+    }
+
+    function hidePickers() {
+      document.getElementById('paczkomat-picker').classList.remove('visible');
+      document.getElementById('dhl-picker').classList.remove('visible');
+    }
+
+    // ── VALIDATION ──
+    function validate() {
+      var fields = ['email', 'first-name', 'last-name', 'address', 'city', 'postal', 'country'];
+      var valid = true;
+
+      fields.forEach(function(id) {
+        var el = document.getElementById(id);
+        el.classList.remove('error');
+        if (!el.value.trim()) {
+          el.classList.add('error');
+          valid = false;
+        }
+      });
+
+      if (document.getElementById('email').value && !document.getElementById('email').value.includes('@')) {
+        document.getElementById('email').classList.add('error');
+        valid = false;
+      }
+
+      if (!selectedShipping) {
+        valid = false;
+        showError('Please select a shipping method.');
+      }
+
+      return valid;
+    }
+
+    function showError(msg) {
+      var el = document.getElementById('checkout-error');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    function hideError() {
+      document.getElementById('checkout-error').style.display = 'none';
+    }
+
+    // ── SUBMIT ──
+    async function submitCheckout() {
+      hideError();
+      if (!validate()) return;
+
+      var btn = document.getElementById('checkout-submit');
+      btn.textContent = 'Processing...';
+      btn.disabled = true;
+
+      var firstName = document.getElementById('first-name').value.trim();
+      var lastName  = document.getElementById('last-name').value.trim();
+      var fullName  = firstName + ' ' + lastName;
+      var email     = document.getElementById('email').value.trim();
+      var address   = document.getElementById('address').value.trim();
+      var city      = document.getElementById('city').value.trim();
+      var postal    = document.getElementById('postal').value.trim();
+      var country   = document.getElementById('country').value;
+      var subtotal  = cart.reduce(function(s, i) { return s + i.price * i.quantity; }, 0);
+      var total     = subtotal + selectedShipping.price;
+
+      // ── Save to Supabase ──
+      var pendingOrderId = null;
+      try {
+        // Upsert customer
+        var custRes = await supabaseFetch('customers', {
+          email: email,
+          name: fullName,
+          country: country
+        }, 'email');
+
+        if (custRes && custRes.id) {
+          // Insert pending order
+          var orderRes = await supabaseInsert('orders', {
+            customer_id: custRes.id,
+            stripe_payment_id: null,
+            total: total,
+            currency: 'EUR',
+            status: 'pending',
+            shipping_name: fullName,
+            shipping_address: address,
+            shipping_city: city,
+            shipping_country: country,
+            shipping_postal_code: postal,
+            shipping_method: selectedShipping.id
+          });
+
+          if (orderRes && orderRes.id) {
+            pendingOrderId = orderRes.id;
+
+            // Insert order items
+            var items = cart.map(function(item) {
+              return {
+                order_id: pendingOrderId,
+                product_id: item.id,
+                product_name: item.name,
+                size: item.size,
+                quantity: item.quantity,
+                price: item.price
+              };
+            });
+            await supabaseInsertMany('order_items', items);
+          }
+        }
+      } catch(e) {
+        console.error('Supabase error:', e);
+        // Don't block checkout if Supabase fails
+      }
+
+      // Store pending order ID for webhook to update
+      if (pendingOrderId) {
+        localStorage.setItem('joshua-pending-order', pendingOrderId);
+      }
+
+      // ── Call Stripe checkout ──
+      var stripeItems = cart.map(function(item) {
+        return {
+          id: item.id,
+          name: item.name,
+          size: item.size,
+          image: item.image,
+          price: item.price,
+          quantity: item.quantity
+        };
+      });
+
+      // Add shipping as line item if paid
+      var shippingData = selectedShipping.price > 0 ? {
+        id: selectedShipping.id,
+        price: selectedShipping.price,
+        label: selectedShipping.name
+      } : null;
+
+      try {
+        var res = await fetch('/.netlify/functions/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            items: stripeItems,
+            shipping: shippingData,
+            customerEmail: email,
+            pendingOrderId: pendingOrderId
+          })
+        });
+        var data = await res.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || 'Unknown error');
+        }
+      } catch(e) {
+        showError('Something went wrong. Please try again.');
+        btn.textContent = 'Continue to payment';
+        btn.disabled = false;
+      }
+    }
+
+    // ── SUPABASE HELPERS ──
+    async function supabaseFetch(table, data, conflictCol) {
+      var res = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+          'Prefer': 'resolution=merge-duplicates,return=representation'
+        },
+        body: JSON.stringify(data)
+      });
+      var json = await res.json();
+      return Array.isArray(json) ? json[0] : json;
+    }
+
+    async function supabaseInsert(table, data) {
+      var res = await fetch(SUPABASE_URL + '/rest/v1/' + table, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+          'Prefer': 'return=representation'
+        },
+        body: JSON.stringify(data)
+      });
+      var json = await res.json();
+      return Array.isArray(json) ? json[0] : json;
+    }
+
+    async function supabaseInsertMany(table, rows) {
+      await fetch(SUPABASE_URL + '/rest/v1/' + table, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer '  + SUPABASE_ANON_KEY,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(rows)
+      });
+    }
+  </script>
+
+</body>
+</html>
