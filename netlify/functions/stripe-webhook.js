@@ -164,8 +164,8 @@ exports.handler = async function(event) {
 
           <!-- Header -->
           <tr>
-            <td style="padding: 40px 48px 32px; border-bottom: 1px solid #e8e8e6; text-align: center;">
-              <div style="font-size: 18px; letter-spacing: 0.25em; text-transform: uppercase; color: #0a0a0a; margin-bottom: 12px;">Joshua Atelier</div>
+            <td style="padding: 40px 48px 32px; border-bottom: 1px solid #e8e8e6; text-align: center; background: #ffffff;">
+              <img src="https://joshuaatelier.com/images/Joshua-logo-black.png" alt="Joshua" style="height: 28px; width: auto; display: block; margin: 0 auto 12px;" />
               <div style="font-size: 12px; letter-spacing: 0.08em; color: #999; font-style: italic;">she dressed with no one in mind</div>
             </td>
           </tr>
@@ -211,6 +211,16 @@ exports.handler = async function(event) {
                 ${address.city || ''}, ${address.postal_code || ''}<br/>
                 ${address.country || ''}
               </div>
+            </td>
+          </tr>
+
+          <!-- Tracking placeholder -->
+          <tr>
+            <td style="padding: 0 48px 28px;">
+              <div style="font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: #999; margin-bottom: 16px;">Track your order</div>
+              <p style="font-size: 13px; letter-spacing: 0.02em; color: #444; line-height: 1.9; margin: 0 0 16px;">
+                Once your order has been dispatched, you will receive a separate email with your tracking number and a link to follow your delivery.
+              </p>
             </td>
           </tr>
 
