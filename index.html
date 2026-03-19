@@ -103,10 +103,10 @@
     </div>
     <span class="header-tagline"><em>she dressed with no one in mind</em></span>
     <nav>
-      <a onclick="showPage('about')">About</a>
-      <a onclick="showPage('shop')">Collection</a>
+      <a onclick="showPage('about')" data-i18n="nav_about">About</a>
+      <a onclick="showPage('shop')" data-i18n="nav_collection">Collection</a>
       <div class="nav-social" id="nav-social">
-        <span class="nav-social-trigger" onclick="toggleSocialMenu(event)">Social</span>
+        <span class="nav-social-trigger" onclick="toggleSocialMenu(event)" data-i18n="nav_social">Social</span>
         <div class="nav-social-dropdown" id="nav-social-dropdown">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
@@ -121,10 +121,10 @@
       <footer>
         <div class="footer-left">© Joshua Apparel sp. z o.o.</div>
         <div class="footer-right">
-          <a href="/contact.html">Contact</a>
-          <a onclick="showPage('sizing')">Sizing</a>
-          <a onclick="showPage('shipping')">Shipping &amp; Returns</a>
-          <a href="/legal.html">Legal</a>
+          <a href="/contact.html" data-i18n="footer_contact">Contact</a>
+          <a onclick="showPage('sizing')" data-i18n="footer_sizing">Sizing</a>
+          <a onclick="showPage('shipping')"><span data-i18n="footer_shipping">Shipping &amp; Returns</span></a>
+          <a href="/legal.html" data-i18n="footer_legal">Legal</a>
         </div>
       </footer>
     </div>
@@ -132,7 +132,7 @@
 
   <div id="detail-page" class="page">
     <div class="content">
-      <button class="back-btn" onclick="showPage('shop')">← Back</button>
+      <button class="back-btn" onclick="showPage('shop')" data-i18n="back">← Back</button>
       <div class="detail-layout">
         <div class="detail-images">
           <div class="detail-main-img" id="detail-main-img-wrap"><img id="detail-main-img" src="" alt="" /></div>
@@ -145,11 +145,11 @@
           <div class="detail-price" id="detail-price"></div>
           <div class="size-color-row">
             <div class="size-col">
-              <div class="size-label">Select size <a onclick="showPage('sizing')" class="size-guide-link">Size guide</a></div>
+              <div class="size-label"><span data-i18n="select_size">Select size</span> <a onclick="showPage('sizing')" class="size-guide-link" data-i18n="size_guide">Size guide</a></div>
               <div class="size-options" id="size-options"></div>
             </div>
             <div class="color-selector">
-              <div class="color-name" id="color-name">Color</div>
+              <div class="color-name" id="color-name" data-i18n="color">Color</div>
               <div class="color-swatches">
                 <div class="color-swatch active" data-color="BLACK" style="background:#0a0a0a;" title="Black" onclick="selectColor(this)">
                   <span class="color-swatch-label">Black</span>
@@ -157,10 +157,10 @@
               </div>
             </div>
           </div>
-          <button class="buy-btn" id="buy-btn" onclick="handleBuy()">Add to Bag</button>
+          <button class="buy-btn" id="buy-btn" onclick="handleBuy()" data-i18n="add_to_bag">Add to Bag</button>
           <div class="size-note" id="size-note"></div>
           <div class="detail-divider"></div>
-          <div class="more-details-toggle" onclick="toggleMoreDetails()">More details <span id="more-details-arrow">+</span></div>
+          <div class="more-details-toggle" onclick="toggleMoreDetails()"><span data-i18n="more_details">More details</span> <span id="more-details-arrow">+</span></div>
           <div class="more-details-content" id="more-details-content">
           </div>
         </div>
@@ -168,10 +168,10 @@
       <footer>
         <div class="footer-left">© Joshua Apparel sp. z o.o.</div>
         <div class="footer-right">
-          <a href="/contact.html">Contact</a>
-          <a onclick="showPage('sizing')">Sizing</a>
-          <a onclick="showPage('shipping')">Shipping &amp; Returns</a>
-          <a href="/legal.html">Legal</a>
+          <a href="/contact.html" data-i18n="footer_contact">Contact</a>
+          <a onclick="showPage('sizing')" data-i18n="footer_sizing">Sizing</a>
+          <a onclick="showPage('shipping')"><span data-i18n="footer_shipping">Shipping &amp; Returns</span></a>
+          <a href="/legal.html" data-i18n="footer_legal">Legal</a>
         </div>
       </footer>
     </div>
@@ -180,18 +180,18 @@
   <div id="about-page" class="page">
     <div class="content content--flush">
       <div class="about-inner">
-      <div class="about-section-title">Construction</div>
+      <div class="about-section-title" data-i18n="about_construction_title">Construction</div>
       <div class="about-features">
-        <p>All <em>Joshua</em> garments are produced within the European Union, using exclusively European components. Each piece is sewn by a small team of seamstresses in Cluj-Napoca, Romania, whose expertise ensures precision, durability, and an uncompromising standard of finish.</p>
+        <p data-i18n="about_construction_p1">All <em>Joshua</em> garments are produced within the European Union, using exclusively European components. Each piece is sewn by a small team of seamstresses in Cluj-Napoca, Romania, whose expertise ensures precision, durability, and an uncompromising standard of finish.</p>
         <ul class="construction-list">
-          <li>Soft, sensual Italian mesh with stretch jersey edging provides a snug, flexible hold that moves with the body.</li>
-          <li>Inner seams lined with stretch silk create an almost unbreakable binding that feels soft against the skin.</li>
-          <li>Straps designed with a soft, non-slip grip for comfort and security, while custom-forged Italian metal components add both refinement and strength.</li>
-          <li>Crotches lined with organic cotton gussets for breathability, with exterior jersey for a clean finish.</li>
-          <li>Precision Swiss snaps ensure easy fastening and a secure fit.</li>
+          <li data-i18n="about_li1">Soft, sensual Italian mesh with stretch jersey edging provides a snug, flexible hold that moves with the body.</li>
+          <li data-i18n="about_li2">Inner seams lined with stretch silk create an almost unbreakable binding that feels soft against the skin.</li>
+          <li data-i18n="about_li3">Straps designed with a soft, non-slip grip for comfort and security, while custom-forged Italian metal components add both refinement and strength.</li>
+          <li data-i18n="about_li4">Crotches lined with organic cotton gussets for breathability, with exterior jersey for a clean finish.</li>
+          <li data-i18n="about_li5">Precision Swiss snaps ensure easy fastening and a secure fit.</li>
         </ul>
       </div>
-      <div class="about-section-title">Details</div>
+      <div class="about-section-title" data-i18n="about_details_title">Details</div>
       <div class="detail-shots-grid">
         <div class="detail-shot" onclick="openLightbox('images/detail-1.jpg')"><img src="images/detail-1.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
         <div class="detail-shot" onclick="openLightbox('images/detail-2.jpg')"><img src="images/detail-2.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
@@ -200,15 +200,15 @@
         <div class="detail-shot" onclick="openLightbox('images/detail-5.jpg')"><img src="images/detail-5.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
         <div class="detail-shot" onclick="openLightbox('images/detail-6.jpg')"><img src="images/detail-6.jpg" alt="Detail" onerror="this.parentElement.style.background='#f0f0ee'" /></div>
       </div>
-      <p class="about-closing">Intimacy without exhibitionism. Elegance without effort. Made to be used.</p>
+      <p class="about-closing" data-i18n="about_closing">Intimacy without exhibitionism. Elegance without effort. Made to be used.</p>
       </div><!-- end about-inner -->
       <footer>
         <div class="footer-left">© Joshua Apparel sp. z o.o.</div>
         <div class="footer-right">
-          <a href="/contact.html">Contact</a>
-          <a onclick="showPage('sizing')">Sizing</a>
-          <a onclick="showPage('shipping')">Shipping &amp; Returns</a>
-          <a href="/legal.html">Legal</a>
+          <a href="/contact.html" data-i18n="footer_contact">Contact</a>
+          <a onclick="showPage('sizing')" data-i18n="footer_sizing">Sizing</a>
+          <a onclick="showPage('shipping')"><span data-i18n="footer_shipping">Shipping &amp; Returns</span></a>
+          <a href="/legal.html" data-i18n="footer_legal">Legal</a>
         </div>
       </footer>
     </div>
@@ -216,16 +216,16 @@
 
   <div id="sizing-page" class="page">
     <div class="content">
-      <button class="back-btn" onclick="showPage('shop')">← Back</button>
+      <button class="back-btn" onclick="showPage('shop')" data-i18n="back">← Back</button>
       <div class="about-inner">
-        <div class="about-section-title">Sizing</div>
+        <div class="about-section-title" data-i18n="sizing_title">Sizing</div>
         <div class="sizing-intro">
-          <p>All <em>Joshua</em> mesh pieces are crafted from stretch mesh with stretch jersey edging, materials that move with the body rather than against it. Fit is forgiving across a wide range of measurements, and most pieces will adapt comfortably within that range.</p>
-          <p>For bodysuits, we recommend paying particular attention to height. Vertical seams are reinforced with stretch silk, which lends structure and durability but offers less vertical give than the mesh itself.</p>
-          <p>When in between sizes, we recommend sizing down for the most comfortable fit.</p>
+          <p data-i18n="sizing_p1">All <em>Joshua</em> mesh pieces are crafted from stretch mesh with stretch jersey edging, materials that move with the body rather than against it. Fit is forgiving across a wide range of measurements, and most pieces will adapt comfortably within that range.</p>
+          <p data-i18n="sizing_p2">For bodysuits, we recommend paying particular attention to height. Vertical seams are reinforced with stretch silk, which lends structure and durability but offers less vertical give than the mesh itself.</p>
+          <p data-i18n="sizing_p3">When in between sizes, we recommend sizing down for the most comfortable fit.</p>
         </div>
 
-        <div class="sizing-section-title">Size Guide</div>
+        <div class="sizing-section-title" data-i18n="sizing_guide_title">Size Guide</div>
         <table class="sizing-table">
           <thead>
             <tr>
@@ -234,11 +234,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>EU Size</td><td>34</td><td>36</td><td>38</td><td>40</td></tr>
-            <tr><td>US Size</td><td>2</td><td>4</td><td>6</td><td>8</td></tr>
-            <tr><td>UK Size</td><td>6</td><td>8</td><td>10</td><td>12</td></tr>
-            <tr><td>IT Size</td><td>38</td><td>40</td><td>42</td><td>44</td></tr>
-            <tr><td>FR Size</td><td>34</td><td>36</td><td>38</td><td>40</td></tr>
+            <tr><td data-i18n="sizing_eu">EU Size</td><td>34</td><td>36</td><td>38</td><td>40</td></tr>
+            <tr><td data-i18n="sizing_us">US Size</td><td>2</td><td>4</td><td>6</td><td>8</td></tr>
+            <tr><td data-i18n="sizing_uk">UK Size</td><td>6</td><td>8</td><td>10</td><td>12</td></tr>
+            <tr><td data-i18n="sizing_it">IT Size</td><td>38</td><td>40</td><td>42</td><td>44</td></tr>
+            <tr><td data-i18n="sizing_fr">FR Size</td><td>34</td><td>36</td><td>38</td><td>40</td></tr>
           </tbody>
         </table>
 
@@ -251,10 +251,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Height</td><td>158–163</td><td>163–168</td><td>168–173</td><td>173–178</td></tr>
-            <tr><td>Bust</td><td>79–83</td><td>84–88</td><td>89–93</td><td>94–98</td></tr>
-            <tr><td>Waist</td><td>60–63</td><td>64–67</td><td>68–71</td><td>72–75</td></tr>
-            <tr><td>Hips</td><td>87–90</td><td>91–94</td><td>95–98</td><td>99–102</td></tr>
+            <tr><td data-i18n="sizing_height">Height</td><td>158–163</td><td>163–168</td><td>168–173</td><td>173–178</td></tr>
+            <tr><td data-i18n="sizing_bust">Bust</td><td>79–83</td><td>84–88</td><td>89–93</td><td>94–98</td></tr>
+            <tr><td data-i18n="sizing_waist">Waist</td><td>60–63</td><td>64–67</td><td>68–71</td><td>72–75</td></tr>
+            <tr><td data-i18n="sizing_hips">Hips</td><td>87–90</td><td>91–94</td><td>95–98</td><td>99–102</td></tr>
           </tbody>
         </table>
 
@@ -267,20 +267,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Height</td><td>5'2″–5'4″</td><td>5'4″–5'6″</td><td>5'6″–5'8″</td><td>5'8″–5'10″</td></tr>
-            <tr><td>Bust</td><td>31″–33″</td><td>33″–35″</td><td>35″–37″</td><td>37″–39″</td></tr>
-            <tr><td>Waist</td><td>24″–25″</td><td>25″–26″</td><td>27″–28″</td><td>28″–30″</td></tr>
-            <tr><td>Hips</td><td>34″–35″</td><td>36″–37″</td><td>37″–39″</td><td>39″–40″</td></tr>
+            <tr><td data-i18n="sizing_height">Height</td><td>5'2″–5'4″</td><td>5'4″–5'6″</td><td>5'6″–5'8″</td><td>5'8″–5'10″</td></tr>
+            <tr><td data-i18n="sizing_bust">Bust</td><td>31″–33″</td><td>33″–35″</td><td>35″–37″</td><td>37″–39″</td></tr>
+            <tr><td data-i18n="sizing_waist">Waist</td><td>24″–25″</td><td>25″–26″</td><td>27″–28″</td><td>28″–30″</td></tr>
+            <tr><td data-i18n="sizing_hips">Hips</td><td>34″–35″</td><td>36″–37″</td><td>37″–39″</td><td>39″–40″</td></tr>
           </tbody>
         </table>
       </div>
       <footer>
         <div class="footer-left">© Joshua Apparel sp. z o.o.</div>
         <div class="footer-right">
-          <a href="/contact.html">Contact</a>
-          <a onclick="showPage('sizing')">Sizing</a>
-          <a onclick="showPage('shipping')">Shipping &amp; Returns</a>
-          <a href="/legal.html">Legal</a>
+          <a href="/contact.html" data-i18n="footer_contact">Contact</a>
+          <a onclick="showPage('sizing')" data-i18n="footer_sizing">Sizing</a>
+          <a onclick="showPage('shipping')"><span data-i18n="footer_shipping">Shipping &amp; Returns</span></a>
+          <a href="/legal.html" data-i18n="footer_legal">Legal</a>
         </div>
       </footer>
     </div>
@@ -288,35 +288,35 @@
 
   <div id="shipping-page" class="page">
     <div class="content">
-      <button class="back-btn" onclick="showPage('shop')">← Back</button>
+      <button class="back-btn" onclick="showPage('shop')" data-i18n="back">← Back</button>
       <div class="about-inner">
         <div class="shipping-section">
-          <div class="shipping-section-label">Packaging</div>
+          <div class="shipping-section-label" data-i18n="shipping_packaging_label">Packaging</div>
           <div class="shipping-photo-placeholder" id="packaging-photo"></div>
-          <p>Every <em>Joshua</em> order comes in a presentation box that is meant to be kept. It arrives within a discreet outer carton.</p>
+          <p data-i18n="shipping_packaging_p">Every <em>Joshua</em> order comes in a presentation box that is meant to be kept. It arrives within a discreet outer carton.</p>
         </div>
 
         <div class="shipping-section">
-          <div class="shipping-section-label">Shipping</div>
-          <p>Complimentary standard shipping within the EU via DHL. Express shipping and international delivery options are available at checkout. Orders are dispatched within 1–2 business days.</p>
+          <div class="shipping-section-label" data-i18n="shipping_label">Shipping</div>
+          <p data-i18n="shipping_p">Complimentary standard shipping within the EU via DHL. Express shipping and international delivery options are available at checkout. Orders are dispatched within 1–2 business days.</p>
         </div>
 
         <div class="shipping-section">
-          <div class="shipping-section-label">Returns</div>
-          <p>We accept returns within 14 days of delivery. Items must be unworn, in their original condition, and in original packaging with all tags attached.</p>
-          <p>Due to the intimate nature of our products, items showing any signs of wear will not be accepted for return on hygiene grounds. This does not affect your statutory rights.</p>
+          <div class="shipping-section-label" data-i18n="returns_label">Returns</div>
+          <p data-i18n="returns_p1">We accept returns within 14 days of delivery. Items must be unworn, in their original condition, and in original packaging with all tags attached.</p>
+          <p data-i18n="returns_p2">Due to the intimate nature of our products, items showing any signs of wear will not be accepted for return on hygiene grounds. This does not affect your statutory rights.</p>
           <p>To initiate a return, contact us at <span class="js-email" data-u="support" data-d="joshuaatelier.com"></span> before sending anything back. Return shipping costs are the responsibility of the customer unless the item is faulty or incorrectly sent.</p>
-          <p>Refunds are issued to the original payment method within 5–10 business days of receiving the returned item.</p>
+          <p data-i18n="returns_p4">Refunds are issued to the original payment method within 5–10 business days of receiving the returned item.</p>
         </div>
 
       </div>
       <footer>
         <div class="footer-left">© Joshua Apparel sp. z o.o.</div>
         <div class="footer-right">
-          <a href="/contact.html">Contact</a>
-          <a onclick="showPage('sizing')">Sizing</a>
-          <a onclick="showPage('shipping')">Shipping &amp; Returns</a>
-          <a href="/legal.html">Legal</a>
+          <a href="/contact.html" data-i18n="footer_contact">Contact</a>
+          <a onclick="showPage('sizing')" data-i18n="footer_sizing">Sizing</a>
+          <a onclick="showPage('shipping')"><span data-i18n="footer_shipping">Shipping &amp; Returns</span></a>
+          <a href="/legal.html" data-i18n="footer_legal">Legal</a>
         </div>
       </footer>
     </div>
@@ -326,6 +326,7 @@
     <img id="lightbox-img" src="" onclick="handleLightboxTap(event)" style="max-width:92vw;max-height:92vh;object-fit:contain;display:block;cursor:zoom-out;" />
   </div>
 
+  <script src="i18n.js"></script>
   <script src="products.js"></script>
   <script src="app.js"></script>
 
@@ -335,7 +336,7 @@
   <!-- Cart Drawer -->
   <div id="cart-drawer">
     <div class="cart-drawer-header">
-      <span class="cart-drawer-title">Your Bag <span class="cart-count"></span></span>
+      <span class="cart-drawer-title"><span data-i18n="your_bag">Your Bag</span> <span class="cart-count"></span></span>
       <button class="cart-drawer-close" onclick="closeCartDrawer()">×</button>
     </div>
     <div id="cart-drawer-items"></div>
@@ -344,9 +345,9 @@
         <span>Total</span>
         <span id="cart-drawer-total"></span>
       </div>
-      <div class="cart-shipping-note">Complimentary standard shipping within the EU</div>
-      <button class="checkout-btn" onclick="checkout()">Checkout</button>
-      <button class="view-bag-btn" onclick="closeCartDrawer(); showPage('bag')">View Bag</button>
+      <div class="cart-shipping-note" data-i18n="cart_shipping_note">Complimentary standard shipping within the EU</div>
+      <button class="checkout-btn" onclick="checkout()" data-i18n="checkout">Checkout</button>
+      <button class="view-bag-btn" onclick="closeCartDrawer(); showPage('bag')" data-i18n="view_bag">View Bag</button>
     </div>
   </div>
 
@@ -355,18 +356,18 @@
     <div class="content">
       <div class="bag-page-inner">
         <div class="bag-page-header">
-          <h1 class="bag-page-title">Your Bag</h1>
-          <button class="continue-shopping-btn" onclick="showPage('shop')">← Continue Shopping</button>
+          <h1 class="bag-page-title" data-i18n="your_bag_title">Your Bag</h1>
+          <button class="continue-shopping-btn" onclick="showPage('shop')" data-i18n="continue_shopping">← Continue Shopping</button>
         </div>
         <div id="bag-items"></div>
         <div id="bag-footer">
           <div class="bag-summary">
-            <div class="bag-shipping-note">Complimentary standard shipping within the EU via DHL.</div>
+            <div class="bag-shipping-note" data-i18n="bag_shipping_note">Complimentary standard shipping within the EU via DHL.</div>
             <div class="bag-total-row">
-              <span>Estimated Total</span>
+              <span data-i18n="estimated_total">Estimated Total</span>
               <span id="bag-total"></span>
             </div>
-            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+            <button class="checkout-btn" onclick="checkout()" data-i18n="checkout">Checkout</button>
           </div>
         </div>
       </div>
@@ -375,9 +376,9 @@
       <div class="footer-left">© Joshua Apparel sp. z o.o.</div>
       <div class="footer-right">
         <a href="/con/contact.html">Contact</a>
-          <a onclick="showPage('sizing')">Sizing</a>
-          <a onclick="showPage('shipping')">Shipping &amp; Returns</a>
-          <a href="/legal.html">Legal</a>
+          <a onclick="showPage('sizing')" data-i18n="footer_sizing">Sizing</a>
+          <a onclick="showPage('shipping')"><span data-i18n="footer_shipping">Shipping &amp; Returns</span></a>
+          <a href="/legal.html" data-i18n="footer_legal">Legal</a>
         </div>
       </footer>
     </div>
@@ -386,7 +387,7 @@
   <!-- Sticky Bag Bar -->
   <div id="sticky-bag-bar" onclick="openCartDrawer()">
     <span id="sticky-bag-label"></span>
-    <span id="sticky-bag-checkout">Checkout →</span>
+    <span id="sticky-bag-checkout" data-i18n="checkout_arrow">Checkout →</span>
   </div>
 
 </body>

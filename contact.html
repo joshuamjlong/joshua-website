@@ -237,10 +237,10 @@
     </a>
     <span class="header-tagline"><em>she dressed with no one in mind</em></span>
     <nav>
-      <a href="/#about">About</a>
-      <a href="/">Collection</a>
+      <a href="/#about" data-i18n="nav_about">About</a>
+      <a href="/" data-i18n="nav_collection">Collection</a>
       <div class="nav-social" id="nav-social">
-        <span class="nav-social-trigger" onclick="toggleSocialMenu(event)">Social</span>
+        <span class="nav-social-trigger" onclick="toggleSocialMenu(event)" data-i18n="nav_social">Social</span>
         <div class="nav-social-dropdown" id="nav-social-dropdown">
           <a href="https://instagram.com/joshuaatelier" target="_blank">Instagram</a>
           <a href="https://tiktok.com/@joshuaatelier" target="_blank">TikTok</a>
@@ -250,47 +250,47 @@
   </header>
 
   <div class="content">
-    <a href="/" class="back-btn">← Back</a>
+    <a href="/" class="back-btn" data-i18n="back">← Back</a>
 
     <div class="container">
 
       <!-- ── CONTACT ── -->
-      <div class="section-title">Contact</div>
+      <div class="section-title" data-i18n="contact_section">Contact</div>
 
       <div class="contact-list">
         <div class="contact-row">
-          <span class="contact-label">General</span>
+          <span class="contact-label" data-i18n="contact_general">General</span>
           <span class="contact-email"><span class="js-email" data-u="contact" data-d="joshuaatelier.com"></span></span>
         </div>
         <div class="contact-row">
-          <span class="contact-label">Orders &amp; Support</span>
+          <span class="contact-label" data-i18n="contact_orders">Orders &amp; Support</span>
           <span class="contact-email"><span class="js-email" data-u="support" data-d="joshuaatelier.com"></span></span>
         </div>
         <div class="contact-row">
-          <span class="contact-label">Press</span>
+          <span class="contact-label" data-i18n="contact_press">Press</span>
           <span class="contact-email"><span class="js-email" data-u="press" data-d="joshuaatelier.com"></span></span>
         </div>
         <div class="contact-row">
-          <span class="contact-label">Collaborate</span>
+          <span class="contact-label" data-i18n="contact_collaborate">Collaborate</span>
           <span class="contact-email"><span class="js-email" data-u="collaborate" data-d="joshuaatelier.com"></span></span>
         </div>
       </div>
 
       <!-- ── NEWSLETTER ── -->
       <div class="newsletter-section">
-        <div class="section-title">Stay Close</div>
-        <p class="newsletter-statement">Early access to new collections and private events.</p>
+        <div class="section-title" data-i18n="newsletter_title">Stay Close</div>
+        <p class="newsletter-statement" data-i18n="newsletter_statement">Early access to new collections and private events.</p>
         <div class="newsletter-form">
           <input
             type="email"
             class="newsletter-input"
-            placeholder="Your email address"
+            data-i18n-placeholder="newsletter_placeholder" placeholder="Your email address"
             id="newsletter-email"
           />
-          <button class="newsletter-btn" onclick="handleNewsletter()">Subscribe</button>
+          <button class="newsletter-btn" onclick="handleNewsletter()" data-i18n="newsletter_btn">Subscribe</button>
         </div>
-        <p class="newsletter-note">No marketing. No frequency. Only what matters.</p>
-        <p class="newsletter-success" id="newsletter-success">Thank you — you will hear from us.</p>
+        <p class="newsletter-note" data-i18n="newsletter_note">No marketing. No frequency. Only what matters.</p>
+        <p class="newsletter-success" id="newsletter-success" data-i18n="newsletter_success">Thank you — you will hear from us.</p>
       </div>
 
     </div>
@@ -299,13 +299,14 @@
   <footer>
     <div class="footer-left">© Joshua Apparel sp. z o.o.</div>
     <div class="footer-right">
-      <a href="/contact.html">Contact</a>
-      <a href="/#sizing">Sizing</a>
-      <a href="/#shipping">Shipping &amp; Returns</a>
-      <a href="/legal.html">Legal</a>
+      <a href="/contact.html" data-i18n="footer_contact">Contact</a>
+      <a href="/#sizing" data-i18n="footer_sizing">Sizing</a>
+      <a href="/#shipping"><span data-i18n="footer_shipping">Shipping &amp; Returns</span></a>
+      <a href="/legal.html" data-i18n="footer_legal">Legal</a>
     </div>
   </footer>
 
+  <script src="/i18n.js"></script>
   <script>
     document.querySelectorAll('.js-email').forEach(function(el) {
       el.textContent = el.getAttribute('data-u') + '@' + el.getAttribute('data-d');

@@ -82,7 +82,7 @@ function renderCartDrawer() {
   var el = document.getElementById('cart-drawer-items');
   if (!el) return;
   if (cart.length === 0) {
-    el.innerHTML = '<div class="cart-empty">Your bag is empty.</div>';
+    el.innerHTML = '<div class="cart-empty">' + t('bag_empty') + '</div>';
     document.getElementById('cart-drawer-footer').style.display = 'none';
     return;
   }
@@ -93,13 +93,13 @@ function renderCartDrawer() {
     html += '<div class="cart-item-img"><img src="' + item.image + '" alt="' + item.name + '"></div>';
     html += '<div class="cart-item-info">';
     html += '<div class="cart-item-name">' + item.name + '</div>';
-    html += '<div class="cart-item-meta">Size ' + item.size + '</div>';
+    html += '<div class="cart-item-meta">' + t('size_label') + ' ' + item.size + '</div>';
     html += '<div class="cart-item-qty">';
     html += '<button onclick="changeQty(\'' + item.id + '\',\'' + item.size + '\',-1)">−</button>';
     html += '<span>' + item.quantity + '</span>';
     html += '<button onclick="changeQty(\'' + item.id + '\',\'' + item.size + '\',1)">+</button>';
     html += '</div>';
-    html += '<button class="cart-item-remove" onclick="removeFromCart(\'' + item.id + '\',\'' + item.size + '\')">Remove</button>';
+    html += '<button class="cart-item-remove" onclick="removeFromCart(\'' + item.id + '\',\'' + item.size + '\')">'+t('remove')+'</button>';
     html += '</div>';
     html += '<div class="cart-item-price">€' + (item.price * item.quantity).toFixed(0) + '</div>';
     html += '</div>';
@@ -114,7 +114,7 @@ function renderBagPage() {
   var el = document.getElementById('bag-items');
   if (!el) return;
   if (cart.length === 0) {
-    el.innerHTML = '<div class="cart-empty">Your bag is empty.</div>';
+    el.innerHTML = '<div class="cart-empty">' + t('bag_empty') + '</div>';
     document.getElementById('bag-footer').style.display = 'none';
     return;
   }
@@ -125,13 +125,13 @@ function renderBagPage() {
     html += '<div class="bag-item-img"><img src="' + item.image + '" alt="' + item.name + '"></div>';
     html += '<div class="bag-item-details">';
     html += '<div class="bag-item-name">' + item.name.toUpperCase() + '</div>';
-    html += '<div class="bag-item-meta">SIZE ' + item.size + '</div>';
+    html += '<div class="bag-item-meta">' + t('size_label_upper') + ' ' + item.size + '</div>';
     html += '<div class="cart-item-qty">';
     html += '<button onclick="changeQty(\'' + item.id + '\',\'' + item.size + '\',-1)">−</button>';
     html += '<span>' + item.quantity + '</span>';
     html += '<button onclick="changeQty(\'' + item.id + '\',\'' + item.size + '\',1)">+</button>';
     html += '</div>';
-    html += '<button class="cart-item-remove" onclick="removeFromCart(\'' + item.id + '\',\'' + item.size + '\')">Remove</button>';
+    html += '<button class="cart-item-remove" onclick="removeFromCart(\'' + item.id + '\',\'' + item.size + '\')">'+t('remove')+'</button>';
     html += '</div>';
     html += '<div class="bag-item-price">€' + (item.price * item.quantity).toFixed(0) + '</div>';
     html += '</div>';
@@ -287,8 +287,8 @@ function renderDetail(p) {
     lines.push(p.composition);
   }
   if (p.care) lines.push(p.care);
-  lines.push('Made in Romania');
-  lines.push('Complimentary standard shipping within the EU');
+  lines.push(t('made_in'));
+  lines.push(t('free_shipping'));
   mdc.innerHTML = lines.join('<br>');
   document.getElementById('more-details-content').style.display = 'none';
   document.getElementById('more-details-arrow').textContent = '+';
@@ -327,7 +327,7 @@ function selectSize(size, btn) {
 }
 
 function handleBuy() {
-  if (!selectedSize) { document.getElementById('size-note').textContent = 'Please select a size'; return; }
+  if (!selectedSize) { document.getElementById('size-note').textContent = t('please_select_size'); return; }
   addToCart(currentProduct, selectedSize);
 }
 
