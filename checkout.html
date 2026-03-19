@@ -68,7 +68,7 @@
 
     /* ── LEFT PANEL ── */
     .checkout-form-panel {
-      padding: 48px 56px 80px;
+      padding: 24px 56px 80px;
       border-right: 1px solid var(--light-grey);
     }
 
@@ -335,7 +335,7 @@
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--mid-grey); text-decoration: none;
-      transition: color 0.2s; margin-bottom: 36px;
+      transition: color 0.2s; margin-bottom: 20px;
       cursor: pointer; background: none; border: none;
       font-family: var(--font); padding: 0;
     }
@@ -511,7 +511,7 @@
           Continue to payment
         </button>
         <div class="checkout-error" id="checkout-error"></div>
-        <p class="checkout-note">You will be redirected to our secure payment page.</p>
+        <p class="checkout-note">You will be redirected to a secure payment page powered by Stripe.</p>
       </div>
 
     </div>
@@ -540,8 +540,8 @@
 
   <script>
     // ── SUPABASE CONFIG ──
-    var SUPABASE_URL = 'SUPABASE_URL_PLACEHOLDER';
-    var SUPABASE_ANON_KEY = 'SUPABASE_ANON_KEY_PLACEHOLDER';
+    var SUPABASE_URL = 'https://fuxjsjsymrwndxszpcwh.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ1eGpzanN5bXJ3bmR4c3pwY3doIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1ODAxMzQsImV4cCI6MjA4OTE1NjEzNH0.UwgTRTnJZmRc-Zm7E7PjirfI296C4iBQrABe0M-u4Ng';
 
     // ── CART ──
     var cart = JSON.parse(localStorage.getItem('joshua-cart') || '[]');
