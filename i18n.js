@@ -326,6 +326,18 @@ function applyTranslations() {
   });
   // Update html lang attribute
   document.documentElement.lang = LANG;
+  // Highlight active language
+  var enEl = document.getElementById('lang-en');
+  var frEl = document.getElementById('lang-fr');
+  if (enEl && frEl) {
+    if (LANG === 'fr') {
+      enEl.style.color = 'var(--mid-grey)';
+      frEl.style.color = 'var(--dark-grey)';
+    } else {
+      enEl.style.color = 'var(--dark-grey)';
+      frEl.style.color = 'var(--mid-grey)';
+    }
+  }
 }
 
 // Run on load

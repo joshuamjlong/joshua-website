@@ -17,7 +17,7 @@
     }
     @media (max-width: 768px) {
       header { height: auto; flex-wrap: wrap; padding: 10px 16px 8px; align-content: flex-start; gap: 6px; }
-      .header-logo { width: 100%; display: flex; align-items: center; }
+      .header-logo { width: 100%; display: flex; align-items: center; margin-bottom: 6px; }
       .header-logo img { height: 28px; }
       .header-tagline { display: none; }
       nav { width: 100%; display: flex; justify-content: space-between; padding-bottom: 4px; }
@@ -266,10 +266,10 @@
     body.has-sticky-bar footer { padding-bottom: 80px; }
 
     /* ── SOCIAL DROPDOWN ── */
-    .nav-social { position: relative; }
+    .nav-social { position: relative; display: flex; align-items: center; }
     .nav-social-trigger {
       font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--dark-grey); cursor: pointer; transition: color 0.2s; user-select: none;
+      color: var(--dark-grey); cursor: pointer; transition: color 0.2s; user-select: none; line-height: 1;
     }
     .nav-social-trigger:hover { color: var(--black); }
     .nav-social-dropdown {
